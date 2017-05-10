@@ -403,7 +403,7 @@ namespace scene
 		directly modify the material of a scene node.
 		\param num Zero based index. The maximal value is getMaterialCount() - 1.
 		\return The material at that index. */
-		virtual video::SMaterial& getMaterial(u32 num)
+		virtual video::SMaterial& getMaterial(u32)
 		{
 			return video::IdentityMaterial;
 		}
@@ -684,7 +684,7 @@ namespace scene
 		\param out The attribute container to write into.
 		\param options Additional options which might influence the
 		serialization. */
-		virtual void serializeAttributes(io::IAttributes* out, io::SAttributeReadWriteOptions* options=0) const
+		virtual void serializeAttributes(io::IAttributes* out, io::SAttributeReadWriteOptions* =0) const
 		{
 			if (!out)
 				return;
@@ -709,7 +709,7 @@ namespace scene
 		\param in The attribute container to read from.
 		\param options Additional options which might influence the
 		deserialization. */
-		virtual void deserializeAttributes(io::IAttributes* in, io::SAttributeReadWriteOptions* options=0)
+		virtual void deserializeAttributes(io::IAttributes* in, io::SAttributeReadWriteOptions* =0)
 		{
 			if (!in)
 				return;
@@ -738,7 +738,7 @@ namespace scene
 		/** \param newParent An optional new parent.
 		\param newManager An optional new scene manager.
 		\return The newly created clone of this node. */
-		virtual ISceneNode* clone(ISceneNode* newParent=0, ISceneManager* newManager=0)
+		virtual ISceneNode* clone(ISceneNode* =0, ISceneManager* =0)
 		{
 			return 0; // to be implemented by derived classes
 		}

@@ -343,7 +343,7 @@ protected:
 		\param typeTest Unused parameter, which handles the proper call selection based on the type of the Functor which is passed in two times.
 		\return True if the functor was successfully applied, else false. */
 		template <typename Functor>
-		bool apply_(const Functor& func, IMeshBuffer* buffer, bool boundingBoxUpdate, const IVertexManipulator& typeTest) const
+		bool apply_(const Functor& func, IMeshBuffer* buffer, bool boundingBoxUpdate, const IVertexManipulator&) const
 		{
 			if (!buffer)
 				return true;

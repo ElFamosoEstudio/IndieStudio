@@ -762,7 +762,7 @@ public:
 	//! Writes attributes of the scene node.
 	/** Implement this to expose the attributes of your scene node for
 	scripting languages, editors, debuggers or xml serialization purposes. */
-	virtual void serializeAttributes(io::IAttributes* out, io::SAttributeReadWriteOptions* options=0) const
+	virtual void serializeAttributes(io::IAttributes* out, io::SAttributeReadWriteOptions* =0) const
 	{
 		out->addString("Name", Name.c_str());		
 		out->addInt("Id", ID );
@@ -786,7 +786,7 @@ public:
 	//! Reads attributes of the scene node.
 	/** Implement this to set the attributes of your scene node for
 	scripting languages, editors, debuggers or xml deserialization purposes. */
-	virtual void deserializeAttributes(io::IAttributes* in, io::SAttributeReadWriteOptions* options=0)
+	virtual void deserializeAttributes(io::IAttributes* in, io::SAttributeReadWriteOptions* =0)
 	{
 		setName(in->getAttributeAsString("Name"));
 		setID(in->getAttributeAsInt("Id"));

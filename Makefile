@@ -5,7 +5,7 @@
 ## Login   <silvy_n@epitech.net>
 ##
 ## Started on  Mon May  8 19:36:54 2017
-## Last update Mon May  8 19:37:49 2017 
+## Last update Wed May 10 23:06:43 2017 Noam Silvy
 ##
 
 NAME		=		bomber
@@ -23,7 +23,7 @@ CXXFLAGS	=		-Wall -Wextra
 
 LDFLAGS		=		 -L./irrlicht-1.8.4/linux -lIrrlicht  -lGL -lXxf86vm -lXext -lX11 -lXcursor
 
-SRCS		=		main.cpp
+SRCS		=		src/main.cpp
 
 OBJS		=		$(SRCS:.cpp=.o)
 

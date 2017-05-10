@@ -50,7 +50,7 @@ namespace scene
 		\param numVertices Number of vertices in the array.
 		\param indices Pointer to index array.
 		\param numIndices Number of indices in array. */
-		virtual void append(const void* const vertices, u32 numVertices, const u16* const indices, u32 numIndices)
+		virtual void append(const void* const, u32, const u16* const, u32)
 		{
 
 		}
@@ -58,7 +58,7 @@ namespace scene
 		//! Append the meshbuffer to the current buffer
 		/** Only works for compatible vertex types
 		\param other Buffer to append to this one. */
-		virtual void append(const IMeshBuffer* const other)
+		virtual void append(const IMeshBuffer* const)
 		{
 
 		}
