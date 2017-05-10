@@ -168,10 +168,10 @@ namespace scene
 		}
 
 		//! append the vertices and indices to the current buffer
-		virtual void append(const void* const vertices, u32 numVertices, const u16* const indices, u32 numIndices) {}
+		virtual void append(const void* const, u32, const u16* const, u32) {}
 
 		//! append the meshbuffer to the current buffer
-		virtual void append(const IMeshBuffer* const other) {}
+		virtual void append(const IMeshBuffer* const) {}
 
 		//! get the current hardware mapping hint
 		virtual E_HARDWARE_MAPPING getHardwareMappingHint_Vertex() const
