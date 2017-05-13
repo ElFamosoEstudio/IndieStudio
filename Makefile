@@ -5,7 +5,7 @@
 ## Login   <silvy_n@epitech.net>
 ##
 ## Started on  Mon May  8 19:36:54 2017
-## Last update Wed May 10 23:06:43 2017 Noam Silvy
+## Last update Sat May 13 21:26:57 2017 Adam Akkari
 ##
 
 NAME		=		bomber
@@ -16,14 +16,16 @@ CC		=		g++
 
 RM		=		rm -f
 
-CPPFLAGS	=		-I./irrlicht-1.8.4/include
+CPPFLAGS	=		-I./irrlicht-1.8.4/include -I./src/component -I./src/gameobject
 
-CXXFLAGS	=		-Wall -Wextra
+CXXFLAGS	=		-Wall -Wextra -std=c++11
 # CXXFLAGS	+=		-std=c++17
 
 LDFLAGS		=		 -L./irrlicht-1.8.4/linux -lIrrlicht  -lGL -lXxf86vm -lXext -lX11 -lXcursor
 
-SRCS		=		src/main.cpp
+SRCS		=		src/main.cpp \
+				src/component/Transform.cpp \
+				src/gameobject/GameObject.cpp
 
 OBJS		=		$(SRCS:.cpp=.o)
 
