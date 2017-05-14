@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat May 13 17:53:33 2017 Adam Akkari
-// Last update Sun May 14 22:39:42 2017 Adam Akkari
+// Last update Mon May 15 00:33:50 2017 Adam Akkari
 //
 
 #ifndef GAMEOBJECT
@@ -21,11 +21,12 @@ protected:
   std::vector<Component*>	_components;
 
 public:
-  GameObject(std::string const &name) : name(name) {}
+  GameObject(std::string const &name);
+  ~GameObject();
   Component	*getComponent(std::string const &type);
   virtual void	update() = 0;
 
-  std::string const	&name;
+  std::string const	name;
 };
 
 #endif //GAMEOBJECT

@@ -5,16 +5,16 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat May 13 23:15:38 2017 Adam Akkari
-// Last update Sun May 14 22:15:42 2017 Adam Akkari
+// Last update Mon May 15 00:00:43 2017 Adam Akkari
 //
 
 #ifndef RENDERER_3D
 # define RENDERER_3D
 
 # include <IAnimatedMeshSceneNode.h>
-# include "Component.hpp"
+# include "Renderer.hh"
 
-class	Renderer3D : public Component
+class	Renderer3D : public Renderer
 {
 private:
   irr::scene::IAnimatedMeshSceneNode	*_mesh;
@@ -22,7 +22,8 @@ private:
 public:
   Renderer3D(GameObject &obj, std::string const &model);
   void	setMaterial(std::string const &name);
-  void	update();
+  void	enableLighting(bool state);
+  virtual void	update();
 };
 
 #endif //RENDERER_3D

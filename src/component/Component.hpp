@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat May 13 20:03:59 2017 Adam Akkari
-// Last update Sun May 14 02:00:31 2017 Adam Akkari
+// Last update Mon May 15 00:34:27 2017 Adam Akkari
 //
 
 #ifndef COMPONENT
@@ -23,7 +23,7 @@ protected:
 public:
   Component(GameObject &obj, std::string const &type) : _parent(obj), type(type) {}
 
-  std::string const	&type;
+  std::string const	type;
 };
 
 #endif //COMPONENT

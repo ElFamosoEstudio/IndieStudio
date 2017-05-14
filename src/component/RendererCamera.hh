@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sun May 14 22:15:00 2017 Adam Akkari
-// Last update Sun May 14 22:42:30 2017 Adam Akkari
+// Last update Sun May 14 23:46:08 2017 Adam Akkari
 //
 
 #ifndef RENDERER_CAMERA
@@ -13,17 +13,17 @@
 
 # include <vector3d.h>
 # include <ICameraSceneNode.h>
-# include "Component.hpp"
+# include "Renderer.hh"
 
-class	RendererCamera : public Component
+class	RendererCamera : public Renderer
 {
 private:
   irr::scene::ICameraSceneNode	*_camera;
 
 public:
-  RendererCamera(GameObject &obj, irr::core::vector3df &lookat);
+  RendererCamera(GameObject &obj, irr::core::vector3df const &lookat);
   void	lookAt(irr::core::vector3df &target);
-  void	update();
+  virtual void	update();
 };
 
 #endif //RENDERER_CAMERA

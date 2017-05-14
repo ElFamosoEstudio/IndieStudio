@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sun May 14 22:17:06 2017 Adam Akkari
-// Last update Sun May 14 22:46:17 2017 Adam Akkari
+// Last update Sun May 14 23:46:27 2017 Adam Akkari
 //
 
 #include "RendererCamera.hh"
@@ -14,8 +14,8 @@
 #include "GameObject.hpp"
 
 RendererCamera::RendererCamera(GameObject &obj,
-			       irr::core::vector3df &lookat)
-  : Component(obj, "RendererCamera"),
+			       irr::core::vector3df const &lookat)
+  : Renderer(obj),
     _camera(RessourcesLocator::getSceneManager()->addCameraSceneNode
 	    (0, irr::core::vector3df(0.0f, 0.0f, 0.0f), lookat))
 {

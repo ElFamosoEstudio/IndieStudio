@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sun May 14 01:15:36 2017 Adam Akkari
-// Last update Sun May 14 02:38:40 2017 Adam Akkari
+// Last update Sun May 14 23:28:36 2017 Adam Akkari
 //
 
 #ifndef SCENE
@@ -16,6 +16,7 @@
 # include <IVideoDriver.h>
 # include <IrrlichtDevice.h>
 # include "GameObject.hpp"
+# include "Renderer.hh"
 
 class	Scene
 {
@@ -23,9 +24,14 @@ private:
   irr::scene::ISceneManager	*_sceneManager;
   irr::video::IVideoDriver	*_driver;
   std::vector<GameObject*>	_objects;
+  std::vector<Renderer*>	_renderers;
 
 public:
   Scene(irr::IrrlichtDevice *device, irr::video::IVideoDriver *driver);
+  void	addGameObject(GameObject *obj);
+  void	removeGameObject(GameObject *obj);
+  void	addRenderer(Renderer *rdr);
+  void	removeRenderer(Renderer *rdr);
   void	update();
   ~Scene();
 };

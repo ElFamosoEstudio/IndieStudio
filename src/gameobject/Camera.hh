@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sun May 14 20:13:45 2017 Adam Akkari
-// Last update Sun May 14 22:42:15 2017 Adam Akkari
+// Last update Sun May 14 23:45:30 2017 Adam Akkari
 //
 
 #ifndef CAMERA
@@ -25,8 +25,8 @@ private:
 
 public:
   Camera(std::string const &name,
-	 irr::core::vector3df &position,
-	 irr::core::vector3df &lookat);
+	 irr::core::vector3df const &position,
+	 irr::core::vector3df const &lookat);
   virtual void	update();
 };
 
