@@ -5,7 +5,7 @@
 ## Login   <silvy_n@epitech.net>
 ##
 ## Started on  Mon May  8 19:36:54 2017
-## Last update Sun May 14 01:50:13 2017 Adam Akkari
+## Last update Sun May 14 22:43:05 2017 Adam Akkari
 ##
 
 NAME		=		bomber
@@ -26,9 +26,11 @@ LDFLAGS		=		 -L./irrlicht-1.8.4/linux -lIrrlicht  -lGL -lXxf86vm -lXext -lX11 -l
 SRCS		=		src/main.cpp \
 				src/component/Transform.cpp \
 				src/component/Renderer3D.cpp \
+				src/component/RendererCamera.cpp \
 				src/gameobject/GameObject.cpp \
 				src/Scene.cpp \
-				src/RessourcesLocator.cpp
+				src/RessourcesLocator.cpp \
+				src/gameobject/Camera.cpp
 
 OBJS		=		$(SRCS:.cpp=.o)
 

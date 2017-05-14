@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat May 13 23:15:38 2017 Adam Akkari
-// Last update Sun May 14 01:58:47 2017 Adam Akkari
+// Last update Sun May 14 22:15:42 2017 Adam Akkari
 //
 
 #ifndef RENDERER_3D
@@ -13,8 +13,6 @@
 
 # include <IAnimatedMeshSceneNode.h>
 # include "Component.hpp"
-
-class	GameObject;
 
 class	Renderer3D : public Component
 {
