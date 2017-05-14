@@ -5,12 +5,12 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat May 13 20:11:20 2017 Adam Akkari
-// Last update Sat May 13 22:53:19 2017 Adam Akkari
+// Last update Sun May 14 02:00:46 2017 Adam Akkari
 //
 
 #include "Transform.hh"
 
-Transform::Transform(GameObject const &obj,
+Transform::Transform(GameObject &obj,
 		     float px, float py, float pz,
 		     float rx, float ry, float rz,
 		     float sx, float sy, float sz)

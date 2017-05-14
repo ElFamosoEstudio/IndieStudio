@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat May 13 20:02:55 2017 Adam Akkari
-// Last update Sat May 13 22:50:32 2017 Adam Akkari
+// Last update Sun May 14 02:00:39 2017 Adam Akkari
 //
 
 #ifndef TRANSFORM
@@ -17,7 +17,7 @@
 class	Transform : public Component
 {
 public:
-  Transform(GameObject const &obj,
+  Transform(GameObject &obj,
 	    float px = 0, float py = 0, float pz = 0,
 	    float rx = 0, float ry = 0, float rz = 0,
 	    float sx = 1, float sy = 1, float sz = 1);

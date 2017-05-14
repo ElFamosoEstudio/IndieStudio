@@ -5,15 +5,20 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat May 13 20:45:48 2017 Adam Akkari
-// Last update Sat May 13 22:51:28 2017 Adam Akkari
+// Last update Sun May 14 02:11:55 2017 Adam Akkari
 //
 
 #include "GameObject.hpp"
 
-Component	&GameObject::getComponent(std::string const &type)
+Component	*GameObject::getComponent(std::string const &type)
 {
-  for (auto const &idx:_components)
-    if (idx->type == type)
-      return (*idx);
-  throw;
+  unsigned int	i = 0;
+
+  while (i < _components.size())
+    {
+      if (_components[i]->type == type)
+	return (_components[i]);
+      i++;
+    }
+  return (nullptr);
 }
