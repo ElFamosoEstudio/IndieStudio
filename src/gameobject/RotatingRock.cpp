@@ -5,10 +5,11 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sun May 14 23:53:35 2017 Adam Akkari
-// Last update Mon May 15 00:41:14 2017 Adam Akkari
+// Last update Mon May 15 16:29:13 2017 Adam Akkari
 //
 
 #include <irrlicht.h>
+#include "InputManager.hh"
 #include "RotatingRock.hh"
 
 RotatingRock::RotatingRock(std::string const &name,
@@ -26,5 +27,12 @@ RotatingRock::RotatingRock(std::string const &name,
 
 void	RotatingRock::update()
 {
-  _transform->rotation.Y += 1;
+  if (InputManager::isKeyDown("left"))
+    _transform->rotation.Y += 1;
+  if (InputManager::isKeyDown("right"))
+    _transform->rotation.Y -= 1;
+  if (InputManager::isKeyDown("up"))
+    _transform->rotation.X += 1;
+  if (InputManager::isKeyDown("down"))
+    _transform->rotation.X -= 1;
 }

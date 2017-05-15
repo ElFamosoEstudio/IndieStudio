@@ -5,12 +5,14 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Mon May 15 01:09:03 2017 Adam Akkari
-// Last update Mon May 15 01:18:10 2017 Adam Akkari
+// Last update Mon May 15 16:27:55 2017 Adam Akkari
 //
 
 #include "InputManager.hh"
 
-std::map<std::string, irr::EKEY_CODE>	InputManager::keymap =
+InputManager::EventReceiver		*InputManager::_receiver = nullptr;
+
+std::map<std::string, irr::EKEY_CODE>	InputManager::_keymap =
   {
     {"up", irr::KEY_UP},
     {"down", irr::KEY_DOWN},
@@ -21,10 +23,41 @@ std::map<std::string, irr::EKEY_CODE>	InputManager::keymap =
     {"back", irr::KEY_ESCAPE},
     {"select", irr::KEY_RETURN}
   };
+#include <iostream>
+
+InputManager::EventReceiver::EventReceiver()
+{
+  std::cout << "bite" << std::endl;
+  for (irr::u64 i = 0; i < irr::KEY_KEY_CODES_COUNT; ++i)
+    _keyIsDown[i] = false;
+}
+
+bool	InputManager::EventReceiver::OnEvent(const irr::SEvent &event)
+{
+  if (event.EventType == irr::EET_KEY_INPUT_EVENT)
+    _keyIsDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
+  return (false);
+}
+
+bool	InputManager::EventReceiver::isKeyDown(irr::EKEY_CODE keyCode) const
+{
+  return (_keyIsDown[keyCode]);
+}
+
+void	InputManager::initialize()
+{
+  _receiver = new InputManager::EventReceiver;
+}
+
+InputManager::EventReceiver	*InputManager::getReceiver()
+{
+  return (_receiver);
+}
 
 bool	InputManager::isKeyDown(std::string const &key)
 {
-  //insérer du code
-  (void)key;
-  return (false);
+  if (_receiver)
+    return (_receiver->isKeyDown(_keymap.at(key)));
+  else
+    return (false);
 }
