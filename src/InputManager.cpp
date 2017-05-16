@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Mon May 15 01:09:03 2017 Adam Akkari
-// Last update Mon May 15 16:27:55 2017 Adam Akkari
+// Last update Tue May 16 16:24:58 2017 Adam Akkari
 //
 
 #include "InputManager.hh"
@@ -23,11 +23,9 @@ std::map<std::string, irr::EKEY_CODE>	InputManager::_keymap =
     {"back", irr::KEY_ESCAPE},
     {"select", irr::KEY_RETURN}
   };
-#include <iostream>
 
 InputManager::EventReceiver::EventReceiver()
 {
-  std::cout << "bite" << std::endl;
   for (irr::u64 i = 0; i < irr::KEY_KEY_CODES_COUNT; ++i)
     _keyIsDown[i] = false;
 }
