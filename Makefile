@@ -5,7 +5,7 @@
 ## Login   <silvy_n@epitech.net>
 ##
 ## Started on  Mon May  8 19:36:54 2017
-## Last update Wed May 10 23:06:43 2017 Noam Silvy
+## Last update Mon May 15 01:17:07 2017 Adam Akkari
 ##
 
 NAME		=		bomber
@@ -16,14 +16,25 @@ CC		=		g++
 
 RM		=		rm -f
 
-CPPFLAGS	=		-I./irrlicht-1.8.4/include
+CPPFLAGS	=		-I./irrlicht-1.8.4/include -I./src/component -I./src/gameobject -I./src/ -I./src/scenes
 
-CXXFLAGS	=		-Wall -Wextra
+CXXFLAGS	=		-Wall -Wextra -std=c++11
 # CXXFLAGS	+=		-std=c++17
 
 LDFLAGS		=		 -L./irrlicht-1.8.4/linux -lIrrlicht  -lGL -lXxf86vm -lXext -lX11 -lXcursor
 
-SRCS		=		src/main.cpp
+SRCS		=		src/main.cpp \
+				src/component/Transform.cpp \
+				src/component/Renderer.cpp \
+				src/component/Renderer3D.cpp \
+				src/component/RendererCamera.cpp \
+				src/gameobject/GameObject.cpp \
+				src/gameobject/Camera.cpp \
+				src/gameobject/RotatingRock.cpp \
+				src/Scene.cpp \
+				src/RessourcesLocator.cpp \
+				src/InputManager.cpp \
+				src/scenes/test.cpp
 
 OBJS		=		$(SRCS:.cpp=.o)
 

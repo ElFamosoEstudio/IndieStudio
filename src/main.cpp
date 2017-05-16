@@ -5,30 +5,28 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Sun May 07 17:50:33 2017 Noam SILVY
-// Last update Thu May 11 19:18:00 2017 Noam SILVY
+// Last update Tue May 16 16:28:12 2017 Adam Akkari
 //
 
 #include <irrlicht.h>
+#include "Scene.hh"
+#include "ScenesList.hh"
+#include "RessourcesLocator.hh"
+#include "InputManager.hh"
 
 int                 main(void)
 {
-  int				a;
-  int				b;
+  InputManager::initialize();
+
   irr::core::dimension2d<unsigned int> dim(640, 480);
-  irr::IrrlichtDevice		*device = irr::createDevice(
-      irr::video::EDT_OPENGL, dim);
+  irr::IrrlichtDevice		*device = irr::createDevice
+    (irr::video::EDT_OPENGL, dim, 32, false, true, false, InputManager::getReceiver());
   irr::video::IVideoDriver	*video = device->getVideoDriver();
-  irr::scene::ISceneManager	*sm = device->getSceneManager();
+  Scene		*test = new Scene(device, video);
 
-  // irr::scene::ISceneNode       *cube = sm->addCubeSceneNode();
+  loadTest(test);
+  while (device->run())
+    test->update();
 
-  // cube->setPosition(irr::core::vector3df(0, 0, 5));
-  // cube->setScale(irr::core::vector3df(25, 1, 1));
-  while (device && device->run())
-  {
-    video->beginScene(true, true, irr::video::SColor(255, 0, 0, 255));
-    sm->drawAll();
-    video->endScene();
-  }
   return (0);
 }
