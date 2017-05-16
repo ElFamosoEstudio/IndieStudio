@@ -14,7 +14,7 @@
 #include "RessourcesLocator.hh"
 #include "InputManager.hh"
 
-int				main(void)
+int                 main(void)
 {
   InputManager::initialize();
 
@@ -27,5 +27,6 @@ int				main(void)
   loadTest(test);
   while (device->run())
     test->update();
+
   return (0);
 }
