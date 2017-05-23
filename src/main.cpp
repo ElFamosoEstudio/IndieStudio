@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Sun May 07 17:50:33 2017 Noam SILVY
-// Last update Tue May 16 16:28:12 2017 Adam Akkari
+// Last update Tue May 23 08:12:38 2017 Adam Akkari
 //
 
 #include <irrlicht.h>
@@ -13,6 +13,8 @@
 #include "ScenesList.hh"
 #include "RessourcesLocator.hh"
 #include "InputManager.hh"
+
+#include <iostream>
 
 int                 main(void)
 {
@@ -25,6 +27,7 @@ int                 main(void)
   Scene		*test = new Scene(device, video);
 
   loadTest(test);
+
   while (device->run())
     test->update();
 
