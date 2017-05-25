@@ -1,0 +1,3 @@
+/home/silvy_n/projects/IndieStudio/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/silvy_n/projects/IndieStudio/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/silvy_n/projects/IndieStudio/cmake-build-debug/CMakeFiles/bomber.dir
