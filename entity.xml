@@ -1,0 +1,10 @@
+<xml>
+  <entity type="bomb">
+    <component type="position"/>
+    <component type="damage"/>
+    <component type="graphics"/>
+    <component type="timer"/>
+    <component type="range"/>
+    <component/>
+  </entity>
+</xml>
