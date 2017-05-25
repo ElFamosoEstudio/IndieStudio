@@ -5,4 +5,5 @@
 #include "ComponentManager.hpp"
 
 ComponentManager::ComponentManager()
-{}
+{
+}

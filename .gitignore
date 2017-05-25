@@ -1,3 +1,4 @@
 .ycm_extra_conf.py
 tags
 .idea/
+cmake-build-debug/CMakeFiles/CMakeTmp/
