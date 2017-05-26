@@ -22,9 +22,7 @@ namespace ecs
     class ComponentManager
     {
     public:
-        ComponentManager()
-        {
-        }
+        ComponentManager() {}
 
 //        template<typename T>
 //         void lol()

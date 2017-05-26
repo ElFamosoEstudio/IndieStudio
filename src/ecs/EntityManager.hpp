@@ -5,9 +5,12 @@
 #ifndef INDIESTUDIO_ENTITYMANAGER_HPP
 #define INDIESTUDIO_ENTITYMANAGER_HPP
 
-class EntityManager
+namespace ecs
 {
+    class EntityManager
+    {
 
-};
+    };
+}
 
 #endif //INDIESTUDIO_ENTITYMANAGER_HPP
