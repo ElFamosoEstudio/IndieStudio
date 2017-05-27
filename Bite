@@ -1,0 +1,27 @@
+  template<typename Tuple, size_t ...I>
+  void toto(std::index_sequence<I...>, Tuple &tuple);
+
+  template<typename Tuple>
+  void toto(std::index_sequence<>, Tuple &tuple) {}
+
+  template<typename Tuple, size_t I, size_t ...Rest>
+  void toto(std::index_sequence<I, Rest...>, Tuple &tuple)
+  {
+    auto m = std::get<I>(tuple);
+    std::cout << decltype(m)::mapped_type::TYPE << std::endl;
+    toto(std::index_sequence<Rest...>(), tuple);
+  }
+  
+  template<typename ...CompTypes>
+  class EntityManager
+  {
+  public:
+
+    
+    EntityManager()
+    {
+      toto(std::index_sequence_for<CompTypes...>(), _entities);
+      
+      auto a = std::get<2>(_entities);
+      // std::cout << decltype(a)::mapped_type::TYPE << std::endl;
+    }
