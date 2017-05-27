@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu May 25 18:46:02 2017 Noam Silvy
-// Last update Sat May 27 02:14:32 2017 akram abd-ali
+// Last update Sat May 27 05:23:42 2017 Noam Silvy
 //
 
 #ifndef INDIESTUDIO_ENTITYMANAGER_HPP
@@ -21,8 +21,8 @@
 #include "NumIdGenerator.hpp"
 
 namespace ecs
-{  
-  
+{
+
   using Entity = std::uint32_t;
   using CTypeSize = std::uint16_t;
 
@@ -33,59 +33,28 @@ namespace ecs
       VELOCITY
     };
 
+  template<typename Tuple, // typename Map,
+	   size_t ...I>
+  void generateKeyToIndex(std::index_sequence<I...>,
+			  Tuple &tuple// ,
+			  // Map &keyToIndex
+			  );
 
-template <typename... T, std::size_t... I>
-void toTpl_(const JVal& mV, std::tuple<T...>& mX, std::index_sequence<I...>)
-{
-    (void) std::initializer_list<int>{ (std::get<I>(mX) = mV[I].as<T>(), 0)... };
-}
+  template<typename Tuple// , typename Map
+	   >
+  void generateKeyToIndex(std::index_sequence<>, Tuple &tuple// , Map &keyToIndex
+			  ) {}
 
-template <typename... TS>
-void toTpl(const JVal& mV, std::tuple<TS...>& mX)
-{
-    toTpl_(mV, mX, std::index_sequence_for<TS...>() );
-}
-
-
- template<typename ...Types, CTypeSize ...I>
-  void	generateKeyToIndex(std::unordered_map<CTypeSize, CTypeSize>&,
-  			   std::integer_sequence<CTypeSize, I...>);
-   
-  template<>
-  void	generateKeyToIndex(std::unordered_map<CTypeSize, CTypeSize>&)
+  template<typename Tuple, // typename Map,
+	   size_t I, size_t ...Rest>
+  void generateKeyToIndex(std::index_sequence<I, Rest...>, Tuple &tuple// , Map &keyToIndex
+			  )
   {
+    auto m = std::get<I>(tuple);
+    std::cout << decltype(m)::mapped_type::TYPE << std::endl;
+    generateKeyToIndex(std::index_sequence<Rest...>(), tuple// , keyToIndex
+		       );
   }
-  
-  template<typename T, typename ...Types, CTypeSize I, CTypeSize ...Rest>
-  void	generateKeyToIndex(std::unordered_map<CTypeSize, CTypeSize>& map,
-			   std::integer_sequence<CTypeSize, I, Rest...>)
-  {
-    map[T::TYPE] = I;
-    generateKeyToIndex<Types..., Rest...>(map, std::integer_sequence<CTypeSize,
-					  Rest...>());
-  }
-
-
-
-  
-  // template<typename ...Types, CTypeSize ...I>
-  // void	generateKeyToIndex(std::unordered_map<CTypeSize, CTypeSize>&,
-  // 			   std::integer_sequence<CTypeSize, I...>);
-   
-  // template<>
-  // void	generateKeyToIndex(std::unordered_map<CTypeSize, CTypeSize>&)
-  // {
-  // }
-  
-  // template<typename T, typename ...Types, CTypeSize I, CTypeSize ...Rest>
-  // void	generateKeyToIndex(std::unordered_map<CTypeSize, CTypeSize>& map,
-  // 			   std::integer_sequence<CTypeSize, I, Rest...>)
-  // {
-  //   map[T::TYPE] = I;
-  //   generateKeyToIndex<Types..., Rest...>(map, std::integer_sequence<CTypeSize,
-  // 					  Rest...>());
-  // }
-  
 
   template<typename ...CompTypes>
   class EntityManager
@@ -93,10 +62,10 @@ void toTpl(const JVal& mV, std::tuple<TS...>& mX)
   public:
     EntityManager()
     {
-      generateKeyToIndex<CompTypes...>(_keyToIndex,
-				       std::make_integer_sequence<CTypeSize,
-				       sizeof ...(CompTypes)>{});
+      generateKeyToIndex(std::index_sequence_for<CompTypes...>(), _entities// , _keyToIndex
+			 );
     }
+
     ~EntityManager() = default;
     EntityManager(EntityManager const &) = delete;
     EntityManager	&operator=(EntityManager const &) = delete;
@@ -112,7 +81,7 @@ void toTpl(const JVal& mV, std::tuple<TS...>& mX)
     template<typename Comp>
     Comp*		getComponent(Entity id)
     {
-      
+
       auto map = std::get<Comp::TYPE>(_entities);
       auto it = map.find(id);
       if (it == map.end())
@@ -129,19 +98,17 @@ void toTpl(const JVal& mV, std::tuple<TS...>& mX)
       // 	return (NULL);
       // return (std::addressof(*it));
     }
-  private:
-
 
   private:
     std::tuple<std::map<Entity, CompTypes>...>	_entities;
     NumIdGenerator<Entity>			_idGenerator;
-    std::unordered_map<CTypeSize, CTypeSize>		_keyToIndex;
+    std::unordered_map<CTypeSize, std::size_t>	_keyToIndex;
   public:
-    void					lol()
-    {
-      for (auto const  &el : _keyToIndex)
-	std::cout << el.second << std::endl;
-    }
+    // void					lol()
+    // {
+    //   for (auto const  &el : _keyToIndex)
+    // 	std::cout << el.second << std::endl;
+    // }
   };
 
 }
