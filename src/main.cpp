@@ -2,14 +2,15 @@
 #include <iostream>
 #include <tuple>
 #include <map>
-#include "ComponentManager.hpp"
+#include "EntityManager.hpp"
 
-struct CVelocity {int velocity;};
-struct CPosition {int x; int y;};
-struct CGraphics {std::string mesh;};
+struct CVelocity {int velocity;static const ecs::CTypeSize TYPE = 1;};
+struct CPosition {int x; int y;static const ecs::CTypeSize TYPE = 4;};
+struct CGraphics {std::string mesh;static const ecs::CTypeSize TYPE = 8;};
 
 int main()
 {
-	ecs::ComponentManager<CVelocity, CPosition, CGraphics> manager;
+	ecs::EntityManager<CVelocity, CPosition, CGraphics> manager;
+	// manager.lol();
 	return 0;
 }

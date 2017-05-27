@@ -1,1 +1,0 @@
-/usr/bin/c++   -g   CMakeFiles/bomber.dir/src/ecs/ComponentManager.cpp.o CMakeFiles/bomber.dir/src/main.cpp.o  -o bomber 
