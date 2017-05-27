@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu May 25 18:46:02 2017 Noam Silvy
-// Last update Sat May 27 05:23:42 2017 Noam Silvy
+// Last update Sat May 27 19:28:36 2017 Noam Silvy
 //
 
 #ifndef INDIESTUDIO_ENTITYMANAGER_HPP
@@ -22,7 +22,6 @@
 
 namespace ecs
 {
-
   using Entity = std::uint32_t;
   using CTypeSize = std::uint16_t;
 
@@ -33,37 +32,36 @@ namespace ecs
       VELOCITY
     };
 
-  template<typename Tuple, // typename Map,
-	   size_t ...I>
-  void generateKeyToIndex(std::index_sequence<I...>,
-			  Tuple &tuple// ,
-			  // Map &keyToIndex
-			  );
+  // template<typename Tuple, typename Map, size_t ...I>
+  // void generateKeyToIndex(std::index_sequence<I...>, Tuple &tuple, Map &keyToIndex, CTypeSize idx);
 
-  template<typename Tuple// , typename Map
-	   >
-  void generateKeyToIndex(std::index_sequence<>, Tuple &tuple// , Map &keyToIndex
-			  ) {}
+  // template<typename Tuple, typename Map>
+  // void generateKeyToIndex(std::index_sequence<>, Tuple &tuple, Map &keyToIndex, CTypeSize idx)
+  // {}
 
-  template<typename Tuple, // typename Map,
-	   size_t I, size_t ...Rest>
-  void generateKeyToIndex(std::index_sequence<I, Rest...>, Tuple &tuple// , Map &keyToIndex
-			  )
-  {
-    auto m = std::get<I>(tuple);
-    std::cout << decltype(m)::mapped_type::TYPE << std::endl;
-    generateKeyToIndex(std::index_sequence<Rest...>(), tuple// , keyToIndex
-		       );
-  }
+  // template<typename Tuple, typename Map, size_t I, size_t ...Rest>
+  // void generateKeyToIndex(std::index_sequence<I, Rest...>,
+  // 			  Tuple		&tuple,
+  // 			  Map		&keyToIndex,
+  // 			  CTypeSize	idx)
+  // {
+  //   const CTypeSize lol = idx;
+  //   auto m = std::get<I>(tuple);
+  //   auto typeKey = decltype(m)::mapped_type::TYPE;
+  //   keyToIndex[typeKey] = idx;
+  //   generateKeyToIndex(std::index_sequence<Rest...>(), tuple, keyToIndex, idx + 1);
+  // }
 
   template<typename ...CompTypes>
   class EntityManager
   {
+    template<typename CompType>
+    using map_of = std::map<Entity, CompType>;
+
   public:
     EntityManager()
     {
-      generateKeyToIndex(std::index_sequence_for<CompTypes...>(), _entities// , _keyToIndex
-			 );
+      // generateKeyToIndex(std::index_sequence_for<CompTypes...>(), _entities, _keyToIndex, 0);
     }
 
     ~EntityManager() = default;
@@ -72,45 +70,38 @@ namespace ecs
 
     Entity		createEntity() { return (_idGenerator.createId()); }
 
+    // TODO: Throw Exception
     template<typename Comp>
     void		addComponent(Entity id, Comp const &comp)
     {
-      std::get<Comp::TYPE>(_entities)[id] = comp;
+      std::get<map_of<Comp>>(_entities)[id] = comp;
     }
 
+    // Might be better to return a shared_ptr or a custom iterator
+    // TODO: Throw Exception
     template<typename Comp>
     Comp*		getComponent(Entity id)
     {
-
-      auto map = std::get<Comp::TYPE>(_entities);
-      auto it = map.find(id);
-      if (it == map.end())
-	return (NULL);
-      return (std::addressof(*it));
+      auto &components = std::get<map_of<Comp>>(_entities);
+      auto it = components.find(id);
+      if (it == components.end())
+      	return (nullptr);
+      return (&it->second);
     }
 
+    // Might be better to return a shared_ptr or a custom iterator
+    // TODO: Throw Exception
     template<typename Comp>
     std::map<Entity, Comp>&		getAllComponents()
     {
-      // auto map = std::get<Comp::TYPE>(_entities);
-      // auto it = map.find(id);
-      // if (it == map.end())
-      // 	return (NULL);
-      // return (std::addressof(*it));
+      return (std::get<map_of<Comp>>(_entities));
     }
 
   private:
     std::tuple<std::map<Entity, CompTypes>...>	_entities;
     NumIdGenerator<Entity>			_idGenerator;
-    std::unordered_map<CTypeSize, std::size_t>	_keyToIndex;
-  public:
-    // void					lol()
-    // {
-    //   for (auto const  &el : _keyToIndex)
-    // 	std::cout << el.second << std::endl;
-    // }
+    // std::unordered_map<CTypeSize, CTypeSize>	_keyToIndex;
   };
-
 }
 
 
