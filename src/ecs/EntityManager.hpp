@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu May 25 18:46:02 2017 Noam Silvy
-// Last update Sun May 28 14:26:48 2017 Noam Silvy
+// Last update Sun May 28 18:10:58 2017 Noam Silvy
 //
 
 #ifndef INDIESTUDIO_ENTITYMANAGER_HPP
@@ -16,6 +16,7 @@
 #include <memory>
 #include <cstdint>
 #include <tuple>
+#include <experimental/tuple>
 #include <map>
 #include <exception>
 #include "NumIdGenerator.hpp"
@@ -32,26 +33,6 @@ namespace ecs
       VELOCITY
     };
 
-  // template<typename Tuple, typename Map, size_t ...I>
-  // void generateKeyToIndex(std::index_sequence<I...>, Tuple &tuple, Map &keyToIndex, CTypeSize idx);
-
-  // template<typename Tuple, typename Map>
-  // void generateKeyToIndex(std::index_sequence<>, Tuple &tuple, Map &keyToIndex, CTypeSize idx)
-  // {}
-
-  // template<typename Tuple, typename Map, size_t I, size_t ...Rest>
-  // void generateKeyToIndex(std::index_sequence<I, Rest...>,
-  // 			  Tuple		&tuple,
-  // 			  Map		&keyToIndex,
-  // 			  CTypeSize	idx)
-  // {
-  //   const CTypeSize lol = idx;
-  //   auto m = std::get<I>(tuple);
-  //   auto typeKey = decltype(m)::mapped_type::TYPE;
-  //   keyToIndex[typeKey] = idx;
-  //   generateKeyToIndex(std::index_sequence<Rest...>(), tuple, keyToIndex, idx + 1);
-  // }
-
   template<typename ...CompTypes>
   class EntityManager
   {
@@ -59,10 +40,7 @@ namespace ecs
     using map_of = std::map<Entity, CompType>;
 
   public:
-    EntityManager()
-    {
-      // generateKeyToIndex(std::index_sequence_for<CompTypes...>(), _entities, _keyToIndex, 0);
-    }
+    EntityManager() = default;
 
     ~EntityManager() = default;
     EntityManager(EntityManager const &) = delete;
@@ -105,6 +83,46 @@ namespace ecs
       return (std::get<map_of<Comp>>(_entities));
     }
 
+    template<typename Comp>
+    void				removeComponent(Entity id)
+    {
+      auto &components = std::get<map_of<Comp>>(_entities);
+      auto it = components.find(id);
+
+      if (it == components.end())
+	throw (std::exception());
+      components.erase(it);
+    }
+
+    void				removeEntity(Entity id)
+    {
+      static auto rmEntity = [id](auto &components) {
+	auto it = components.find(id);
+	if (it != components.end())
+	  components.erase(it);
+      };
+      _call(rmEntity, _entities);
+    }
+
+  private:
+    template<typename Function, typename Tuple>
+    auto _call(Function &&f, Tuple &t, std::index_sequence<>)
+    {}
+
+    template<typename Function, typename Tuple, size_t I, size_t ...Rest>
+    auto _call(Function &&f, Tuple &t, std::index_sequence<I, Rest...>)
+    {
+      f(std::get<I>(t));
+      _call(f, t, std::index_sequence<Rest...>());
+    }
+
+    template<typename Function, typename Tuple>
+    auto _call(Function &&f, Tuple &t)
+    {
+      static constexpr auto size = std::tuple_size<Tuple>::value;
+      return (_call(f, t, std::make_index_sequence<size>()));
+    }
+
   private:
     std::tuple<std::map<Entity, CompTypes>...>	_entities;
     NumIdGenerator<Entity>			_idGenerator;
@@ -114,3 +132,25 @@ namespace ecs
 
 
 #endif //INDIESTUDIO_ENTITYMANAGER_HPP
+
+
+  // template<typename Tuple, typename Map, size_t ...I>
+  // void generateKeyToIndex(std::index_sequence<I...>, Tuple &tuple, Map &keyToIndex, CTypeSize idx);
+
+  // template<typename Tuple, typename Map>
+  // void generateKeyToIndex(std::index_sequence<>, Tuple &tuple, Map &keyToIndex, CTypeSize idx)
+  // {}
+
+  // template<typename Tuple, typename Map, size_t I, size_t ...Rest>
+  // void generateKeyToIndex(std::index_sequence<I, Rest...>,
+  // 			  Tuple		&tuple,
+  // 			  Map		&keyToIndex,
+  // 			  CTypeSize	idx)
+  // {
+  //   const CTypeSize lol = idx;
+  //   auto m = std::get<I>(tuple);
+  //   auto typeKey = decltype(m)::mapped_type::TYPE;
+  //   keyToIndex[typeKey] = idx;
+  //   generateKeyToIndex(std::index_sequence<Rest...>(), tuple, keyToIndex, idx + 1);
+  // }
+      // generateKeyToIndex(std::index_sequence_for<CompTypes...>(), _entities, _keyToIndex, 0);

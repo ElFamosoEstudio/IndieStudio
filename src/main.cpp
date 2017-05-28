@@ -13,8 +13,13 @@ int main()
 
   comp.velocity = 2;
   manager.addComponent(id, comp);
+  manager.addComponent(id, CPosition());
+  manager.addComponent(id, CGraphics());
   std::cout << manager.getComponent<CVelocity>(id).velocity << std::endl;
   manager.getComponent<CVelocity>(id).velocity = 10;
   std::cout << manager.getAllComponents<CVelocity>()[id].velocity << std::endl;
+  manager.removeComponent<CVelocity>(id);
+  manager.removeEntity(id);
+  // manager.getComponent<CVelocity>(id).velocity = 10;
   return 0;
 }
