@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu May 25 18:46:02 2017 Noam Silvy
-// Last update Sat May 27 19:28:36 2017 Noam Silvy
+// Last update Sun May 28 14:26:48 2017 Noam Silvy
 //
 
 #ifndef INDIESTUDIO_ENTITYMANAGER_HPP
@@ -17,7 +17,7 @@
 #include <cstdint>
 #include <tuple>
 #include <map>
-#include <unordered_map>
+#include <exception>
 #include "NumIdGenerator.hpp"
 
 namespace ecs
@@ -70,27 +70,35 @@ namespace ecs
 
     Entity		createEntity() { return (_idGenerator.createId()); }
 
-    // TODO: Throw Exception
     template<typename Comp>
-    void		addComponent(Entity id, Comp const &comp)
-    {
-      std::get<map_of<Comp>>(_entities)[id] = comp;
-    }
-
-    // Might be better to return a shared_ptr or a custom iterator
-    // TODO: Throw Exception
-    template<typename Comp>
-    Comp*		getComponent(Entity id)
+    void		addComponent(Entity id, Comp const &comp, bool replace = false)
     {
       auto &components = std::get<map_of<Comp>>(_entities);
       auto it = components.find(id);
-      if (it == components.end())
-      	return (nullptr);
-      return (&it->second);
+
+      if (!replace && it != components.end())
+	return ;
+      components[id] = comp;
     }
 
-    // Might be better to return a shared_ptr or a custom iterator
-    // TODO: Throw Exception
+    // Constructs a Comp object with @args, eventually replacing existing one
+    template<typename Comp, typename ...Args>
+    void		addComponentEmplace(Entity id, Args& ...args)
+    {
+      std::get<map_of<Comp>>(_entities)[id] = Comp(args...);
+    }
+
+    template<typename Comp>
+    Comp&		getComponent(Entity id)
+    {
+      auto &components = std::get<map_of<Comp>>(_entities);
+      auto it = components.find(id);
+
+      if (it == components.end())
+	throw (std::exception());
+      return (it->second);
+    }
+
     template<typename Comp>
     std::map<Entity, Comp>&		getAllComponents()
     {

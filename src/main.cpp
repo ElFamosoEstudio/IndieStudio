@@ -13,8 +13,8 @@ int main()
 
   comp.velocity = 2;
   manager.addComponent(id, comp);
-  std::cout << manager.getComponent<CVelocity>(id)->velocity << std::endl;
-  manager.getComponent<CVelocity>(id)->velocity = 10;
+  std::cout << manager.getComponent<CVelocity>(id).velocity << std::endl;
+  manager.getComponent<CVelocity>(id).velocity = 10;
   std::cout << manager.getAllComponents<CVelocity>()[id].velocity << std::endl;
   return 0;
 }
