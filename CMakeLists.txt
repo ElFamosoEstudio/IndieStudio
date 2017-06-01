@@ -10,7 +10,7 @@ file(GLOB_RECURSE SRCS "src/*.cpp")
 #endforeach (HEADER_FILES)
 #set(SOURCE_FILES src/main.cpp)
 
-include_directories(src/ src/ecs)
+include_directories(src/ src/ecs src/EventManager)
 add_executable(bomber ${SRCS})
 
 #add_library(toto SHARED ${LIB_SRC})
