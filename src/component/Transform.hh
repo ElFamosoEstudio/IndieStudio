@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat May 13 20:02:55 2017 Adam Akkari
-// Last update Sun May 14 23:47:22 2017 Adam Akkari
+// Last update Tue Jun  6 10:53:56 2017 Adam Akkari
 //
 
 #ifndef TRANSFORM
@@ -27,6 +27,7 @@ public:
 	    irr::core::vector3df const &position,
 	    irr::core::vector3df const &rotation,
 	    irr::core::vector3df const &scale);
+  void	move(irr::core::vector3df const &direction);
 
   irr::core::vector3df	position;
   irr::core::vector3df	rotation;
