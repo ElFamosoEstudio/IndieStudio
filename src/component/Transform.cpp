@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat May 13 20:11:20 2017 Adam Akkari
-// Last update Tue Jun  6 15:15:18 2017 Adam Akkari
+// Last update Tue Jun  6 16:19:13 2017 Adam Akkari
 //
 
 #include "GameObject.hpp"
@@ -57,7 +57,7 @@ void	Transform::move(irr::core::vector3df const &direction)
   if (coll != nullptr)
     {
       position = position + direction;
-      if (!coll->checkCollision())
+      if (coll->checkCollision())
 	position = prev_pos;
     }
 }

@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Tue May 23 08:33:55 2017 Adam Akkari
-// Last update Tue Jun  6 11:10:21 2017 Adam Akkari
+// Last update Tue Jun  6 16:29:53 2017 Adam Akkari
 //
 
 #include "GameObject.hpp"
@@ -39,14 +39,20 @@ irr::core::aabbox3d<irr::f32>	BoxCollider::getBoundingBox() const
     return (irr::core::aabbox3d<irr::f32>());
 }
 
+#include <iostream>
+
 bool	BoxCollider::checkCollision()
 {
   Transform	*tmp = static_cast<Transform*>(_parent.getComponent("Transform"));
   irr::core::aabbox3d<irr::f32>	const	bbox = this->getBoundingBox();
+  irr::core::aabbox3d<irr::f32>		tmp_bbox;
 
   if (tmp != nullptr)
     for (auto idx:RessourcesLocator::getScene()->getColliders())
-      if (bbox.intersectsWithBox(idx->getBoundingBox()))
-	return (true);
+      {
+	tmp_bbox = idx->getBoundingBox();
+	if (bbox != tmp_bbox && bbox.intersectsWithBox(tmp_bbox))
+	  return (true);
+      }
   return (false);
 }
