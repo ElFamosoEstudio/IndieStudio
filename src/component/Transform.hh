@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat May 13 20:02:55 2017 Adam Akkari
-// Last update Tue Jun  6 10:53:56 2017 Adam Akkari
+// Last update Tue Jun  6 15:05:54 2017 Adam Akkari
 //
 
 #ifndef TRANSFORM
@@ -13,6 +13,9 @@
 
 # include <vector3d.h>
 # include "Component.hpp"
+
+# define UP	irr::core::vector3df(1.0f, 0.0f, 0.0f)
+# define LEFT	irr::core::vector3df(0.0f, 0.0f, 1.0f)
 
 class	Transform : public Component
 {

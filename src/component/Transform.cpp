@@ -5,15 +5,12 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat May 13 20:11:20 2017 Adam Akkari
-// Last update Tue Jun  6 10:53:27 2017 Adam Akkari
+// Last update Tue Jun  6 15:15:18 2017 Adam Akkari
 //
 
 #include "GameObject.hpp"
 #include "Transform.hh"
 #include "BoxCollider.hh"
-
-irr::core::vector3df const	up = irr::core::vector3df(1.0f, 0.0f, 0.0f);
-irr::core::vector3df const	right = irr::core::vector3df(0.0f, 0.0f, 1.0f);
 
 Transform::Transform(GameObject &obj)
   : Component(obj, "Transform")
