@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sun May 14 23:53:35 2017 Adam Akkari
-// Last update Tue May 16 16:33:59 2017 Adam Akkari
+// Last update Tue Jun  6 11:37:03 2017 Adam Akkari
 //
 
 #include <irrlicht.h>
@@ -17,11 +17,11 @@ RotatingRock::RotatingRock(std::string const &name,
   : GameObject(name)
 {
   _transform = new Transform(*this, position);
-  _renderer = new Renderer3D(*this, "rock2.obj");
+  _renderer = new Renderer3D(*this, "cube1.obj");
   _components.push_back(_transform);
   _components.push_back(_renderer);
 
-  _renderer->setMaterial("rock_diffuse.png");
+  _renderer->setMaterial("casse.png");
   _renderer->enableLighting(false);
 }
 

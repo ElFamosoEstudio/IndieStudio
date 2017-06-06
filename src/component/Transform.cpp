@@ -5,10 +5,12 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat May 13 20:11:20 2017 Adam Akkari
-// Last update Mon May 15 00:38:12 2017 Adam Akkari
+// Last update Tue Jun  6 16:19:13 2017 Adam Akkari
 //
 
+#include "GameObject.hpp"
 #include "Transform.hh"
+#include "BoxCollider.hh"
 
 Transform::Transform(GameObject &obj)
   : Component(obj, "Transform")
@@ -45,6 +47,17 @@ Transform::Transform(GameObject &obj,
     position(position),
     rotation(rotation),
     scale(scale)
-{
+{}
 
+void	Transform::move(irr::core::vector3df const &direction)
+{
+  irr::core::vector3df	prev_pos = this->position;
+  BoxCollider		*coll = static_cast<BoxCollider*>(_parent.getComponent("Collider"));
+
+  if (coll != nullptr)
+    {
+      position = position + direction;
+      if (coll->checkCollision())
+	position = prev_pos;
+    }
 }
