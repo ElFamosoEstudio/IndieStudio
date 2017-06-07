@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Wed Jun  7 09:02:12 2017 Adam Akkari
-// Last update Wed Jun  7 11:14:47 2017 Adam Akkari
+// Last update Wed Jun  7 11:56:43 2017 Adam Akkari
 //
 
 #include <IAnimatedMeshSceneNode.h>
@@ -30,22 +30,24 @@ Map::Map(std::string const &name,
     {
       _objects.push_back(new Wall("map_wall", irr::core::vector3df(i, 0.0f, -1.0f)));
       _objects.push_back(new Wall("map_wall", irr::core::vector3df(i, 0.0f, size_y)));
-    }
-  for (unsigned int i = 0; i < size_y; i++)
-    {
-      _objects.push_back(new Wall("map_wall", irr::core::vector3df(-1.0f, 0.0f, i)));
-      _objects.push_back(new Wall("map_wall", irr::core::vector3df(size_x, 0.0f, i)));
+      for (unsigned int j = 0; j < size_y; j++)
+	{
+	  if (!(i % 2) && !(j % 2) && (i + 1) < size_x && (j + 1) < size_y)
+	    _objects.push_back(new Wall("map_wall", irr::core::vector3df(i + 1, 0.0f, j + 1)));
+	  _objects.push_back(new Wall("map_wall", irr::core::vector3df(-1.0f, 0.0f, j)));
+	  _objects.push_back(new Wall("map_wall", irr::core::vector3df(size_x, 0.0f, j)));
+	}
     }
 
   //Create camera
   _objects.push_back(new Camera("camera",
-				irr::core::vector3df(size_x / 2 - 0.5f,
-						     size_x > size_y ? size_x : size_y,
+				irr::core::vector3df(size_x / 2,
+						     (size_x > size_y ? size_x : size_y) - 2,
 						     size_y / 2 + 1),
-				irr::core::vector3df(size_x / 2 - 0.5f, 0.0f, size_y / 2)));
+				irr::core::vector3df(size_x / 2, 0.0f, size_y / 2)));
 
   //Create player
-  _objects.push_back(new Character("player", irr::core::vector3df(0.0f, 0.0f, 0.0f)));
+  _objects.push_back(new Character("player", irr::core::vector3df(size_x - 1, 0.0f, 0.0f)));
 				   
 }
 
