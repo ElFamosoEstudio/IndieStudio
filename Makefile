@@ -5,7 +5,7 @@
 ## Login   <silvy_n@epitech.net>
 ##
 ## Started on  Mon May  8 19:36:54 2017
-## Last update Tue Jun  6 15:11:09 2017 Adam Akkari
+## Last update Wed Jun  7 09:47:17 2017 Adam Akkari
 ##
 
 NAME		=		bomber
@@ -34,6 +34,7 @@ SRCS		=		src/main.cpp \
 				src/gameobject/RotatingRock.cpp \
 				src/gameobject/Character.cpp \
 				src/gameobject/Wall.cpp \
+				src/gameobject/Map.cpp \
 				src/Scene.cpp \
 				src/RessourcesLocator.cpp \
 				src/InputManager.cpp \

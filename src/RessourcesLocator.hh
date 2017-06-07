@@ -5,14 +5,14 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sun May 14 00:46:21 2017 Adam Akkari
-// Last update Sun May 14 23:38:02 2017 Adam Akkari
+// Last update Wed Jun  7 10:10:34 2017 Adam Akkari
 //
 
 #ifndef RESSOURCESLOCATOR
 # define RESSOURCESLOCATOR
 
-# include <IVideoDriver.h>
 # include <ISceneManager.h>
+# include <IVideoDriver.h>
 # include "Scene.hh"
 
 class	RessourcesLocator

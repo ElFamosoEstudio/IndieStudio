@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Tue May 23 08:14:53 2017 Adam Akkari
-// Last update Tue Jun  6 11:07:39 2017 Adam Akkari
+// Last update Wed Jun  7 10:08:40 2017 Adam Akkari
 //
 
 #ifndef BOXCOLLIDER

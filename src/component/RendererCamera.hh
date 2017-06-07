@@ -5,14 +5,14 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sun May 14 22:15:00 2017 Adam Akkari
-// Last update Sun May 14 23:46:08 2017 Adam Akkari
+// Last update Wed Jun  7 10:14:05 2017 Adam Akkari
 //
 
 #ifndef RENDERER_CAMERA
 # define RENDERER_CAMERA
 
-# include <vector3d.h>
 # include <ICameraSceneNode.h>
+# include <vector3d.h>
 # include "Renderer.hh"
 
 class	RendererCamera : public Renderer

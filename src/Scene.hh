@@ -5,17 +5,15 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sun May 14 01:15:36 2017 Adam Akkari
-// Last update Tue Jun  6 10:49:56 2017 Adam Akkari
+// Last update Wed Jun  7 10:12:13 2017 Adam Akkari
 //
 
 #ifndef SCENE
 # define SCENE
 
+# include <IrrlichtDevice.h>
 # include <vector>
 # include <algorithm>
-# include <ISceneManager.h>
-# include <IVideoDriver.h>
-# include <IrrlichtDevice.h>
 # include "GameObject.hpp"
 # include "Renderer.hh"
 # include "BoxCollider.hh"

@@ -5,13 +5,12 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Tue Jun  6 15:06:46 2017 Adam Akkari
-// Last update Tue Jun  6 15:10:53 2017 Adam Akkari
+// Last update Wed Jun  7 10:04:44 2017 Adam Akkari
 //
 
 #ifndef WALL
 # define WALL
 
-# include <irrlicht.h>
 # include "GameObject.hpp"
 # include "Transform.hh"
 # include "Renderer3D.hh"

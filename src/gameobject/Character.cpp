@@ -5,9 +5,10 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Tue Jun  6 11:45:15 2017 Adam Akkari
-// Last update Wed Jun  7 08:47:09 2017 Adam Akkari
+// Last update Wed Jun  7 11:16:00 2017 Adam Akkari
 //
 
+#include <IAnimatedMeshSceneNode.h>
 #include "Character.hh"
 #include "InputManager.hh"
 
@@ -24,16 +25,16 @@ Character::Character(std::string const &name,
   _components.push_back(_renderer);
   _components.push_back(_collider);
 
-  _renderer->setMaterial("casse.png");
+  _renderer->setMaterial("chancla.png");
   _renderer->enableLighting(false);
 }
 
 void	Character::update()
 {
   if (InputManager::isKeyDown("left"))
-    _transform->move(LEFT * 0.1f);
+    _transform->move(-RIGHT * 0.1f);
   if (InputManager::isKeyDown("right"))
-    _transform->move(-LEFT * 0.1f);
+    _transform->move(RIGHT * 0.1f);
   if (InputManager::isKeyDown("up"))
     _transform->move(UP * 0.1f);
   if (InputManager::isKeyDown("down"))

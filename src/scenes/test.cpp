@@ -5,24 +5,17 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sun May 14 22:54:00 2017 Adam Akkari
-// Last update Wed Jun  7 08:40:48 2017 Adam Akkari
+// Last update Wed Jun  7 11:17:23 2017 Adam Akkari
 //
 
 #include <irrlicht.h>
 #include "Scene.hh"
-#include "Camera.hh"
-#include "Character.hh"
-#include "Wall.hh"
+#include "Map.hh"
 
 void	loadTest(Scene *scene)
 {
-  Camera	*main = new Camera("main", irr::core::vector3df(-0.5f, 3.0f, 0.0f),
-				   irr::core::vector3df(0.0f, 0.0f, 0.0f));
-  Character	*player = new Character("player", irr::core::vector3df(0.0f, 0.0f, 0.0f));
-  Wall		*wall = new Wall("wall", irr::core::vector3df(0.0f, 0.0f, 2.0f));
+  Map	*map = new Map("map", 6, 4);
 
-  (void)main;
+  (void)map;
   (void)scene;
-  (void)player;
-  (void)wall;
 }

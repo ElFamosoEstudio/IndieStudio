@@ -5,9 +5,10 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Tue Jun  6 15:08:32 2017 Adam Akkari
-// Last update Tue Jun  6 15:22:24 2017 Adam Akkari
+// Last update Wed Jun  7 10:19:30 2017 Adam Akkari
 //
 
+#include <IAnimatedMeshSceneNode.h>
 #include "Wall.hh"
 
 Wall::Wall(std::string const &name,

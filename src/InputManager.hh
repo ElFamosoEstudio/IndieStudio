@@ -5,13 +5,13 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Mon May 15 01:01:07 2017 Adam Akkari
-// Last update Tue May 16 15:27:51 2017 Adam Akkari
+// Last update Wed Jun  7 11:00:42 2017 Adam Akkari
 //
 
 #ifndef INPUTMANAGER
 # define INPUTMANAGER
 
-# include <irrlicht.h>
+# include <IEventReceiver.h>
 # include <string>
 # include <map>
 
