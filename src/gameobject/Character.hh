@@ -5,13 +5,13 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Tue Jun  6 11:43:04 2017 Adam Akkari
-// Last update Tue Jun  6 14:13:22 2017 Adam Akkari
+// Last update Wed Jun  7 10:16:52 2017 Adam Akkari
 //
 
 #ifndef CHARACTER
 # define CHARACTER
 
-# include <irrlicht.h>
+# include <vector3d.h>
 # include "GameObject.hpp"
 # include "Transform.hh"
 # include "Renderer3D.hh"

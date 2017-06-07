@@ -5,14 +5,12 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sun May 14 20:13:45 2017 Adam Akkari
-// Last update Sun May 14 23:45:30 2017 Adam Akkari
+// Last update Wed Jun  7 10:04:19 2017 Adam Akkari
 //
 
 #ifndef CAMERA
 # define CAMERA
 
-# include <ICameraSceneNode.h>
-# include <vector3d.h>
 # include "GameObject.hpp"
 # include "Transform.hh"
 # include "RendererCamera.hh"
