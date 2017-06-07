@@ -5,25 +5,25 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu May 25 18:46:02 2017 Noam Silvy
-// Last update Sun May 28 18:10:58 2017 Noam Silvy
+// Last update Thu Jun  8 01:22:47 2017 akram abd-ali
 //
 
 #ifndef INDIESTUDIO_ENTITYMANAGER_HPP
 # define INDIESTUDIO_ENTITYMANAGER_HPP
 
-#include <iostream>
-#include <utility>
-#include <memory>
-#include <cstdint>
-#include <tuple>
-#include <experimental/tuple>
-#include <map>
-#include <exception>
-#include "NumIdGenerator.hpp"
+# include <iostream>
+# include <utility>
+# include <memory>
+# include <cstdint>
+# include <tuple>
+# include <experimental/tuple>
+# include <map>
+# include <exception>
+# include "NumIdGenerator.hpp"
+# include "ecs.hpp"
 
 namespace ecs
 {
-  using Entity = std::uint32_t;
   using CTypeSize = std::uint16_t;
 
   enum class CType : CTypeSize

@@ -19,7 +19,7 @@ int main()
   ecs::EntityManager<CVelocity, CPosition, CGraphics>	manager;
   ecs::Entity						id = manager.createEntity();
   CVelocity						comp;
-  EventManager<int>					eventManager;
+  // EventManager<int>					eventManager;
 
   comp.velocity = 2;
   manager.addComponent(id, comp);
@@ -45,7 +45,7 @@ int main()
   //     std::cout << "Event 1:" << std::endl;
   //     std::cout << "s: " << s << std::endl;
   //   });
-  eventManager.subscribe(0, toto);
-  eventManager.emit(0, 42, 84);
+  // eventManager.subscribe(0, toto);
+  // eventManager.emit(0, 42, 84);
   return 0;
 }
