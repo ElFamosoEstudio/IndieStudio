@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Tue Jun  6 11:45:15 2017 Adam Akkari
-// Last update Tue Jun  6 15:22:47 2017 Adam Akkari
+// Last update Wed Jun  7 08:47:09 2017 Adam Akkari
 //
 
 #include "Character.hh"
@@ -15,7 +15,9 @@ Character::Character(std::string const &name,
 		     irr::core::vector3df const &position)
   : GameObject(name)
 {
-  _transform = new Transform(*this, position);
+  _transform = new Transform(*this, position,
+			     irr::core::vector3df(0.0f, 0.0f, 0.0f),
+			     irr::core::vector3df(0.75f, 0.75f, 0.75f));
   _renderer = new Renderer3D(*this, "cube1.obj");
   _collider = new BoxCollider(*this, irr::core::vector3df(1.0f, 1.0f, 1.0f));
   _components.push_back(_transform);

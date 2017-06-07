@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Tue May 23 08:33:55 2017 Adam Akkari
-// Last update Tue Jun  6 16:29:53 2017 Adam Akkari
+// Last update Wed Jun  7 08:45:24 2017 Adam Akkari
 //
 
 #include "GameObject.hpp"
@@ -29,17 +29,17 @@ irr::core::aabbox3d<irr::f32>	BoxCollider::getBoundingBox() const
   Transform	*tmp = static_cast<Transform*>(_parent.getComponent("Transform"));
 
   if (tmp != nullptr)
-    return (irr::core::aabbox3d<irr::f32>(irr::core::vector3df(tmp->position.X - _size.X / 2,
-							       tmp->position.Y - _size.Y / 2,
-							       tmp->position.Z - _size.Z / 2),
-					  irr::core::vector3df(tmp->position.X + _size.X / 2,
-							       tmp->position.Y + _size.Y / 2,
-							       tmp->position.Z + _size.Z / 2)));
+    return (irr::core::aabbox3d<irr::f32>(irr::core::vector3df
+					  (tmp->position.X - (_size.X / 2) * tmp->scale.X,
+					   tmp->position.Y - (_size.Y / 2) * tmp->scale.Y,
+					   tmp->position.Z - (_size.Z / 2) * tmp->scale.Z),
+					  irr::core::vector3df
+					  (tmp->position.X + (_size.X / 2) * tmp->scale.X,
+					   tmp->position.Y + (_size.Y / 2) * tmp->scale.Y,
+					   tmp->position.Z + (_size.Z / 2) * tmp->scale.Z)));
   else
     return (irr::core::aabbox3d<irr::f32>());
 }
-
-#include <iostream>
 
 bool	BoxCollider::checkCollision()
 {
