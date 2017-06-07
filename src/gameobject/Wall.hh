@@ -5,11 +5,11 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Tue Jun  6 15:06:46 2017 Adam Akkari
-// Last update Wed Jun  7 10:04:44 2017 Adam Akkari
+// Last update Wed Jun  7 14:43:16 2017 Adam Akkari
 //
 
-#ifndef WALL
-# define WALL
+#ifndef WALL_HH
+# define WALL_HH
 
 # include "GameObject.hpp"
 # include "Transform.hh"
@@ -29,4 +29,4 @@ public:
   virtual void	update();
 };
 
-#endif // WALL
+#endif // WALL_HH
