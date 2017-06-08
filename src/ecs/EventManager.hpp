@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Thu Jun  8 01:13:05 2017 akram abd-ali
-// Last update Thu Jun  8 01:22:19 2017 akram abd-ali
+// Last update Fri Jun  9 00:58:27 2017 akram abd-ali
 //
 
 #ifndef		EVENT_MANAGER_HPP
@@ -25,11 +25,12 @@ namespace		ecs
     class		Event
     {
     private:
-      std::vector<std::function<void(Entity)>> _callbacks;
+      std::map<EventKey, std::function<void(Entity)>>	_callbacks;
+      EventKey						_nextKey;
     public:
       Event() = default;
-      Event(std::function<void(Entity)> &&callback) {
-	subscribe(std::move(callback));
+      Event(std::function<void(Entity)> &&callback, EventKey& key) {
+	key = subscribe(std::move(callback));
       }
       ~Event() = default;
       Event(Event const&) = delete;
@@ -38,11 +39,20 @@ namespace		ecs
       void	callback(Entity id)
       {
 	for (auto const& callback : _callbacks)
-	  callback(id);
+	  callback.second(id);
       }
-      void	subscribe(std::function<void(Entity)> &&callback)
+      EventKey	subscribe(std::function<void(Entity)> &&callback)
       {
-	_callbacks.push_back(std::forward<std::function<void(Entity)>>(callback));
+	// _callbacks.push_back(std::forward<std::function<void(Entity)>>(callback));
+	_callbacks[_nextKey] = (std::forward<std::function<void(Entity)>>(callback));
+	return (_nextKey++);
+      }
+      void	unsubscribe(EventKey key)
+      {
+	auto const &it = _callbacks.find(key);
+	if (it == _callbacks.end())
+	  return ;
+	_callbacks.erase(it);
       }
     };
 
@@ -57,31 +67,41 @@ namespace		ecs
   public:
     void	emit(EventType const& evName, Entity id = 0)
     {
-      auto it = _events.find(evName);
+      auto const &it = _events.find(evName);
       if (it != _events.end())
 	it->second->callback(id);
     }
 
-    void	subscribe(EventType const& evName,
+    EventKey	subscribe(EventType const& evName,
 			  std::function<void(Entity)> callback)
     {
-      auto it = _events.find(evName);
+      EventKey	key;
+
+      auto const &it = _events.find(evName);
       if (it != _events.end())
-	it->second->subscribe(std::move(callback));
+	key = it->second->subscribe(std::move(callback));
       else
 	_events.emplace(std::make_pair(evName,
-				       std::make_unique<Event>(std::move(callback))));
+				       std::make_unique<Event>(std::move(callback), key)));
+      return key;
     }
 
     template<typename Type>
-    void	subscribe(EventType const& evName,
+    EventKey	subscribe(EventType const& evName,
 			  void (Type::*callback)(Entity),
 			  Type *that)
     {
       std::function<void(Entity)> func = std::bind(callback,
-						     that,
-						     std::placeholders::_1);
-      subscribe(evName, std::move(func));
+						   that,
+						   std::placeholders::_1);
+      return subscribe(evName, std::move(func));
+    }
+    void	unsubscribe(EventType const& evName, EventKey key)
+    {
+      auto const &it = _events.find(evName);
+      if (it == _events.end())
+	return ;
+      it->second->unsubscribe(key);
     }
   };
 }
