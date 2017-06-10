@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu May 25 18:46:02 2017 Noam Silvy
-// Last update Thu Jun  8 01:22:47 2017 akram abd-ali
+// Last update Sun Jun 11 00:14:26 2017 Noam Silvy
 //
 
 #ifndef INDIESTUDIO_ENTITYMANAGER_HPP
@@ -16,23 +16,14 @@
 # include <memory>
 # include <cstdint>
 # include <tuple>
-# include <experimental/tuple>
 # include <map>
-# include <exception>
+# include <string>
+# include <stdexcept>
 # include "NumIdGenerator.hpp"
 # include "ecs.hpp"
 
 namespace ecs
 {
-  using CTypeSize = std::uint16_t;
-
-  enum class CType : CTypeSize
-    {
-      POS2D,
-      POS3D,
-      VELOCITY
-    };
-
   template<typename ...CompTypes>
   class EntityManager
   {
@@ -41,7 +32,6 @@ namespace ecs
 
   public:
     EntityManager() = default;
-
     ~EntityManager() = default;
     EntityManager(EntityManager const &) = delete;
     EntityManager	&operator=(EntityManager const &) = delete;
@@ -73,7 +63,7 @@ namespace ecs
       auto it = components.find(id);
 
       if (it == components.end())
-	throw (std::exception());
+	throw (std::out_of_range(_getOutOfRangeMsg<Comp>(id)));
       return (it->second);
     }
 
@@ -90,7 +80,7 @@ namespace ecs
       auto it = components.find(id);
 
       if (it == components.end())
-	throw (std::exception());
+	throw (std::out_of_range(_getOutOfRangeMsg<Comp>(id)));
       components.erase(it);
     }
 
@@ -123,34 +113,17 @@ namespace ecs
       return (_call(f, t, std::make_index_sequence<size>()));
     }
 
+    template<typename Comp>
+    std::string _getOutOfRangeMsg(Entity id)
+    {
+      return (std::string("Entity ") + std::to_string(id) + " doesn't have component " + typeid(Comp).name());
+    }
+
   private:
     std::tuple<std::map<Entity, CompTypes>...>	_entities;
     NumIdGenerator<Entity>			_idGenerator;
-    // std::unordered_map<CTypeSize, CTypeSize>	_keyToIndex;
   };
 }
 
 
 #endif //INDIESTUDIO_ENTITYMANAGER_HPP
-
-
-  // template<typename Tuple, typename Map, size_t ...I>
-  // void generateKeyToIndex(std::index_sequence<I...>, Tuple &tuple, Map &keyToIndex, CTypeSize idx);
-
-  // template<typename Tuple, typename Map>
-  // void generateKeyToIndex(std::index_sequence<>, Tuple &tuple, Map &keyToIndex, CTypeSize idx)
-  // {}
-
-  // template<typename Tuple, typename Map, size_t I, size_t ...Rest>
-  // void generateKeyToIndex(std::index_sequence<I, Rest...>,
-  // 			  Tuple		&tuple,
-  // 			  Map		&keyToIndex,
-  // 			  CTypeSize	idx)
-  // {
-  //   const CTypeSize lol = idx;
-  //   auto m = std::get<I>(tuple);
-  //   auto typeKey = decltype(m)::mapped_type::TYPE;
-  //   keyToIndex[typeKey] = idx;
-  //   generateKeyToIndex(std::index_sequence<Rest...>(), tuple, keyToIndex, idx + 1);
-  // }
-      // generateKeyToIndex(std::index_sequence_for<CompTypes...>(), _entities, _keyToIndex, 0);

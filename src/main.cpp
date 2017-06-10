@@ -6,9 +6,9 @@
 #include "ContextManager.hpp"
 #include "SystemFactory.hpp"
 
-struct CVelocity {int velocity;static const ecs::CTypeSize TYPE = 1;};
-struct CPosition {int x; int y;static const ecs::CTypeSize TYPE = 4;};
-struct CGraphics {std::string mesh;static const ecs::CTypeSize TYPE = 8;};
+struct CVelocity {int velocity;};
+struct CPosition {int x; int y;};
+struct CGraphics {std::string mesh;};
 
 void	toto(uint32_t ha)
 {
@@ -64,7 +64,7 @@ int main()
   ecs::ContextManager::Context			ctx = {{2, true}};
   ecs::ContextManager::Context			ctxf = {{2, false}};
 
-  cmgr.push(&ctx);  
+  cmgr.push(&ctx);
   std::cout << "presence " << smgr.isPresentSystem(1) << std::endl;
   smgr.push(new ecs::SoundSystem, true);
   std::cout << "state is " << smgr.getState(1) << std::endl;
@@ -82,7 +82,7 @@ int main()
   std::cout << "presence " << smgr.isPresentSystem(1) << std::endl;
   std::cout << "state is " << smgr.getState(1) << std::endl;
   smgr.update();
-  
+
   // comp.velocity = 2;
   // manager.addComponent(id, comp);
   // manager.addComponent(id, CPosition());
@@ -111,7 +111,7 @@ int main()
   // eventManager.emit(0, 42, 84);
 
 
-  
+
   // A alpha;
   // ecs::EventManager<int> *f = new ecs::EventManager<int>;
 
