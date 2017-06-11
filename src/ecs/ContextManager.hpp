@@ -1,11 +1,11 @@
 //
 // ContextManager.hpp for  in /home/abd-al_a/rendu/IndieStudio
-// 
+//
 // Made by akram abd-ali
 // Login   <abd-al_a@epitech.net>
-// 
+//
 // Started on  Thu Jun  8 22:28:04 2017 akram abd-ali
-// Last update Sat Jun 10 06:07:05 2017 akram abd-ali
+// Last update Sun Jun 11 00:25:00 2017 Noam Silvy
 //
 
 #ifndef CONTEXT_MANAGER_HPP
@@ -23,12 +23,12 @@ namespace	ecs
   {
   public:
     using Context = std::map<SysType, bool>;
-    
+
   private:
     std::list<Context*>	_contexts;
     SystemManager*	_sysmgr;
     SystemFactory*	_sysFactory;
-    
+
   public:
     ContextManager() = delete;
     ContextManager(SystemManager* sysmgr, SystemFactory *sysFactory)
@@ -37,7 +37,7 @@ namespace	ecs
     ~ContextManager() = default;
     ContextManager(ContextManager const&) = delete;
     ContextManager& operator=(ContextManager const&) = delete;
-    
+
   public:
     void	push(Context *context)
     {
@@ -67,7 +67,7 @@ namespace	ecs
 	}
       _contexts.push_front(context);
     }
-    
+
     void	pop()
     {
       auto	size = _contexts.size();
@@ -108,7 +108,7 @@ namespace	ecs
 		  toDelete = false;
 		  break ;
 		}
-	      
+
 	    }
 	  if (toDelete == true)
 	    {
@@ -118,7 +118,7 @@ namespace	ecs
 	}
       _contexts.pop_front();
     }
-    
+
     void	reset()
     {
       while (!_contexts.empty())

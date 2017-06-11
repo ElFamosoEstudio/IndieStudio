@@ -1,10 +1,12 @@
 #include <iostream>
+#include "irrlicht.h"
 #include "EntityManager.hpp"
 #include "EventManager.hpp"
 #include "SystemManager.hpp"
 #include "SoundSystem.hpp"
 #include "ContextManager.hpp"
 #include "SystemFactory.hpp"
+#include "InputReceiver.hpp"
 
 struct CVelocity {int velocity;};
 struct CPosition {int x; int y;};
@@ -63,6 +65,7 @@ int main()
 
   ecs::ContextManager::Context			ctx = {{2, true}};
   ecs::ContextManager::Context			ctxf = {{2, false}};
+  indie::InputReceiver receiver(irr::createDevice());
 
   cmgr.push(&ctx);
   std::cout << "presence " << smgr.isPresentSystem(1) << std::endl;

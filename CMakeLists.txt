@@ -3,6 +3,9 @@ project(IndieStudio)
 
 set(CMAKE_CXX_STANDARD 14)
 file(GLOB_RECURSE SRCS "src/*.cpp")
+set(IRRLICHT_VERSION "1.8.4")
+set(IRRLICHT_DIR "irrlicht-${IRRLICHT_VERSION}")
+set(BIN_NAME "bomber")
 
 #foreach (HEADER_FILES ${HEADERS})
 #    get_filename_component(HEADER_DIRECTORY ${HEADERS} DIRECTORY)
@@ -10,7 +13,7 @@ file(GLOB_RECURSE SRCS "src/*.cpp")
 #endforeach (HEADER_FILES)
 #set(SOURCE_FILES src/main.cpp)
 
-include_directories(src/ src/ecs src/EventManager)
-add_executable(bomber ${SRCS})
-
-#add_library(toto SHARED ${LIB_SRC})
+include_directories(src/ src/ecs src/EventManager src/indie ${IRRLICHT_DIR}/include)
+link_directories(${IRRLICHT_DIR}/linux)
+add_executable(${BIN_NAME} ${SRCS})
+target_link_libraries(${BIN_NAME} Irrlicht GL Xxf86vm Xext X11 Xcursor)
