@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Thu Jun  8 01:13:05 2017 akram abd-ali
-// Last update Fri Jun  9 00:58:27 2017 akram abd-ali
+// Last update Mon Jun 12 23:08:06 2017 akram abd-ali
 //
 
 #ifndef		EVENT_MANAGER_HPP
@@ -43,7 +43,6 @@ namespace		ecs
       }
       EventKey	subscribe(std::function<void(Entity)> &&callback)
       {
-	// _callbacks.push_back(std::forward<std::function<void(Entity)>>(callback));
 	_callbacks[_nextKey] = (std::forward<std::function<void(Entity)>>(callback));
 	return (_nextKey++);
       }

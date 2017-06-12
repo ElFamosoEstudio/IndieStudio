@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Thu Jun  8 22:31:02 2017 akram abd-ali
-// Last update Sat Jun 10 05:46:27 2017 akram abd-ali
+// Last update Mon Jun 12 21:13:47 2017 akram abd-ali
 //
 
 #ifndef SYSTEM_MANAGER_HPP
@@ -66,6 +66,13 @@ namespace	ecs
     void	reset()
     {
       _systems.clear();
+    }
+    void	disableAll()
+    {
+      for (auto& it : _systems)
+	{
+	  it.second.second = false;
+	}
     }
     void	update() const
     {

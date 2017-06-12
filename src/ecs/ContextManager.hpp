@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Thu Jun  8 22:28:04 2017 akram abd-ali
-// Last update Sun Jun 11 00:25:00 2017 Noam Silvy
+// Last update Mon Jun 12 21:16:17 2017 akram abd-ali
 //
 
 #ifndef CONTEXT_MANAGER_HPP
@@ -39,11 +39,12 @@ namespace	ecs
     ContextManager& operator=(ContextManager const&) = delete;
 
   public:
-    void	push(Context *context)
+    void	push(Context *context, bool disableAll = false)
     {
       bool	toCreate;
 
-      std::cout << "PUSH" << std::endl;
+      if (disableAll == true)
+	_sysmgr->disableAll();
       for (auto const& it : *context)
 	{
 	  toCreate = true;
@@ -52,7 +53,6 @@ namespace	ecs
 	      auto const& f = comp->find(it.first);
 	      if (f != comp->end())
 		{
-		  std::cout << "set to " << it.second << std::endl;
 		  _sysmgr->setState(it.first, it.second);
 		  toCreate = false;
 		  break ;
@@ -60,10 +60,7 @@ namespace	ecs
 
 	    }
 	  if (toCreate == true)
-	    {
-	      std::cout << "created " << it.first << " and set to " << it.second << std::endl;
 	    _sysmgr->push(_sysFactory->create(it.first), it.second);
-	    }
 	}
       _contexts.push_front(context);
     }

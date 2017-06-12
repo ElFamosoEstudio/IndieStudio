@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Sat Jun 10 03:01:14 2017 akram abd-ali
-// Last update Sat Jun 10 06:08:48 2017 akram abd-ali
+// Last update Mon Jun 12 21:08:09 2017 akram abd-ali
 //
 
 #ifndef SYSTEM_FACTORY_HPP
@@ -15,6 +15,7 @@
 # include <functional>
 # include "ISystem.hpp"
 # include "SoundSystem.hpp"
+# include "SInput.hpp"
 # include "ecs.hpp"
 
 namespace	ecs
@@ -26,6 +27,7 @@ namespace	ecs
   public:
     SystemFactory()
     {
+      _factoryMap[1] = &system::Input::create;
       _factoryMap[2] = &SoundSystem::create;
     }
     SystemFactory(SystemFactory const&) = delete;

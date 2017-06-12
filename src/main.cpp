@@ -4,6 +4,7 @@
 #include "EventManager.hpp"
 #include "SystemManager.hpp"
 #include "SoundSystem.hpp"
+#include "SInput.hpp"
 #include "ContextManager.hpp"
 #include "SystemFactory.hpp"
 #include "InputReceiver.hpp"
@@ -63,29 +64,44 @@ int main()
   ecs::SystemFactory				sfact;
   ecs::ContextManager				cmgr(&smgr, &sfact);
 
-  ecs::ContextManager::Context			ctx = {{2, true}};
-  ecs::ContextManager::Context			ctxf = {{2, false}};
-  indie::InputReceiver receiver(irr::createDevice());
+  // ecs::ContextManager::Context			ctx = {{2, true}, {1, true}};
+  // ecs::ContextManager::Context			ctxf = {{2, false}, {1, true}};
+  // ecs::ContextManager::Context			dis = {{1, true}};
+  irr::IrrlichtDevice *device =
+    irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1920, 968), 16, false);
+  indie::InputReceiver* receiver = new indie::InputReceiver(device);
+  device->setEventReceiver(receiver);
 
-  cmgr.push(&ctx);
-  std::cout << "presence " << smgr.isPresentSystem(1) << std::endl;
-  smgr.push(new ecs::SoundSystem, true);
-  std::cout << "state is " << smgr.getState(1) << std::endl;
-  smgr.setState(1, true);
-  std::cout << "state is " << smgr.getState(1) << std::endl;
-  std::cout << "presence " << smgr.isPresentSystem(1) << std::endl;
-  cmgr.push(&ctx);
-  cmgr.push(&ctxf);
-  cmgr.pop();
-  cmgr.pop();
-  smgr.update();
-  cmgr.pop();
-  smgr.update();
-  smgr.remove(1);
-  std::cout << "presence " << smgr.isPresentSystem(1) << std::endl;
-  std::cout << "state is " << smgr.getState(1) << std::endl;
-  smgr.update();
-
+  
+  // cmgr.push(&ctx);
+  // cmgr.push(&dis, true);
+  
+  // std::cout << "presence " << smgr.isPresentSystem(1) << std::endl;
+  // smgr.push(new ecs::SoundSystem, true);
+  // std::cout << "state is " << smgr.getState(1) << std::endl;
+  // smgr.setState(1, true);
+  // std::cout << "state is " << smgr.getState(1) << std::endl;
+  // std::cout << "presence " << smgr.isPresentSystem(1) << std::endl;
+  // cmgr.push(&ctx);
+  // cmgr.push(&ctxf);
+  // cmgr.pop();
+  // cmgr.pop();
+  // smgr.update();
+  // cmgr.pop();
+  // smgr.update();
+  // smgr.remove(1);
+  // std::cout << "presence " << smgr.isPresentSystem(1) << std::endl;
+  // std::cout << "state is " << smgr.getState(1) << std::endl;
+  // smgr.update();
+  
+  indie::InputReceiver::Keyboard   keyboard = static_cast<indie::InputReceiver*>(receiver)->getKeyboard();
+    while(device->run())
+      {
+	receiver->disableInputHandling();
+	smgr.update();
+	receiver->enableInputHandling();
+      }
+    device->drop();
   // comp.velocity = 2;
   // manager.addComponent(id, comp);
   // manager.addComponent(id, CPosition());
