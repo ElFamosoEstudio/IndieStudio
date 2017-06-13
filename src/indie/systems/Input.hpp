@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Mon Jun 12 20:47:37 2017 akram abd-ali
-// Last update Tue Jun 13 03:44:09 2017 Noam Silvy
+// Last update Tue Jun 13 18:26:34 2017 Noam Silvy
 //
 
 #ifndef INPUT_SYSTEM_HPP
@@ -17,12 +17,14 @@
 # include "InputReceiver.hpp"
 # include "EventManager.hpp"
 # include "ISystem.hpp"
+# include "ecs.hpp"
+# include "ESystem.hpp"
 
-namespace	ecs
+namespace indie
 {
-  namespace	system
+  namespace system
   {
-    class	        Input : public ISystem
+    class Input : public ecs::ISystem
     {
     private:
       indie::InputReceiver	*_receiver;
@@ -36,10 +38,10 @@ namespace	ecs
       void	update() {
 	std::cout << "update input" << std::endl;
       }
-      SysType	type() const
+      ecs::SysType	type() const
       {
-	static const SysType TYPE = 1;
-	return TYPE;
+	static const ecs::SysType _TYPE = system::INPUT;
+	return _TYPE;
       }
       static ISystem	*create()
       {
@@ -48,5 +50,4 @@ namespace	ecs
     };
   }
 }
-
 #endif // !INPUT_SYSTEM_HPP

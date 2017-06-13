@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 10 03:01:14 2017 akram abd-ali
-// Last update Tue Jun 13 03:01:22 2017 Noam Silvy
+// Last update Tue Jun 13 18:31:13 2017 Noam Silvy
 //
 
 #ifndef SYSTEM_FACTORY_HPP
@@ -17,6 +17,7 @@
 # include "SoundSystem.hpp"
 # include "Input.hpp"
 # include "ecs.hpp"
+# include "ISystem.hpp"
 
 namespace	ecs
 {
@@ -25,11 +26,7 @@ namespace	ecs
   private:
     std::map<SysType, std::function<ISystem*(void)>> _factoryMap;
   public:
-    SystemFactory()
-    {
-      _factoryMap[1] = &system::Input::create;
-      _factoryMap[2] = &SoundSystem::create;
-    }
+    SystemFactory() = default;
     SystemFactory(SystemFactory const&) = delete;
     SystemFactory& operator=(SystemFactory const&) = delete;
     ~SystemFactory() {}
