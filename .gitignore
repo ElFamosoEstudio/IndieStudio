@@ -1,2 +1,10 @@
 .ycm_extra_conf.py
 tags
+.idea/
+cmake-build-debug/CMakeFiles/CMakeTmp/
+bomber
+cmake_install.cmake
+CMakeCache.txt
+CMakeFiles/
+IndieStudio.cbp
+Makefile
