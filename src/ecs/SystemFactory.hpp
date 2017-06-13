@@ -1,11 +1,11 @@
 //
 // SystemFactory.hpp for  in /home/abd-al_a/rendu/IndieStudio
-// 
+//
 // Made by akram abd-ali
 // Login   <abd-al_a@epitech.net>
-// 
+//
 // Started on  Sat Jun 10 03:01:14 2017 akram abd-ali
-// Last update Mon Jun 12 21:08:09 2017 akram abd-ali
+// Last update Tue Jun 13 03:01:22 2017 Noam Silvy
 //
 
 #ifndef SYSTEM_FACTORY_HPP
@@ -15,7 +15,7 @@
 # include <functional>
 # include "ISystem.hpp"
 # include "SoundSystem.hpp"
-# include "SInput.hpp"
+# include "Input.hpp"
 # include "ecs.hpp"
 
 namespace	ecs

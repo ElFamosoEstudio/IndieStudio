@@ -1,11 +1,11 @@
 //
 // SInput.hpp for  in /home/abd-al_a/rendu/IndieStudio
-// 
+//
 // Made by akram abd-ali
 // Login   <abd-al_a@epitech.net>
-// 
+//
 // Started on  Mon Jun 12 20:47:37 2017 akram abd-ali
-// Last update Mon Jun 12 23:29:08 2017 akram abd-ali
+// Last update Tue Jun 13 03:44:09 2017 Noam Silvy
 //
 
 #ifndef INPUT_SYSTEM_HPP
@@ -36,7 +36,7 @@ namespace	ecs
       void	update() {
 	std::cout << "update input" << std::endl;
       }
-      SysType	type()
+      SysType	type() const
       {
 	static const SysType TYPE = 1;
 	return TYPE;

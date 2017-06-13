@@ -1,11 +1,11 @@
 //
 // EventManager.hpp for  in /home/abd-al_a/rendu/IndieStudio
-// 
+//
 // Made by akram abd-ali
 // Login   <abd-al_a@epitech.net>
-// 
+//
 // Started on  Thu Jun  8 01:13:05 2017 akram abd-ali
-// Last update Mon Jun 12 23:08:06 2017 akram abd-ali
+// Last update Tue Jun 13 01:51:37 2017 Noam Silvy
 //
 
 #ifndef		EVENT_MANAGER_HPP
@@ -19,7 +19,7 @@
 
 namespace		ecs
 {
-  template<typename EventType>
+  template<typename EventType = EventTypeDefault>
   class			EventManager
   {
     class		Event

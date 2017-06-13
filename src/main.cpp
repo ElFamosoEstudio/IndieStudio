@@ -4,14 +4,16 @@
 #include "EventManager.hpp"
 #include "SystemManager.hpp"
 #include "SoundSystem.hpp"
-#include "SInput.hpp"
 #include "ContextManager.hpp"
 #include "SystemFactory.hpp"
 #include "InputReceiver.hpp"
+#include "Engine.hpp"
 
-struct CVelocity {int velocity;};
-struct CPosition {int x; int y;};
-struct CGraphics {std::string mesh;};
+// struct CVelocity {int velocity;};
+// struct CPosition {int x; int y;};
+// struct CGraphics {std::string mesh;};
+
+indie::Engine::_device = nullptr;
 
 void	toto(uint32_t ha)
 {
@@ -55,27 +57,44 @@ public:
 };
 
 
+
+class Sys : public ecs::ISystem
+{
+ public:
+  void update() override {std::cout << "Sys update" << std::endl;}
+  ecs::SysType type() const override {return 47;}
+} sys;
+
 int main()
 {
-  ecs::EntityManager<CVelocity, CPosition, CGraphics>	manager;
-  ecs::Entity						id = manager.createEntity();
-  CVelocity						comp;
-  ecs::SystemManager				smgr;
-  ecs::SystemFactory				sfact;
-  ecs::ContextManager				cmgr(&smgr, &sfact);
+  // ecs::EntityManager<CVelocity, CPosition, CGraphics>	manager;
+  // ecs::Entity						id = manager.createEntity();
+  // CVelocity						comp;
+  // ecs::SystemManager				smgr;
+  // ecs::SystemFactory				sfact;
+  // ecs::ContextManager				cmgr(&smgr, &sfact);
 
   // ecs::ContextManager::Context			ctx = {{2, true}, {1, true}};
   // ecs::ContextManager::Context			ctxf = {{2, false}, {1, true}};
   // ecs::ContextManager::Context			dis = {{1, true}};
   irr::IrrlichtDevice *device =
     irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1920, 968), 16, false);
-  indie::InputReceiver* receiver = new indie::InputReceiver(device);
-  device->setEventReceiver(receiver);
+  indie::Engine::initialize(device);
+  indie::Engine::entityManager().createEntity();
+  indie::Engine::systemManager().push(&sys);
+  indie::Engine::contextManager().push(new std::map<ecs::SysType, bool>{{1, true},{2, true}});
+  indie::Engine::eventManager().subscribe(42, [](ecs::Entity id){
+      std::cout << "Received event" << id << std::endl;
+    });
+  indie::Engine::eventManager().emit(42, 42);
 
-  
+  // indie::InputReceiver* receiver = new indie::InputReceiver();
+  // device->setEventReceiver(receiver);
+
+
   // cmgr.push(&ctx);
   // cmgr.push(&dis, true);
-  
+
   // std::cout << "presence " << smgr.isPresentSystem(1) << std::endl;
   // smgr.push(new ecs::SoundSystem, true);
   // std::cout << "state is " << smgr.getState(1) << std::endl;
@@ -93,13 +112,17 @@ int main()
   // std::cout << "presence " << smgr.isPresentSystem(1) << std::endl;
   // std::cout << "state is " << smgr.getState(1) << std::endl;
   // smgr.update();
-  
-  indie::InputReceiver::Keyboard   keyboard = static_cast<indie::InputReceiver*>(receiver)->getKeyboard();
+
+  // indie::InputReceiver::Keyboard   keyboard = static_cast<indie::InputReceiver*>(receiver)->getKeyboard();
+  indie::InputReceiver::Keyboard   keyboard = indie::Engine::inputReceiver().getKeyboard();
     while(device->run())
       {
-	receiver->disableInputHandling();
-	smgr.update();
-	receiver->enableInputHandling();
+	indie::Engine::inputReceiver().disableInputHandling();
+	indie::Engine::systemManager().update();
+        indie::Engine::inputReceiver().enableInputHandling();
+	// receiver->disableInputHandling();
+	// smgr.update();
+	// receiver->enableInputHandling();
       }
     device->drop();
   // comp.velocity = 2;

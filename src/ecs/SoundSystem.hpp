@@ -1,11 +1,11 @@
 //
 // SoundSystem.hpp for  in /home/abd-al_a/rendu/IndieStudio
-// 
+//
 // Made by akram abd-ali
 // Login   <abd-al_a@epitech.net>
-// 
+//
 // Started on  Thu Jun  8 22:12:15 2017 akram abd-ali
-// Last update Sat Jun 10 06:08:20 2017 akram abd-ali
+// Last update Tue Jun 13 03:43:53 2017 Noam Silvy
 //
 
 #ifndef SOUND_SYSTEM_HPP
@@ -28,7 +28,7 @@ namespace	ecs
     void	update() {
       std::cout << "update sound" << std::endl;
     }
-    SysType	type()
+    SysType	type() const
     {
       static const SysType TYPE = 2;
       return TYPE;
