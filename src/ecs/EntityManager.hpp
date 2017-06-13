@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu May 25 18:46:02 2017 Noam Silvy
-// Last update Tue Jun 13 17:48:02 2017 Noam Silvy
+// Last update Tue Jun 13 21:44:53 2017 Noam Silvy
 //
 
 #ifndef ENTITY_MANAGER_HPP
@@ -27,8 +27,15 @@ namespace ecs
   template<typename ...CompTypes>
   class EntityManager
   {
+    template<typename Comp>
+    using CompPtr = std::unique_ptr<Comp>;
+
     template<typename CompType>
-    using map_of = std::map<Entity, CompType>;
+    using map_of = std::map<Entity, CompPtr<CompType>>;
+
+  private:
+    std::tuple<std::map<Entity, CompPtr<CompTypes>>...>	_entities;
+    NumIdGenerator<Entity>				_idGenerator;
 
   public:
     EntityManager() = default;
@@ -46,29 +53,30 @@ namespace ecs
 
       if (!replace && it != components.end())
 	return ;
-      components[id] = comp;
+      components[id] = std::make_unique<Comp>(comp);
     }
 
     // Constructs a Comp object with @args, eventually replacing existing one
     template<typename Comp, typename ...Args>
-    void		addComponentEmplace(Entity id, Args& ...args)
+    void		addComponentEmplace(Entity id, Args&& ...args)
     {
-      std::get<map_of<Comp>>(_entities)[id] = Comp(args...);
+      std::get<map_of<Comp>>(_entities)[id] = std::make_unique<Comp>(std::forward<Args>(args)...);
     }
 
     template<typename Comp>
-    Comp&		getComponent(Entity id)
+    CompPtr<Comp>&		getComponent(Entity id)
     {
+      static auto nullComp = std::move(std::unique_ptr<Comp>());
       auto &components = std::get<map_of<Comp>>(_entities);
       auto it = components.find(id);
 
       if (it == components.end())
-	throw (std::out_of_range(_getOutOfRangeMsg<Comp>(id)));
+	return (nullComp);
       return (it->second);
     }
 
     template<typename Comp>
-    std::map<Entity, Comp>&		getAllComponents()
+    std::map<Entity, CompPtr<Comp>>&	getAllComponents()
     {
       return (std::get<map_of<Comp>>(_entities));
     }
@@ -80,7 +88,7 @@ namespace ecs
       auto it = components.find(id);
 
       if (it == components.end())
-	throw (std::out_of_range(_getOutOfRangeMsg<Comp>(id)));
+	throw (std::out_of_range(_getOutOfRangeMsg<Comp>(id))); // or return ;
       components.erase(it);
     }
 
@@ -118,10 +126,6 @@ namespace ecs
     {
       return (std::string("Entity ") + std::to_string(id) + " doesn't have component " + typeid(Comp).name());
     }
-
-  private:
-    std::tuple<std::map<Entity, CompTypes>...>	_entities;
-    NumIdGenerator<Entity>			_idGenerator;
   };
 }
 
