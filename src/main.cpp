@@ -1,11 +1,7 @@
 #include <iostream>
 #include "irrlicht.h"
-#include "EntityManager.hpp"
-#include "EventManager.hpp"
-#include "SystemManager.hpp"
+#include "ecs.hpp"
 #include "SoundSystem.hpp"
-#include "ContextManager.hpp"
-#include "SystemFactory.hpp"
 #include "InputReceiver.hpp"
 #include "Engine.hpp"
 

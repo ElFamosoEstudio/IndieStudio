@@ -1,11 +1,11 @@
 //
-// SInput.hpp for  in /home/abd-al_a/rendu/IndieStudio
+// Input.hpp for  in /home/abd-al_a/rendu/IndieStudio
 //
 // Made by akram abd-ali
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Mon Jun 12 20:47:37 2017 akram abd-ali
-// Last update Tue Jun 13 18:26:34 2017 Noam Silvy
+// Last update Tue Jun 13 18:43:38 2017 Noam Silvy
 //
 
 #ifndef INPUT_SYSTEM_HPP
@@ -14,10 +14,8 @@
 # include <cstddef>
 # include <map>
 # include <iostream>
-# include "InputReceiver.hpp"
-# include "EventManager.hpp"
-# include "ISystem.hpp"
 # include "ecs.hpp"
+# include "InputReceiver.hpp"
 # include "ESystem.hpp"
 
 namespace indie

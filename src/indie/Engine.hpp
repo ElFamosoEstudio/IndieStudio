@@ -5,20 +5,15 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 10 03:34:26 2017 akram abd-ali
-// Last update Tue Jun 13 03:51:57 2017 Noam Silvy
+// Last update Tue Jun 13 18:42:34 2017 Noam Silvy
 //
 
 #ifndef ENGINE_HPP
 # define ENGINE_HPP
 
 # include <cassert>
-# include "EntityManager.hpp"
-# include "SystemManager.hpp"
-# include "SystemFactory.hpp"
-# include "ContextManager.hpp"
-# include "EventManager.hpp"
-# include "InputReceiver.hpp"
 # include "irrlicht.h"
+# include "ecs.hpp"
 
 struct CVelocity {int velocity;};
 struct CPosition {int x; int y;};

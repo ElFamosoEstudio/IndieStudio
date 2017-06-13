@@ -5,11 +5,11 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Sun Jun 11 10:31:20 2017 Noam Silvy
-// Last update Mon Jun 12 20:44:05 2017 akram abd-ali
+// Last update Tue Jun 13 18:43:12 2017 Noam Silvy
 //
 
 #include <unistd.h>
- #include <iostream>
+#include <iostream>
 #include "InputReceiver.hpp"
 
 using namespace indie;
@@ -69,7 +69,7 @@ bool	InputReceiver::_onEventKeyboard(irr::SEvent::SKeyInput const& input)
 void	InputReceiver::_updateJoystickButtons(irr::SEvent::SJoystickEvent const& event)
 {
   irr::u32 buttons = event.ButtonStates;
-  
+
   if (buttons == _gamePads[event.Joystick].oldButtons)
     return ;
   _gamePads[event.Joystick].oldButtons = buttons;
@@ -156,7 +156,7 @@ void indie::InputReceiver::enableInputHandling()
 
 void indie::InputReceiver::disableInputHandling()
 {
-  _isBlocked = true;  
+  _isBlocked = true;
 }
 
 void	InputReceiver::_updateJoystickPovNative(irr::SEvent::SJoystickEvent const& event)
@@ -186,7 +186,7 @@ void	InputReceiver::_updateJoystickPovWithAxes(irr::SEvent::SJoystickEvent const
   //   static_cast<float>(MAX_S16);
 
   // if (axis_x > AXE_THRESHOLD)
-  //   _gamePads[event.Joystick].pov[POV_RIGHT] = InputState::DOWN;    
+  //   _gamePads[event.Joystick].pov[POV_RIGHT] = InputState::DOWN;
   // else if (axis_x < -(AXE_THRESHOLD))
   //   _gamePads[event.Joystick].pov[POV_LEFT] = InputState::DOWN;
   // if (axis_y < -(AXE_THRESHOLD))
