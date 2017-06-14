@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Sun Jun 11 10:31:20 2017 Noam Silvy
-// Last update Thu Jun 15 01:33:48 2017 Noam Silvy
+// Last update Thu Jun 15 01:54:14 2017 akram abd-ali
 //
 
 #include <unistd.h>
@@ -85,7 +85,7 @@ void	InputReceiver::_updateJoystickButtons(irr::SEvent::SJoystickEvent const& ev
 
 void	InputReceiver::_updateJoystickAxes(irr::SEvent::SJoystickEvent const& event)
 {
-  for (int i = 0, numAxes = 8; i < numAxes; ++i)
+  for (int i = 0, numAxes = _gamePads[event.Joystick].axes.size(); i < numAxes; ++i)
     _gamePads[event.Joystick].axes[i] = event.Axis[i] / MAX_S16;
 }
 
