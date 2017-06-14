@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Thu Jun  8 01:13:58 2017 akram abd-ali
-// Last update Tue Jun 13 18:37:57 2017 Noam Silvy
+// Last update Wed Jun 14 03:39:44 2017 Noam Silvy
 //
 
 #ifndef		ECS_HPP
@@ -19,6 +19,7 @@ namespace	ecs
   using SysType = uint32_t;
   using EventKey = uint32_t;
   using EventTypeDefault = uint32_t;
+  using ContextType = uint32_t;
 }
 
 # include "ISystem.hpp"

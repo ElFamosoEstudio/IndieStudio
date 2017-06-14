@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Thu Jun  8 22:28:04 2017 akram abd-ali
-// Last update Mon Jun 12 21:16:17 2017 akram abd-ali
+// Last update Wed Jun 14 15:46:26 2017 Noam Silvy
 //
 
 #ifndef CONTEXT_MANAGER_HPP
@@ -14,20 +14,21 @@
 # include <memory>
 # include <list>
 # include <map>
+# include <stdexcept>
 # include "ecs.hpp"
 # include "SystemFactory.hpp"
 
 namespace	ecs
 {
+  using Context = std::map<SysType, bool>;
+
   class		ContextManager
   {
-  public:
-    using Context = std::map<SysType, bool>;
-
   private:
-    std::list<Context*>	_contexts;
-    SystemManager*	_sysmgr;
-    SystemFactory*	_sysFactory;
+    std::list<Context*>			_contexts;
+    std::map<ContextType, Context>	_knownContexts;
+    SystemManager*			_sysmgr;
+    SystemFactory*			_sysFactory;
 
   public:
     ContextManager() = delete;
@@ -39,6 +40,14 @@ namespace	ecs
     ContextManager& operator=(ContextManager const&) = delete;
 
   public:
+    void	push(ContextType key, bool disableAll = false)
+    {
+      auto it = _knownContexts.find(key);
+      if (it == _knownContexts.end())
+      	throw (std::out_of_range("ContextManager: \"ContextType unknown\""));
+      this->push(std::addressof(it->second), disableAll);
+    }
+
     void	push(Context *context, bool disableAll = false)
     {
       bool	toCreate;
@@ -69,15 +78,10 @@ namespace	ecs
     {
       auto	size = _contexts.size();
 
-      std::cout << "DELETE" << std::endl;
       if (size == 0)
-	{
-	  std::cout << "return" << std::endl;
-	  return ;
-	}
+	return ;
       else if (size == 1)
 	{
-	  std::cout << "pop and reset" << std::endl;
 	  _contexts.pop_front();
 	  _sysmgr->reset();
 	  return ;
@@ -100,7 +104,6 @@ namespace	ecs
 	      auto const& f = comp->find(it.first);
 	      if (f != comp->end())
 		{
-		  std::cout << "set to " << f->second << std::endl;
 		  _sysmgr->setState(it.first, f->second);
 		  toDelete = false;
 		  break ;
@@ -108,10 +111,7 @@ namespace	ecs
 
 	    }
 	  if (toDelete == true)
-	    {
-	      std::cout << "delete " << it.first << std::endl;
-	      _sysmgr->remove(it.first);
-	    }
+	    _sysmgr->remove(it.first);
 	}
       _contexts.pop_front();
     }
@@ -120,6 +120,20 @@ namespace	ecs
     {
       while (!_contexts.empty())
 	pop();
+    }
+
+    void	registerContext(ContextType	key,
+				Context&&	context)
+    {
+      std::cerr << "registerContext move ref" << std::endl;
+      _knownContexts[key] = std::forward<Context>(context);
+    }
+
+    void	registerContext(ContextType	key,
+			        const Context& context)
+    {
+      std::cerr << "registerContext ref" << std::endl;
+      _knownContexts[key] = context;
     }
   };
 }
