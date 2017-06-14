@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 10 03:01:14 2017 akram abd-ali
-// Last update Tue Jun 13 21:21:35 2017 Noam Silvy
+// Last update Wed Jun 14 02:24:06 2017 Noam Silvy
 //
 
 #ifndef SYSTEM_FACTORY_HPP
@@ -14,7 +14,6 @@
 # include <map>
 # include <functional>
 # include "ISystem.hpp"
-# include "SoundSystem.hpp"
 # include "ecs.hpp"
 # include "ISystem.hpp"
 

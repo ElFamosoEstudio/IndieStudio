@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Sun Jun 11 10:31:20 2017 Noam Silvy
-// Last update Tue Jun 13 18:43:12 2017 Noam Silvy
+// Last update Wed Jun 14 01:48:01 2017 Noam Silvy
 //
 
 #include <unistd.h>
@@ -19,6 +19,7 @@ InputReceiver::InputReceiver(irr::IrrlichtDevice *device)
 {
   _keyboard.fill(InputState::UP);
   updateGamePads();
+  device->setEventReceiver(this); // last instruction!
 }
 
 void	InputReceiver::Gamepad::update(irr::u32 axes)

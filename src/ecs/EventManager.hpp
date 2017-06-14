@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Thu Jun  8 01:13:05 2017 akram abd-ali
-// Last update Tue Jun 13 01:51:37 2017 Noam Silvy
+// Last update Wed Jun 14 01:24:40 2017 Noam Silvy
 //
 
 #ifndef		EVENT_MANAGER_HPP
@@ -20,9 +20,9 @@
 namespace		ecs
 {
   template<typename EventType = EventTypeDefault>
-  class			EventManager
+  class EventManager
   {
-    class		Event
+    class Event
     {
     private:
       std::map<EventKey, std::function<void(Entity)>>	_callbacks;
