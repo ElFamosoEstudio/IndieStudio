@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Tue Jun 13 18:03:53 2017 Noam Silvy
-// Last update Tue Jun 13 19:18:34 2017 Noam Silvy
+// Last update Wed Jun 14 16:06:09 2017 Noam Silvy
 //
 
 #ifndef ESYSTEM_HPP
@@ -18,8 +18,7 @@ namespace indie
     enum ESystem
       {
 	INPUT,
-	POSITION,
-	VELOCITY,
+	MOVE,
 	MAIN_MENU
       };
   }
