@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Sun Jun 11 00:24:41 2017 Noam Silvy
-// Last update Mon Jun 12 20:40:26 2017 akram abd-ali
+// Last update Thu Jun 15 01:33:55 2017 Noam Silvy
 //
 
 #ifndef INPUT_RECEIVER_HPP
@@ -53,7 +53,6 @@ namespace indie
     irr::IrrlichtDevice				*_device;
     bool					_isBlocked;
     Keyboard					_keyboard;
-    std::map<irr::u8, irr::SJoystickInfo>	_gamePadsInfo;
     std::map<irr::u8, Gamepad>			_gamePads;
     bool					_gamePadsSupported;
 
