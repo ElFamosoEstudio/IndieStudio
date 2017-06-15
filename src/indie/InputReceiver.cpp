@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Sun Jun 11 10:31:20 2017 Noam Silvy
-// Last update Thu Jun 15 01:54:14 2017 akram abd-ali
+// Last update Thu Jun 15 02:34:22 2017 Noam Silvy
 //
 
 #include <unistd.h>
@@ -19,7 +19,7 @@ InputReceiver::InputReceiver(irr::IrrlichtDevice *device)
 {
   _keyboard.fill(InputState::UP);
   updateGamePads();
-  device->setEventReceiver(this); // last instruction!
+  _device->setEventReceiver(this); // last instruction!
 }
 
 void	InputReceiver::Gamepad::update(irr::u32 axes)
@@ -50,7 +50,8 @@ bool	InputReceiver::OnEvent(irr::SEvent const& event)
   if (_isBlocked) return false;
   if (event.EventType == irr::EET_KEY_INPUT_EVENT)
     return (_onEventKeyboard(event.KeyInput));
-  else if (event.EventType == irr::EET_JOYSTICK_INPUT_EVENT)
+  else if (event.EventType == irr::EET_JOYSTICK_INPUT_EVENT
+	   && (_gamePadsSupported))
     return (_onEventJoystick(event.JoystickEvent));
   return (false);
 }

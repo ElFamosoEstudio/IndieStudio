@@ -37,6 +37,7 @@ int main()
 	indie::engine::systemManager().update();
         indie::engine::inputReceiver().enableInputHandling();
       }
-    device->drop();
+  indie::engine::inputReceiver().disableInputHandling();
+  device->drop();
   return 0;
 }
