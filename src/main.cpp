@@ -24,19 +24,11 @@ int main()
 
   indie::engine::contextManager().push(indie::context::MAIN_MENU);
 
-  auto id = indie::engine::entityManager().createEntity();
-  indie::engine::eventManager().subscribe(42, [](ecs::Entity id){
-      std::cout << "Received event" << id << std::endl;
-    });
-  indie::engine::eventManager().emit(42, id);
-
-  indie::InputReceiver::Keyboard   keyboard = indie::engine::inputReceiver().getKeyboard();
-
-  while(device->run())
+  while (device->run())
       {
 	indie::engine::inputReceiver().disableInputHandling();
 	indie::engine::systemManager().update();
-        indie::engine::inputReceiver().enableInputHandling();
+        indie::engine::inputReceiver().enableInputHandling();	
       }
   indie::engine::inputReceiver().disableInputHandling();
   device->drop();

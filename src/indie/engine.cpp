@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu Jun 15 17:48:23 2017 Noam Silvy
-// Last update Thu Jun 15 18:29:09 2017 Noam Silvy
+// Last update Thu Jun 15 23:24:23 2017 Adam Akkari
 //
 
 #include <cassert>
@@ -45,4 +45,9 @@ indie::engine::IndieEntityManager&	indie::engine::entityManager()
 {
   static indie::engine::IndieEntityManager _entityManager;
   return (_entityManager);
+}
+
+irr::scene::ISceneManager	*indie::engine::sceneManager()
+{
+  return (_device->getSceneManager());
 }

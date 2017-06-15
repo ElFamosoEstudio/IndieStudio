@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Mon Jun 12 20:47:37 2017 akram abd-ali
-// Last update Thu Jun 15 20:28:32 2017 Noam Silvy
+// Last update Fri Jun 16 01:46:00 2017 Adam Akkari
 //
 
 #ifndef INPUT_SYSTEM_HPP
@@ -27,19 +27,18 @@ namespace indie
     private:
       indie::InputReceiver	*_receiver;
     public:
-      Input() {};
+      Input() = default;
       Input(indie::InputReceiver *receiver) : _receiver(receiver) {}
       ~Input() = default;
       Input(Input const&) = delete;
       Input& operator=(Input const&) = delete;
     public:
       void	update() {
-	std::cout << "update input" << std::endl;
+	// std::cout << "update input" << std::endl;
       }
       ecs::SysType	type() const
       {
-	static const ecs::SysType _TYPE = system::INPUT;
-	return _TYPE;
+	return (system::INPUT);
       }
       static ISystem	*create()
       {
