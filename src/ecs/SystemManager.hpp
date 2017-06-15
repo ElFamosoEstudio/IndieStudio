@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Thu Jun  8 22:31:02 2017 akram abd-ali
-// Last update Thu Jun 15 01:48:22 2017 Noam Silvy
+// Last update Thu Jun 15 03:45:24 2017 Noam Silvy
 //
 
 #ifndef SYSTEM_MANAGER_HPP
@@ -15,6 +15,7 @@
 # include <memory>
 # include <utility>
 # include <functional>
+# include <stdexcept>
 # include "ISystem.hpp"
 
 namespace	ecs
@@ -90,6 +91,9 @@ namespace	ecs
 
     ISystem *create(SysType type)
     {
+      auto it = _factories.find(type);
+      if (it == _factories.end())
+	throw (std::out_of_range("SystemManager: \"Unkown factory type\""));
       return _factories[type]();
     }
   };
