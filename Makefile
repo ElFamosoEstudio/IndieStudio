@@ -177,6 +177,33 @@ src/indie/InputReceiver.cpp.s:
 	$(MAKE) -f CMakeFiles/bomber.dir/build.make CMakeFiles/bomber.dir/src/indie/InputReceiver.cpp.s
 .PHONY : src/indie/InputReceiver.cpp.s
 
+src/indie/contexts/registerAllContexts.o: src/indie/contexts/registerAllContexts.cpp.o
+
+.PHONY : src/indie/contexts/registerAllContexts.o
+
+# target to build an object file
+src/indie/contexts/registerAllContexts.cpp.o:
+	$(MAKE) -f CMakeFiles/bomber.dir/build.make CMakeFiles/bomber.dir/src/indie/contexts/registerAllContexts.cpp.o
+.PHONY : src/indie/contexts/registerAllContexts.cpp.o
+
+src/indie/contexts/registerAllContexts.i: src/indie/contexts/registerAllContexts.cpp.i
+
+.PHONY : src/indie/contexts/registerAllContexts.i
+
+# target to preprocess a source file
+src/indie/contexts/registerAllContexts.cpp.i:
+	$(MAKE) -f CMakeFiles/bomber.dir/build.make CMakeFiles/bomber.dir/src/indie/contexts/registerAllContexts.cpp.i
+.PHONY : src/indie/contexts/registerAllContexts.cpp.i
+
+src/indie/contexts/registerAllContexts.s: src/indie/contexts/registerAllContexts.cpp.s
+
+.PHONY : src/indie/contexts/registerAllContexts.s
+
+# target to generate assembly for a file
+src/indie/contexts/registerAllContexts.cpp.s:
+	$(MAKE) -f CMakeFiles/bomber.dir/build.make CMakeFiles/bomber.dir/src/indie/contexts/registerAllContexts.cpp.s
+.PHONY : src/indie/contexts/registerAllContexts.cpp.s
+
 src/indie/engine.o: src/indie/engine.cpp.o
 
 .PHONY : src/indie/engine.o
@@ -203,33 +230,6 @@ src/indie/engine.s: src/indie/engine.cpp.s
 src/indie/engine.cpp.s:
 	$(MAKE) -f CMakeFiles/bomber.dir/build.make CMakeFiles/bomber.dir/src/indie/engine.cpp.s
 .PHONY : src/indie/engine.cpp.s
-
-src/indie/registerAllContexts.o: src/indie/registerAllContexts.cpp.o
-
-.PHONY : src/indie/registerAllContexts.o
-
-# target to build an object file
-src/indie/registerAllContexts.cpp.o:
-	$(MAKE) -f CMakeFiles/bomber.dir/build.make CMakeFiles/bomber.dir/src/indie/registerAllContexts.cpp.o
-.PHONY : src/indie/registerAllContexts.cpp.o
-
-src/indie/registerAllContexts.i: src/indie/registerAllContexts.cpp.i
-
-.PHONY : src/indie/registerAllContexts.i
-
-# target to preprocess a source file
-src/indie/registerAllContexts.cpp.i:
-	$(MAKE) -f CMakeFiles/bomber.dir/build.make CMakeFiles/bomber.dir/src/indie/registerAllContexts.cpp.i
-.PHONY : src/indie/registerAllContexts.cpp.i
-
-src/indie/registerAllContexts.s: src/indie/registerAllContexts.cpp.s
-
-.PHONY : src/indie/registerAllContexts.s
-
-# target to generate assembly for a file
-src/indie/registerAllContexts.cpp.s:
-	$(MAKE) -f CMakeFiles/bomber.dir/build.make CMakeFiles/bomber.dir/src/indie/registerAllContexts.cpp.s
-.PHONY : src/indie/registerAllContexts.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -273,12 +273,12 @@ help:
 	@echo "... src/indie/InputReceiver.o"
 	@echo "... src/indie/InputReceiver.i"
 	@echo "... src/indie/InputReceiver.s"
+	@echo "... src/indie/contexts/registerAllContexts.o"
+	@echo "... src/indie/contexts/registerAllContexts.i"
+	@echo "... src/indie/contexts/registerAllContexts.s"
 	@echo "... src/indie/engine.o"
 	@echo "... src/indie/engine.i"
 	@echo "... src/indie/engine.s"
-	@echo "... src/indie/registerAllContexts.o"
-	@echo "... src/indie/registerAllContexts.i"
-	@echo "... src/indie/registerAllContexts.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
