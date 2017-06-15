@@ -5,62 +5,38 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 10 03:34:26 2017 akram abd-ali
-// Last update Thu Jun 15 02:04:51 2017 Noam Silvy
+// Last update Thu Jun 15 18:28:03 2017 Noam Silvy
 //
 
 #ifndef ENGINE_HPP
 # define ENGINE_HPP
 
-# include <cassert>
-# include <memory>
 # include "irrlicht.h"
 # include "ecs.hpp"
+# include "InputReceiver.hpp"
 # include "Position.hpp"
 # include "Velocity.hpp"
-# include "InputReceiver.hpp"
 
 namespace indie
 {
   namespace engine
   {
+    using namespace component;
+    using IndieEntityManager = ecs::EntityManager<Position, Velocity>;
+
     static irr::IrrlichtDevice *_device = nullptr;
 
-    static void	        provideDevice(irr::IrrlichtDevice *device)
-    {
-      _device = device;
-    }
+    void	provideDevice(irr::IrrlichtDevice *device);
 
-    static auto&	systemManager()
-    {
-      static ecs::SystemManager _systemManager;
-      return (_systemManager);
-    }
+    ecs::SystemManager&	systemManager();
 
-    static auto&	contextManager()
-    {
-      static ecs::ContextManager _contextManager(std::addressof(systemManager()));
-      return (_contextManager);
-    }
+    ecs::ContextManager&	contextManager();
 
-    static auto&	eventManager()
-    {
-      static ecs::EventManager<> _eventManager;
-      return (_eventManager);
-    }
+    ecs::EventManager<>&	eventManager();
 
-    static auto&	inputReceiver()
-    {
-      assert(_device);
-      static InputReceiver _inputReceiver(_device);
-      return (_inputReceiver);
-    }
+    indie::InputReceiver&	inputReceiver();
 
-    using namespace component;
-    static auto&	entityManager()
-    {
-      static ecs::EntityManager<Position, Velocity> _entityManager;
-      return (_entityManager);
-    }
+    IndieEntityManager&		entityManager();
   }
 }
 

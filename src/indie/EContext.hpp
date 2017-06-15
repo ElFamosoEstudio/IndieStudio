@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Wed Jun 14 13:56:47 2017 Noam Silvy
-// Last update Wed Jun 14 13:57:48 2017 Noam Silvy
+// Last update Thu Jun 15 13:09:16 2017 Noam Silvy
 //
 
 #ifndef ECONTEXT_HPP
@@ -22,6 +22,8 @@ namespace indie
 	GAME,
 	PAUSE_MENU
       };
+
+    void	registerAllContexts();
   }
 }
 

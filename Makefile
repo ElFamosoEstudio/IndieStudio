@@ -123,6 +123,33 @@ bomber/fast:
 	$(MAKE) -f CMakeFiles/bomber.dir/build.make CMakeFiles/bomber.dir/build
 .PHONY : bomber/fast
 
+src/ecs/ContextManager.o: src/ecs/ContextManager.cpp.o
+
+.PHONY : src/ecs/ContextManager.o
+
+# target to build an object file
+src/ecs/ContextManager.cpp.o:
+	$(MAKE) -f CMakeFiles/bomber.dir/build.make CMakeFiles/bomber.dir/src/ecs/ContextManager.cpp.o
+.PHONY : src/ecs/ContextManager.cpp.o
+
+src/ecs/ContextManager.i: src/ecs/ContextManager.cpp.i
+
+.PHONY : src/ecs/ContextManager.i
+
+# target to preprocess a source file
+src/ecs/ContextManager.cpp.i:
+	$(MAKE) -f CMakeFiles/bomber.dir/build.make CMakeFiles/bomber.dir/src/ecs/ContextManager.cpp.i
+.PHONY : src/ecs/ContextManager.cpp.i
+
+src/ecs/ContextManager.s: src/ecs/ContextManager.cpp.s
+
+.PHONY : src/ecs/ContextManager.s
+
+# target to generate assembly for a file
+src/ecs/ContextManager.cpp.s:
+	$(MAKE) -f CMakeFiles/bomber.dir/build.make CMakeFiles/bomber.dir/src/ecs/ContextManager.cpp.s
+.PHONY : src/ecs/ContextManager.cpp.s
+
 src/indie/InputReceiver.o: src/indie/InputReceiver.cpp.o
 
 .PHONY : src/indie/InputReceiver.o
@@ -149,6 +176,60 @@ src/indie/InputReceiver.s: src/indie/InputReceiver.cpp.s
 src/indie/InputReceiver.cpp.s:
 	$(MAKE) -f CMakeFiles/bomber.dir/build.make CMakeFiles/bomber.dir/src/indie/InputReceiver.cpp.s
 .PHONY : src/indie/InputReceiver.cpp.s
+
+src/indie/engine.o: src/indie/engine.cpp.o
+
+.PHONY : src/indie/engine.o
+
+# target to build an object file
+src/indie/engine.cpp.o:
+	$(MAKE) -f CMakeFiles/bomber.dir/build.make CMakeFiles/bomber.dir/src/indie/engine.cpp.o
+.PHONY : src/indie/engine.cpp.o
+
+src/indie/engine.i: src/indie/engine.cpp.i
+
+.PHONY : src/indie/engine.i
+
+# target to preprocess a source file
+src/indie/engine.cpp.i:
+	$(MAKE) -f CMakeFiles/bomber.dir/build.make CMakeFiles/bomber.dir/src/indie/engine.cpp.i
+.PHONY : src/indie/engine.cpp.i
+
+src/indie/engine.s: src/indie/engine.cpp.s
+
+.PHONY : src/indie/engine.s
+
+# target to generate assembly for a file
+src/indie/engine.cpp.s:
+	$(MAKE) -f CMakeFiles/bomber.dir/build.make CMakeFiles/bomber.dir/src/indie/engine.cpp.s
+.PHONY : src/indie/engine.cpp.s
+
+src/indie/registerAllContexts.o: src/indie/registerAllContexts.cpp.o
+
+.PHONY : src/indie/registerAllContexts.o
+
+# target to build an object file
+src/indie/registerAllContexts.cpp.o:
+	$(MAKE) -f CMakeFiles/bomber.dir/build.make CMakeFiles/bomber.dir/src/indie/registerAllContexts.cpp.o
+.PHONY : src/indie/registerAllContexts.cpp.o
+
+src/indie/registerAllContexts.i: src/indie/registerAllContexts.cpp.i
+
+.PHONY : src/indie/registerAllContexts.i
+
+# target to preprocess a source file
+src/indie/registerAllContexts.cpp.i:
+	$(MAKE) -f CMakeFiles/bomber.dir/build.make CMakeFiles/bomber.dir/src/indie/registerAllContexts.cpp.i
+.PHONY : src/indie/registerAllContexts.cpp.i
+
+src/indie/registerAllContexts.s: src/indie/registerAllContexts.cpp.s
+
+.PHONY : src/indie/registerAllContexts.s
+
+# target to generate assembly for a file
+src/indie/registerAllContexts.cpp.s:
+	$(MAKE) -f CMakeFiles/bomber.dir/build.make CMakeFiles/bomber.dir/src/indie/registerAllContexts.cpp.s
+.PHONY : src/indie/registerAllContexts.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -186,9 +267,18 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... bomber"
 	@echo "... edit_cache"
+	@echo "... src/ecs/ContextManager.o"
+	@echo "... src/ecs/ContextManager.i"
+	@echo "... src/ecs/ContextManager.s"
 	@echo "... src/indie/InputReceiver.o"
 	@echo "... src/indie/InputReceiver.i"
 	@echo "... src/indie/InputReceiver.s"
+	@echo "... src/indie/engine.o"
+	@echo "... src/indie/engine.i"
+	@echo "... src/indie/engine.s"
+	@echo "... src/indie/registerAllContexts.o"
+	@echo "... src/indie/registerAllContexts.i"
+	@echo "... src/indie/registerAllContexts.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

@@ -1,11 +1,11 @@
 //
 // ContextManager.cpp for  in /home/abd-al_a/rendu/IndieStudio
-// 
+//
 // Made by akram abd-ali
 // Login   <abd-al_a@epitech.net>
-// 
+//
 // Started on  Thu Jun 15 02:57:29 2017 akram abd-ali
-// Last update Thu Jun 15 03:50:01 2017 akram abd-ali
+// Last update Thu Jun 15 18:30:34 2017 Noam Silvy
 //
 
 #include "ContextManager.hpp"
@@ -36,7 +36,6 @@ void	ecs::ContextManager::push(Context *context, bool disableAll)
 	      toCreate = false;
 	      break ;
 	    }
-
 	}
       if (toCreate == true)
 	_sysmgr->push(_sysmgr->create(it.first), it.second);
@@ -92,15 +91,13 @@ void	ecs::ContextManager::reset()
     pop();
 }
 void	ecs::ContextManager::registerContext(ContextType	key,
-					     Context&&	context)
+					     Context&&		context)
 {
-  std::cerr << "registerContext move ref" << std::endl;
   _knownContexts[key] = std::forward<Context>(context);
 }
 
 void	ecs::ContextManager::registerContext(ContextType	key,
-					     const Context& context)
+					     const Context&	context)
 {
-  std::cerr << "registerContext ref" << std::endl;
   _knownContexts[key] = context;
 }

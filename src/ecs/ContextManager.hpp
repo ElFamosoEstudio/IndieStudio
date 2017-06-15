@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Thu Jun  8 22:28:04 2017 akram abd-ali
-// Last update Thu Jun 15 03:59:07 2017 akram abd-ali
+// Last update Thu Jun 15 17:40:52 2017 Noam Silvy
 //
 
 #ifndef CONTEXT_MANAGER_HPP
@@ -30,7 +30,7 @@ namespace	ecs
 
   public:
     ContextManager() = delete;
-    ContextManager(SystemManager* sysmgr) : _sysmgr(sysmgr) {}
+    ContextManager(SystemManager* sysmgr) : _sysmgr(sysmgr) {std::cout << "NEW CONTEXT" << std::endl;}
     ~ContextManager() = default;
     ContextManager(ContextManager const&) = delete;
     ContextManager& operator=(ContextManager const&) = delete;
@@ -42,7 +42,7 @@ namespace	ecs
     void	reset();
     void	registerContext(ContextType	key,
 				Context&&	context);
-    
+
 
     void	registerContext(ContextType	key,
 			        const Context& context);

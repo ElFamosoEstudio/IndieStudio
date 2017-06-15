@@ -3,8 +3,8 @@
 #include "ecs.hpp"
 #include "engine.hpp"
 #include "ESystem.hpp"
+#include "EContext.hpp"
 #include "registerAllSystems.hpp"
-#include "registerAllContexts.hpp"
 
 void init(irr::IrrlichtDevice *device)
 {
