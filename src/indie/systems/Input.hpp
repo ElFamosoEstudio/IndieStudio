@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Mon Jun 12 20:47:37 2017 akram abd-ali
-// Last update Tue Jun 13 19:19:10 2017 Noam Silvy
+// Last update Thu Jun 15 20:28:32 2017 Noam Silvy
 //
 
 #ifndef INPUT_SYSTEM_HPP
@@ -16,7 +16,7 @@
 # include <iostream>
 # include "ecs.hpp"
 # include "InputReceiver.hpp"
-# include "ESystem.hpp"
+# include "system.hpp"
 
 namespace indie
 {

@@ -15,7 +15,7 @@ set(BIN_NAME "bomber")
 
 #set(CMAKE_CXX_FLAGS "-g3")
 
-include_directories(src/ src/ecs src/indie src/indie/systems src/indie/components src/indie/contexts ${IRRLICHT_DIR}/include)
+include_directories(src/ src/ecs src/indie src/indie/systems src/indie/components src/indie/entities src/indie/contexts ${IRRLICHT_DIR}/include)
 link_directories(${IRRLICHT_DIR}/linux)
 add_executable(${BIN_NAME} ${SRCS})
 target_link_libraries(${BIN_NAME} Irrlicht GL Xxf86vm Xext X11 Xcursor)

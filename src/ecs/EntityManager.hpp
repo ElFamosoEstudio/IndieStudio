@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu May 25 18:46:02 2017 Noam Silvy
-// Last update Thu Jun 15 03:45:19 2017 Noam Silvy
+// Last update Thu Jun 15 19:12:09 2017 Noam Silvy
 //
 
 #ifndef ENTITY_MANAGER_HPP
@@ -34,8 +34,8 @@ namespace ecs
     using map_of = std::map<Entity, CompPtr<CompType>>;
 
   private:
-    std::tuple<std::map<Entity, CompPtr<CompTypes>>...>	_entities;
-    NumIdGenerator<Entity>				_idGenerator;
+    std::tuple<std::map<Entity, CompPtr<CompTypes>>...>		_entities;
+    NumIdGenerator<Entity>					_idGenerator;
     std::map<EntityType, std::function<Entity(EntityManager *)>> _factories;
 
   public:

@@ -2,15 +2,16 @@
 #include "irrlicht.h"
 #include "ecs.hpp"
 #include "engine.hpp"
-#include "ESystem.hpp"
-#include "EContext.hpp"
-#include "registerAllSystems.hpp"
+#include "system.hpp"
+#include "context.hpp"
+#include "entity.hpp"
 
 void init(irr::IrrlichtDevice *device)
 {
   indie::engine::provideDevice(device);
   indie::system::registerAllSystems();
   indie::context::registerAllContexts();
+  indie::entity::registerAllEntities();
 }
 
 int main()
