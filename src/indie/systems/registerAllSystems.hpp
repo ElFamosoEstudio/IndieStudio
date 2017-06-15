@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Wed Jun 14 02:11:12 2017 Noam Silvy
-// Last update Wed Jun 14 16:12:13 2017 Noam Silvy
+// Last update Thu Jun 15 01:55:40 2017 Noam Silvy
 //
 
 #ifndef FEED_FACTORY_HPP
@@ -18,9 +18,9 @@ namespace indie
 {
   namespace system
   {
-    void	feedFactory()
+    void        registerAllSystems()
     {
-      engine::systemFactory().registerSystem(INPUT, &Input::create);
+      engine::systemManager().registerSystem(INPUT, &Input::create);
     }
   }
 }

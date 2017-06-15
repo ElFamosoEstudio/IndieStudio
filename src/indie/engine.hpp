@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 10 03:34:26 2017 akram abd-ali
-// Last update Wed Jun 14 02:25:06 2017 Noam Silvy
+// Last update Thu Jun 15 02:04:51 2017 Noam Silvy
 //
 
 #ifndef ENGINE_HPP
@@ -36,16 +36,9 @@ namespace indie
       return (_systemManager);
     }
 
-    static auto&	systemFactory()
-    {
-      static ecs::SystemFactory _systemFactory;
-      return (_systemFactory);
-    }
-
     static auto&	contextManager()
     {
-      static ecs::ContextManager _contextManager(std::addressof(systemManager()),
-						 std::addressof(systemFactory()));
+      static ecs::ContextManager _contextManager(std::addressof(systemManager()));
       return (_contextManager);
     }
 

@@ -3,13 +3,13 @@
 #include "ecs.hpp"
 #include "engine.hpp"
 #include "ESystem.hpp"
-#include "FeedFactory.hpp"
+#include "registerAllSystems.hpp"
 #include "registerAllContexts.hpp"
 
 void init(irr::IrrlichtDevice *device)
 {
   indie::engine::provideDevice(device);
-  indie::system::feedFactory();
+  indie::system::registerAllSystems();
   indie::context::registerAllContexts();
 }
 

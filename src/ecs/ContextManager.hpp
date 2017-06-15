@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Thu Jun  8 22:28:04 2017 akram abd-ali
-// Last update Wed Jun 14 15:46:26 2017 Noam Silvy
+// Last update Thu Jun 15 01:52:29 2017 Noam Silvy
 //
 
 #ifndef CONTEXT_MANAGER_HPP
@@ -16,7 +16,6 @@
 # include <map>
 # include <stdexcept>
 # include "ecs.hpp"
-# include "SystemFactory.hpp"
 
 namespace	ecs
 {
@@ -28,13 +27,10 @@ namespace	ecs
     std::list<Context*>			_contexts;
     std::map<ContextType, Context>	_knownContexts;
     SystemManager*			_sysmgr;
-    SystemFactory*			_sysFactory;
 
   public:
     ContextManager() = delete;
-    ContextManager(SystemManager* sysmgr, SystemFactory *sysFactory)
-      : _sysmgr(sysmgr),
-	_sysFactory(sysFactory) {}
+    ContextManager(SystemManager* sysmgr) : _sysmgr(sysmgr) {}
     ~ContextManager() = default;
     ContextManager(ContextManager const&) = delete;
     ContextManager& operator=(ContextManager const&) = delete;
@@ -69,7 +65,7 @@ namespace	ecs
 
 	    }
 	  if (toCreate == true)
-	    _sysmgr->push(_sysFactory->create(it.first), it.second);
+	    _sysmgr->push(_sysmgr->create(it.first), it.second);
 	}
       _contexts.push_front(context);
     }

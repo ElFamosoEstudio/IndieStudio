@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Thu Jun  8 01:13:58 2017 akram abd-ali
-// Last update Wed Jun 14 03:39:44 2017 Noam Silvy
+// Last update Thu Jun 15 02:04:08 2017 Noam Silvy
 //
 
 #ifndef		ECS_HPP
@@ -23,7 +23,6 @@ namespace	ecs
 }
 
 # include "ISystem.hpp"
-# include "SystemFactory.hpp"
 # include "SystemManager.hpp"
 # include "EntityManager.hpp"
 # include "EventManager.hpp"

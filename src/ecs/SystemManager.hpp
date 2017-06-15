@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Thu Jun  8 22:31:02 2017 akram abd-ali
-// Last update Wed Jun 14 02:24:19 2017 Noam Silvy
+// Last update Thu Jun 15 01:48:22 2017 Noam Silvy
 //
 
 #ifndef SYSTEM_MANAGER_HPP
@@ -14,6 +14,7 @@
 # include <map>
 # include <memory>
 # include <utility>
+# include <functional>
 # include "ISystem.hpp"
 
 namespace	ecs
@@ -22,8 +23,8 @@ namespace	ecs
   {
     using SysPair = std::pair<std::unique_ptr<ISystem>, bool>;
   private:
-
-    std::map<SysType, SysPair> _systems;
+    std::map<SysType, SysPair>				_systems;
+    std::map<SysType, std::function<ISystem*(void)>>	_factories;
   public:
     SystemManager() = default;
     ~SystemManager() = default;
@@ -80,6 +81,16 @@ namespace	ecs
 	  if (it.second.second == true)
 	    it.second.first->update();
 	}
+    }
+
+    void registerSystem(SysType type, std::function<ISystem*(void)> func)
+    {
+      _factories[type] = func;
+    }
+
+    ISystem *create(SysType type)
+    {
+      return _factories[type]();
     }
   };
 }
