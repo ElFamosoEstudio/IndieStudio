@@ -1,10 +1,11 @@
 //
-// system.hpp for indie studio in /home/silvy_n/IndieStudio/src/indie/systems
-//
-// Made by Noam Silvy
-// Login   <silvy_n@epitech.net>
-//
-// Last update Fri Jun 16 21:47:11 2017 akram abd-ali
+// system.hpp for bomberman in /home/akkari_a/rendu/IndieStudio/src/indie/systems
+// 
+// Made by Adam Akkari
+// Login   <akkari_a@epitech.net>
+// 
+// Started on  Sat Jun 17 00:07:05 2017 Adam Akkari
+// Last update Sat Jun 17 00:07:05 2017 Adam Akkari
 //
 
 #ifndef SYSTEM_HPP
@@ -12,6 +13,7 @@
 
 # include "MeshRenderer.hpp"
 # include "Collision.hpp"
+# include "CameraSystem.hpp"
 
 namespace indie
 {

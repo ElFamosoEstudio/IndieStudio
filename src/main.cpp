@@ -8,12 +8,16 @@ int	main()
   indie::system::MeshRenderer col2;
   indie::init(); // For now: registers all factories
 
-  indie::engine::contextManager().push(indie::context::MAIN_MENU);
+  indie::engine::contextManager().push(indie::context::GAME);
 
   while (indie::gfx::device()->run())
       {
 	indie::engine::inputReceiver().disableInputHandling();
+	indie::gfx::videoDriver()->beginScene(true, true,
+						  irr::video::SColor(255, 255, 255, 255));
 	indie::engine::systemManager().update();
+	indie::gfx::sceneManager()->drawAll();
+	indie::gfx::videoDriver()->endScene();
         indie::engine::inputReceiver().enableInputHandling();	
       }
   indie::engine::inputReceiver().disableInputHandling();

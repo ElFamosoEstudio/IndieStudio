@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Wed Jun 14 02:11:12 2017 Noam Silvy
-// Last update Fri Jun 16 21:41:28 2017 akram abd-ali
+// Last update Sat Jun 17 00:05:11 2017 Adam Akkari
 //
 
 #include "engine.hpp"
@@ -17,4 +17,6 @@ void        indie::system::registerAllSystems()
 						&indie::system::Collision::create);
   indie::engine::systemManager().registerSystem(indie::system::MESH_RENDERER,
 						&indie::system::MeshRenderer::create);
+  indie::engine::systemManager().registerSystem(indie::system::CAMERA_SYSTEM,
+						&indie::system::CameraSystem::create);
 }
