@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Thu Jun 15 22:23:05 2017 Adam Akkari
-// Last update Fri Jun 16 02:26:43 2017 Adam Akkari
+// Last update Fri Jun 16 16:25:57 2017 Adam Akkari
 //
 
 #ifndef RENDERER3D_HPP
@@ -13,10 +13,7 @@
 
 # include <vector>
 # include <string>
-# include <IAnimatedMeshSceneNode.h>
-# include <ISceneManager.h>
-# include <IVideoDriver.h>
-# include "engine.hpp"
+# include "gfx.hpp"
 
 namespace indie
 {
@@ -29,10 +26,10 @@ namespace indie
 	: file(file)
       {
 	textures.push_back(tex);
-	mesh = indie::engine::sceneManager()->addAnimatedMeshSceneNode
-	  (indie::engine::sceneManager()->getMesh(file.c_str()));
-	mesh->setMaterialFlag(irr::video::EMF_LIGHTNING, false);
-	mesh->setMaterialTexture(0, indie::engine::videoDriver()->getTexture(tex.c_str()));
+	mesh = gfx::sceneManager()->addAnimatedMeshSceneNode
+	  (gfx::sceneManager()->getMesh(file.c_str()));
+	// mesh->setMaterialFlag(irr::video::EMF_LIGHTNING, false);
+	mesh->setMaterialTexture(0, gfx::videoDriver()->getTexture(tex.c_str()));
       }
       std::string				file;
       std::vector<std::string>			textures;

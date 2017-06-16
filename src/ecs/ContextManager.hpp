@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Thu Jun  8 22:28:04 2017 akram abd-ali
-// Last update Fri Jun 16 00:30:08 2017 Noam Silvy
+// Last update Fri Jun 16 01:56:29 2017 Noam Silvy
 //
 
 #ifndef CONTEXT_MANAGER_HPP
@@ -15,13 +15,14 @@
 # include <list>
 # include <map>
 # include <stdexcept>
-# include "ecs.hpp"
+# include "SystemManager.hpp"
 
-namespace	ecs
+namespace ecs
 {
-  using Context = std::map<SysType, bool>;
+  using ContextType	= uint32_t;
+  using Context		= std::map<SysType, bool>;
 
-  class		ContextManager
+  class ContextManager
   {
   private:
     std::list<Context*>			_contexts;
@@ -36,8 +37,8 @@ namespace	ecs
     ContextManager& operator=(ContextManager const&) = delete;
 
   public:
-    void	push(ContextType key, bool disableAll = false);
-    void	push(Context *context, bool disableAll = false);
+    void	push(ContextType key,	bool disableAll = false);
+    void	push(Context *context,	bool disableAll = false);
     void	pop();
     void	reset();
     void	registerContext(ContextType	key,
@@ -45,7 +46,7 @@ namespace	ecs
 
 
     void	registerContext(ContextType	key,
-			        const Context& context);
+			        const Context&	context);
   };
 }
 

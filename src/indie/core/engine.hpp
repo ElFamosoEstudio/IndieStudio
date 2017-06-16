@@ -5,17 +5,15 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 10 03:34:26 2017 akram abd-ali
-// Last update Fri Jun 16 02:52:42 2017 Adam Akkari
+// Last update Fri Jun 16 16:21:56 2017 Adam Akkari
 //
 
 #ifndef ENGINE_HPP
 # define ENGINE_HPP
 
-# include "irrlicht.h"
 # include "ecs.hpp"
 # include "InputReceiver.hpp"
-# include "Transform.hpp"
-# include "Renderer3d.hpp"
+# include "components.hpp"
 
 namespace indie
 {
@@ -23,10 +21,6 @@ namespace indie
   {
     using namespace component;
     using IndieEntityManager = ecs::EntityManager<Transform, Renderer3d>;
-
-    static irr::IrrlichtDevice *_device = nullptr;
-
-    void	provideDevice(irr::IrrlichtDevice *device);
 
     ecs::SystemManager&		systemManager();
 
@@ -38,9 +32,7 @@ namespace indie
 
     IndieEntityManager&		entityManager();
 
-    irr::video::IVideoDriver	*videoDriver();
-
-    irr::scene::ISceneManager	*sceneManager();
+    void			init();
   }
 }
 

@@ -5,16 +5,14 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu Jun 15 17:48:23 2017 Noam Silvy
-// Last update Fri Jun 16 02:17:02 2017 Adam Akkari
+// Last update Fri Jun 16 16:22:50 2017 Adam Akkari
 //
 
-#include <cassert>
+#include "system.hpp"
+#include "context.hpp"
+#include "entity.hpp"
+#include "gfx.hpp"
 #include "engine.hpp"
-
-void	indie::engine::provideDevice(irr::IrrlichtDevice *device)
-{
-  _device = device;
-}
 
 ecs::SystemManager&	indie::engine::systemManager()
 {
@@ -36,8 +34,7 @@ ecs::EventManager<>&	indie::engine::eventManager()
 
 indie::InputReceiver&	indie::engine::inputReceiver()
 {
-  assert(_device);
-  static indie::InputReceiver _inputReceiver(_device);
+  static indie::InputReceiver _inputReceiver(indie::gfx::device());
   return (_inputReceiver);
 }
 
@@ -45,16 +42,4 @@ indie::engine::IndieEntityManager&	indie::engine::entityManager()
 {
   static indie::engine::IndieEntityManager _entityManager;
   return (_entityManager);
-}
-
-irr::video::IVideoDriver	*indie::engine::videoDriver()
-{
-  static irr::video::IVideoDriver	*video = _device->getVideoDriver();
-  return (video);
-}
-
-irr::scene::ISceneManager	*indie::engine::sceneManager()
-{
-  static irr::scene::ISceneManager	*scene = _device->getSceneManager();
-  return (scene);
 }
