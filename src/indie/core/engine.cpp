@@ -5,16 +5,14 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu Jun 15 17:48:23 2017 Noam Silvy
-// Last update Thu Jun 15 18:29:09 2017 Noam Silvy
+// Last update Fri Jun 16 04:07:50 2017 Noam Silvy
 //
 
-#include <cassert>
+#include "system.hpp"
+#include "context.hpp"
+#include "entity.hpp"
+#include "gfx.hpp"
 #include "engine.hpp"
-
-void	indie::engine::provideDevice(irr::IrrlichtDevice *device)
-{
-  _device = device;
-}
 
 ecs::SystemManager&	indie::engine::systemManager()
 {
@@ -36,8 +34,7 @@ ecs::EventManager<>&	indie::engine::eventManager()
 
 indie::InputReceiver&	indie::engine::inputReceiver()
 {
-  assert(_device);
-  static indie::InputReceiver _inputReceiver(_device);
+  static indie::InputReceiver _inputReceiver(indie::gfx::device());
   return (_inputReceiver);
 }
 

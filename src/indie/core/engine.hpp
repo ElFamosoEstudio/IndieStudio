@@ -5,17 +5,15 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 10 03:34:26 2017 akram abd-ali
-// Last update Thu Jun 15 18:28:03 2017 Noam Silvy
+// Last update Fri Jun 16 04:05:10 2017 Noam Silvy
 //
 
 #ifndef ENGINE_HPP
 # define ENGINE_HPP
 
-# include "irrlicht.h"
 # include "ecs.hpp"
 # include "InputReceiver.hpp"
-# include "Position.hpp"
-# include "Velocity.hpp"
+# include "components.hpp"
 
 namespace indie
 {
@@ -24,11 +22,7 @@ namespace indie
     using namespace component;
     using IndieEntityManager = ecs::EntityManager<Position, Velocity>;
 
-    static irr::IrrlichtDevice *_device = nullptr;
-
-    void	provideDevice(irr::IrrlichtDevice *device);
-
-    ecs::SystemManager&	systemManager();
+    ecs::SystemManager&		systemManager();
 
     ecs::ContextManager&	contextManager();
 
@@ -37,6 +31,8 @@ namespace indie
     indie::InputReceiver&	inputReceiver();
 
     IndieEntityManager&		entityManager();
+
+    void			init();
   }
 }
 
