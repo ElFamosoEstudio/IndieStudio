@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Thu Jun  8 01:13:05 2017 akram abd-ali
-// Last update Thu Jun 15 03:56:20 2017 akram abd-ali
+// Last update Fri Jun 16 01:57:20 2017 Noam Silvy
 //
 
 #ifndef		EVENT_MANAGER_HPP
@@ -15,10 +15,13 @@
 # include <map>
 # include <functional>
 # include <memory>
-# include "ecs.hpp"
+# include "EntityManager.hpp"
 
 namespace		ecs
 {
+  using EventKey = uint32_t;
+  using EventTypeDefault = uint32_t;
+
   template<typename EventType = EventTypeDefault>
   class EventManager
   {

@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Thu Jun  8 22:31:02 2017 akram abd-ali
-// Last update Thu Jun 15 03:45:24 2017 Noam Silvy
+// Last update Fri Jun 16 01:59:40 2017 Noam Silvy
 //
 
 #ifndef SYSTEM_MANAGER_HPP
@@ -17,7 +17,6 @@
 # include <functional>
 # include <stdexcept>
 # include "ISystem.hpp"
-
 namespace	ecs
 {
   class		SystemManager
@@ -32,70 +31,16 @@ namespace	ecs
     SystemManager(SystemManager const&) = delete;
     SystemManager& operator=(SystemManager const&) = delete;
   public:
-    bool	isPresentSystem(SysType systemType) const
-    {
-      auto const& it = _systems.find(systemType);
-      return ((it != _systems.end()) ? true : false);
-    }
-    void        push(ISystem *system, bool isActive = true)
-    {
-      if (isPresentSystem(system->type()) == true)
-	return ;
-      _systems[system->type()] = std::make_pair(std::unique_ptr<ISystem>(system), isActive);
-    }
-    void	setState(SysType systemType, bool newState)
-    {
-      if (isPresentSystem(systemType) == false)
-	return ;
-      auto &elem = _systems[systemType].second;
-      elem = newState;
-    }
-    bool	getState(SysType systemType) const
-    {
-      auto const &it = _systems.find(systemType);
-      if (it == _systems.end())
-	return false;
-      return (it->second.second);
-    }
-    void	remove(SysType systemType)
-    {
-      auto const &it = _systems.find(systemType);
-      if (it == _systems.end())
-	return ;
-      _systems.erase(it);
-    }
-    void	reset()
-    {
-      _systems.clear();
-    }
-    void	disableAll()
-    {
-      for (auto& it : _systems)
-	{
-	  it.second.second = false;
-	}
-    }
-    void	update() const
-    {
-      for (auto const& it : _systems)
-	{
-	  if (it.second.second == true)
-	    it.second.first->update();
-	}
-    }
-
-    void registerSystem(SysType type, std::function<ISystem*(void)> func)
-    {
-      _factories[type] = func;
-    }
-
-    ISystem *create(SysType type)
-    {
-      auto it = _factories.find(type);
-      if (it == _factories.end())
-	throw (std::out_of_range("SystemManager: \"Unkown factory type\""));
-      return _factories[type]();
-    }
+    bool	isPresentSystem(SysType systemType) const;
+    void        push(ISystem *system, bool isActive = true);
+    void	setState(SysType systemType, bool newState);
+    bool	getState(SysType systemType) const;
+    void	remove(SysType systemType);
+    void	reset();
+    void	disableAll();
+    void	update() const;
+    void	registerSystem(SysType type, std::function<ISystem*(void)> func);
+    ISystem	*create(SysType type);
   };
 }
 

@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu May 25 18:46:02 2017 Noam Silvy
-// Last update Thu Jun 15 19:12:09 2017 Noam Silvy
+// Last update Fri Jun 16 01:56:50 2017 Noam Silvy
 //
 
 #ifndef ENTITY_MANAGER_HPP
@@ -20,10 +20,13 @@
 # include <string>
 # include <stdexcept>
 # include "NumIdGenerator.hpp"
-# include "ecs.hpp"
+# include "EntityManager.hpp"
 
 namespace ecs
 {
+  using Entity = uint32_t;
+  using EntityType = uint32_t;
+
   template<typename ...CompTypes>
   class EntityManager
   {
