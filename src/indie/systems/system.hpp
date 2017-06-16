@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu Jun 15 20:29:09 2017 Noam Silvy
-// Last update Thu Jun 15 23:48:15 2017 Adam Akkari
+// Last update Fri Jun 16 20:19:13 2017 Adam Akkari
 //
 
 #ifndef SYSTEM_HPP
@@ -18,7 +18,8 @@ namespace indie
     enum ESystem
       {
 	INPUT,
-	MESH_RENDERER
+	MESH_RENDERER,
+	CAMERA_SYSTEM
       };
 
     void        registerAllSystems();
