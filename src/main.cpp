@@ -2,8 +2,10 @@
 #include "irrlicht.h"
 #include "indie.hpp"
 
-int main()
+int	main()
 {
+  indie::system::Collision col;
+  indie::system::MeshRenderer col2;
   indie::init(); // For now: registers all factories
 
   indie::engine::contextManager().push(indie::context::MAIN_MENU);

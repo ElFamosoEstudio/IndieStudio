@@ -5,14 +5,16 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Wed Jun 14 02:11:12 2017 Noam Silvy
-// Last update Thu Jun 15 20:34:33 2017 Noam Silvy
+// Last update Fri Jun 16 21:41:28 2017 akram abd-ali
 //
 
 #include "engine.hpp"
 #include "system.hpp"
-#include "Input.hpp"
 
 void        indie::system::registerAllSystems()
 {
-  indie::engine::systemManager().registerSystem(indie::system::INPUT, &indie::system::Input::create);
+  indie::engine::systemManager().registerSystem(indie::system::COLLISION,
+						&indie::system::Collision::create);
+  indie::engine::systemManager().registerSystem(indie::system::MESH_RENDERER,
+						&indie::system::MeshRenderer::create);
 }
