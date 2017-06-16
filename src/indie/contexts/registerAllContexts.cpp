@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Wed Jun 14 03:59:36 2017 Noam Silvy
-// Last update Thu Jun 15 20:27:58 2017 Noam Silvy
+// Last update Fri Jun 16 21:42:32 2017 akram abd-ali
 //
 
 #include "ecs.hpp"
@@ -15,5 +15,5 @@
 
 void		indie::context::registerAllContexts()
 {
-  indie::engine::contextManager().registerContext(MAIN_MENU, {{indie::system::INPUT, true}});
+  indie::engine::contextManager().registerContext(MAIN_MENU, {{indie::system::COLLISION, true}});
 }

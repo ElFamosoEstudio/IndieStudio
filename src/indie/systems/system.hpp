@@ -4,12 +4,14 @@
 // Made by Noam Silvy
 // Login   <silvy_n@epitech.net>
 //
-// Started on  Thu Jun 15 20:29:09 2017 Noam Silvy
-// Last update Fri Jun 16 20:19:13 2017 Adam Akkari
+// Last update Fri Jun 16 21:47:11 2017 akram abd-ali
 //
 
 #ifndef SYSTEM_HPP
 # define SYSTEM_HPP
+
+# include "MeshRenderer.hpp"
+# include "Collision.hpp"
 
 namespace indie
 {
@@ -17,11 +19,10 @@ namespace indie
   {
     enum ESystem
       {
-	INPUT,
+	COLLISION,
 	MESH_RENDERER,
 	CAMERA_SYSTEM
       };
-
     void        registerAllSystems();
   }
 }
