@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu May 25 18:46:02 2017 Noam Silvy
-// Last update Fri Jun 16 01:56:50 2017 Noam Silvy
+// Last update Fri Jun 16 20:55:03 2017 Adam Akkari
 //
 
 #ifndef ENTITY_MANAGER_HPP
@@ -57,7 +57,7 @@ namespace ecs
       auto it = _factories.find(type);
       if (it == _factories.end())
 	throw (std::out_of_range("EntityManager: \"Unkown factory type\""));
-      return ((*it)(this));
+      return ((*it)());
     }
 
     Entity		createEntity() { return (_idGenerator.createId()); }
