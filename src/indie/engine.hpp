@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 10 03:34:26 2017 akram abd-ali
-// Last update Fri Jun 16 01:45:01 2017 Adam Akkari
+// Last update Fri Jun 16 02:52:42 2017 Adam Akkari
 //
 
 #ifndef ENGINE_HPP
@@ -28,7 +28,7 @@ namespace indie
 
     void	provideDevice(irr::IrrlichtDevice *device);
 
-    ecs::SystemManager&	systemManager();
+    ecs::SystemManager&		systemManager();
 
     ecs::ContextManager&	contextManager();
 
@@ -37,6 +37,8 @@ namespace indie
     indie::InputReceiver&	inputReceiver();
 
     IndieEntityManager&		entityManager();
+
+    irr::video::IVideoDriver	*videoDriver();
 
     irr::scene::ISceneManager	*sceneManager();
   }

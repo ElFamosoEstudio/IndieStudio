@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu Jun 15 17:48:23 2017 Noam Silvy
-// Last update Thu Jun 15 23:24:23 2017 Adam Akkari
+// Last update Fri Jun 16 02:17:02 2017 Adam Akkari
 //
 
 #include <cassert>
@@ -47,7 +47,14 @@ indie::engine::IndieEntityManager&	indie::engine::entityManager()
   return (_entityManager);
 }
 
+irr::video::IVideoDriver	*indie::engine::videoDriver()
+{
+  static irr::video::IVideoDriver	*video = _device->getVideoDriver();
+  return (video);
+}
+
 irr::scene::ISceneManager	*indie::engine::sceneManager()
 {
-  return (_device->getSceneManager());
+  static irr::scene::ISceneManager	*scene = _device->getSceneManager();
+  return (scene);
 }
