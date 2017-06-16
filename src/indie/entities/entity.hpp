@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu Jun 15 19:12:49 2017 Noam Silvy
-// Last update Fri Jun 16 21:46:25 2017 Adam Akkari
+// Last update Fri Jun 16 22:21:39 2017 Adam Akkari
 //
 
 #ifndef ENTITY_HPP
@@ -25,6 +25,7 @@ namespace indie
     void	registerAllEntities();
 
     ecs::Entity	createBox();
+    ecs::Entity	createCamera();
   }
 }
 
