@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu Jun 15 19:55:55 2017 Noam Silvy
-// Last update Thu Jun 15 20:34:10 2017 Noam Silvy
+// Last update Fri Jun 16 22:02:36 2017 Adam Akkari
 //
 
 #include "engine.hpp"
@@ -28,4 +28,5 @@ using namespace indie::component;
 void		indie::entity::registerAllEntities()
 {
   // indie::engine::entityManager.registerEntity(indie::entity::BOMB, &createBomb);
+  indie::engine::entityManager().registerEntity(indie::entity::BOX, &indie::entity::createBox);
 }

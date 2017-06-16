@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu May 25 18:46:02 2017 Noam Silvy
-// Last update Fri Jun 16 20:55:03 2017 Adam Akkari
+// Last update Fri Jun 16 21:57:29 2017 Adam Akkari
 //
 
 #ifndef ENTITY_MANAGER_HPP
@@ -39,7 +39,7 @@ namespace ecs
   private:
     std::tuple<std::map<Entity, CompPtr<CompTypes>>...>		_entities;
     NumIdGenerator<Entity>					_idGenerator;
-    std::map<EntityType, std::function<Entity(EntityManager *)>> _factories;
+    std::map<EntityType, std::function<Entity()>> _factories;
 
   public:
     EntityManager() = default;
@@ -47,7 +47,7 @@ namespace ecs
     EntityManager(EntityManager const &) = delete;
     EntityManager	&operator=(EntityManager const &) = delete;
 
-    void registerEntity(EntityType type, std::function<Entity(EntityManager *)> func)
+    void registerEntity(EntityType type, std::function<Entity()> func)
     {
       _factories[type] = func;
     }
@@ -57,7 +57,7 @@ namespace ecs
       auto it = _factories.find(type);
       if (it == _factories.end())
 	throw (std::out_of_range("EntityManager: \"Unkown factory type\""));
-      return ((*it)());
+      return ((*it));
     }
 
     Entity		createEntity() { return (_idGenerator.createId()); }
