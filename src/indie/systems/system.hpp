@@ -4,8 +4,7 @@
 // Made by Noam Silvy
 // Login   <silvy_n@epitech.net>
 //
-// Started on  Thu Jun 15 20:29:09 2017 Noam Silvy
-// Last update Fri Jun 16 21:39:56 2017 akram abd-ali
+// Last update Fri Jun 16 21:47:11 2017 akram abd-ali
 //
 
 #ifndef SYSTEM_HPP
@@ -20,11 +19,10 @@ namespace indie
   {
     enum ESystem
       {
-	INPUT,
 	COLLISION,
-	MESH_RENDERER
+	MESH_RENDERER,
+	CAMERA_SYSTEM
       };
-
     void        registerAllSystems();
   }
 }

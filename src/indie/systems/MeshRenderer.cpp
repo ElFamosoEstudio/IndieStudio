@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Thu Jun 15 23:36:51 2017 Adam Akkari
-// Last update Fri Jun 16 16:34:26 2017 Adam Akkari
+// Last update Fri Jun 16 20:13:14 2017 Adam Akkari
 //
 
 #include "ecs.hpp"
@@ -18,8 +18,8 @@ using namespace indie::component;
 
 void		indie::system::MeshRenderer::update()
 {
-  auto		&transform_cmp = engine::entityManager().getAllComponents<Transform>();;
-  auto		&renderer_cmp = engine::entityManager().getAllComponents<Renderer3d>();;
+  auto		&transform_cmp = engine::entityManager().getAllComponents<Transform>();
+  auto		&renderer_cmp = engine::entityManager().getAllComponents<Renderer3d>();
 
   for (auto &idx:renderer_cmp)
     if (transform_cmp.find(idx.first) != transform_cmp.end())
