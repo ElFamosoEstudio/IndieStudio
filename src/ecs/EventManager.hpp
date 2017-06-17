@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Thu Jun  8 01:13:05 2017 akram abd-ali
-// Last update Fri Jun 16 01:57:20 2017 Noam Silvy
+// Last update Sat Jun 17 09:52:16 2017 akram abd-ali
 //
 
 #ifndef		EVENT_MANAGER_HPP
@@ -25,6 +25,8 @@ namespace		ecs
   template<typename EventType = EventTypeDefault>
   class EventManager
   {
+  public:
+  private:
     class Event
     {
     private:
