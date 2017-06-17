@@ -13,7 +13,7 @@ set(BIN_NAME "bomber")
 #endforeach (HEADER_FILES)
 #set(SOURCE_FILES src/main.cpp)
 
-#set(CMAKE_CXX_FLAGS "-g3")
+set(CMAKE_CXX_FLAGS "-g3")
 
 include_directories(src/ src/ecs src/indie/core src/indie/systems src/indie/components src/indie/entities src/indie/contexts ${IRRLICHT_DIR}/include)
 link_directories(${IRRLICHT_DIR}/linux)
