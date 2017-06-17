@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Thu Jun 15 22:19:54 2017 Adam Akkari
-// Last update Sat Jun 17 01:39:53 2017 Adam Akkari
+// Last update Sat Jun 17 06:42:24 2017 Adam Akkari
 //
 
 #ifndef TRANSFORM_HPP
@@ -21,6 +21,10 @@ namespace indie
     {
       Transform()
 	: position(irr::core::vector3df(0,0,0)),
+	  rotation(irr::core::vector3df(0,0,0)),
+	  scale(irr::core::vector3df(0,0,0)) {}
+      Transform(float x, float y, float z)
+	: position(irr::core::vector3df(x,y,z)),
 	  rotation(irr::core::vector3df(0,0,0)),
 	  scale(irr::core::vector3df(0,0,0)) {}
       irr::core::vector3df	position;
