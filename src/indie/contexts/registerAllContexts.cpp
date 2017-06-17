@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Wed Jun 14 03:59:36 2017 Noam Silvy
-// Last update Fri Jun 16 23:57:38 2017 Adam Akkari
+// Last update Sat Jun 17 05:37:19 2017 Bento
 //
 
 #include "ecs.hpp"
@@ -15,7 +15,7 @@
 
 void		indie::context::registerAllContexts()
 {
-  indie::engine::contextManager().registerContext(MAIN_MENU, {{indie::system::COLLISION, true}});
+  indie::engine::contextManager().registerContext(MAIN_MENU, {{indie::system::MAIN_MENU, true}});
   indie::engine::contextManager().registerContext(GAME,{
       {indie::system::COLLISION, true},
 	{indie::system::MESH_RENDERER, true},
