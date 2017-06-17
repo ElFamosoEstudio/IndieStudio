@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat Jun 17 05:13:04 2017 Adam Akkari
-// Last update Sun Jun 18 00:22:20 2017 Adam Akkari
+// Last update Sun Jun 18 01:06:48 2017 Adam Akkari
 //
 
 #include <iostream>
@@ -16,15 +16,13 @@ using namespace indie::component;
 
 indie::system::MapGenerator::MapGenerator()
 {
-  // keys[engine::eventManager().subscribe
-  //      (event::BOMB_DROPPED, &indie::system::MapGenerator::bombDropped, this)]
-  //   = event::BOMB_DROPPED;
+  key1 = engine::eventManager().subscribe
+    (event::BOMB_DROPPED, &indie::system::MapGenerator::bombDropped, this);
 }
 
 indie::system::MapGenerator::~MapGenerator()
 {
-  // for (auto &idx:keys)
-  //   engine::eventManager().unsubscribe(idx.second, idx.first);
+  engine::eventManager().unsubscribe(event::BOMB_DROPPED, key1);
 }
 
 void		indie::system::MapGenerator::bombDropped(ecs::Entity ent)
@@ -33,7 +31,7 @@ void		indie::system::MapGenerator::bombDropped(ecs::Entity ent)
   auto		&ent_tsfm = indie::engine::entityManager().getComponent<Transform>(ent);
   if (settings.size() == 0 || !ent_tsfm)
     {
-      // engine::eventManager().emit(event::DROP_BOMB_ERR, ent);
+      engine::eventManager().emit(event::DROP_BOMB_ERR, ent);
       return ;
     }
   auto			&data = settings.begin()->second->map;
@@ -42,10 +40,10 @@ void		indie::system::MapGenerator::bombDropped(ecs::Entity ent)
 				round(ent_tsfm->position.Y),
 				round(ent_tsfm->position.Z));
 
-  // if (data[new_pos.X + size_x * new_pos.Y].second == BLOCK)
-  //   engine::eventManager().emit(event::DROP_BOMB_ERR, ent);
-  // else
-  //   data[new_pos.X + size_x * new_pos.Y].second = BOMB;
+  if (data[new_pos.X + size_x * new_pos.Y].second == BLOCK)
+    engine::eventManager().emit(event::DROP_BOMB_ERR, ent);
+  else
+    data[new_pos.X + size_x * new_pos.Y].second = BOMB;
 }
 
 bool		indie::system::MapGenerator::init_map()

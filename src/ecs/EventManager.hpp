@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Thu Jun  8 01:13:05 2017 akram abd-ali
-// Last update Fri Jun 16 01:57:20 2017 Noam Silvy
+// Last update Sun Jun 18 00:48:20 2017 Adam Akkari
 //
 
 #ifndef		EVENT_MANAGER_HPP
@@ -28,7 +28,7 @@ namespace		ecs
     class Event
     {
     private:
-      std::map<EventKey, std::function<void(Entity)>>	_callbacks;
+      std::map<EventKey, std::function<void(Entity)> >	_callbacks;
       EventKey						_nextKey;
     public:
       Event() = default;
