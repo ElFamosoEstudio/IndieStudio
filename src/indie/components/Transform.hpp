@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Thu Jun 15 22:19:54 2017 Adam Akkari
-// Last update Thu Jun 15 22:21:50 2017 Adam Akkari
+// Last update Sat Jun 17 01:39:53 2017 Adam Akkari
 //
 
 #ifndef TRANSFORM_HPP
@@ -19,6 +19,10 @@ namespace indie
   {
     struct Transform
     {
+      Transform()
+	: position(irr::core::vector3df(0,0,0)),
+	  rotation(irr::core::vector3df(0,0,0)),
+	  scale(irr::core::vector3df(0,0,0)) {}
       irr::core::vector3df	position;
       irr::core::vector3df	rotation;
       irr::core::vector3df	scale;
