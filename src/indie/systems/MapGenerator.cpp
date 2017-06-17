@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat Jun 17 05:13:04 2017 Adam Akkari
-// Last update Sat Jun 17 21:38:14 2017 Adam Akkari
+// Last update Sun Jun 18 00:22:20 2017 Adam Akkari
 //
 
 #include <iostream>
@@ -75,11 +75,17 @@ bool		indie::system::MapGenerator::init_map()
 		      (indie::entity::BOX, Transform(i, size_y, 0)));
       for (unsigned int j = 0; j < size_y; j++)
 	{
-	  if (!(i % 2) && !(j % 2))
+	  if ((i % 2) && (j % 2))
 	    {
 	      data[j * size_x + i].first = indie::engine::entityManager().create
 		(indie::entity::BOX, Transform(i, j, 0));
 	      data[j * size_x + i].second = BLOCK;
+	    }
+	  else
+	    {
+	      data[j * size_x + i].first = indie::engine::entityManager().create
+		(indie::entity::FLOOR, Transform(i, j, -1));
+	      data[j * size_x + i].second = EMPTY;
 	    }
 	  walls.push_back(indie::engine::entityManager().create
 			  (indie::entity::BOX, Transform(-1, j, 0)));
