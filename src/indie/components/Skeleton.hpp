@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Fri Jun 16 17:13:43 2017 akram abd-ali
-// Last update Fri Jun 16 21:32:16 2017 akram abd-ali
+// Last update Fri Jun 16 22:06:02 2017 akram abd-ali
 //
 
 #ifndef SKELETON_HPP
@@ -21,6 +21,7 @@ namespace indie
     {
       irr::scene::ITriangleSelector	*selector;
       irr::scene::IMetaTriangleSelector	*metaSelector;
+      irr::scene::ISceneNodeAnimatorCollisionResponse *collider;
     };
   }
 }
