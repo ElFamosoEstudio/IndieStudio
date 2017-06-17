@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Sun Jun 11 10:31:20 2017 Noam Silvy
-// Last update Thu Jun 15 02:34:22 2017 Noam Silvy
+// Last update Fri Jun 16 23:04:52 2017 Noam Silvy
 //
 
 #include <unistd.h>
@@ -26,7 +26,6 @@ void	InputReceiver::Gamepad::update(irr::u32 axes)
 {
   this->buttons.fill(InputState::UP);
   this->oldButtons = 0;
-  this->pov.fill(InputState::UP);
   auto axes_size = static_cast<std::vector<float>::size_type>(axes);
   this->axes.resize(axes_size);
   this->axes.assign(axes_size, 0.0f);
