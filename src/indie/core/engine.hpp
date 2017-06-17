@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 10 03:34:26 2017 akram abd-ali
-// Last update Fri Jun 16 20:19:57 2017 Adam Akkari
+// Last update Fri Jun 16 21:48:10 2017 akram abd-ali
 //
 
 #ifndef ENGINE_HPP
@@ -20,7 +20,7 @@ namespace indie
   namespace engine
   {
     using namespace component;
-    using IndieEntityManager = ecs::EntityManager<Transform, Renderer3d, Camera>;
+    using IndieEntityManager = ecs::EntityManager<Transform, Renderer3d, Skeleton, Camera>;
 
     ecs::SystemManager&		systemManager();
 

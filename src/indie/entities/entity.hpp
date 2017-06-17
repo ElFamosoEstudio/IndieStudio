@@ -5,11 +5,13 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu Jun 15 19:12:49 2017 Noam Silvy
-// Last update Thu Jun 15 20:30:26 2017 Noam Silvy
+// Last update Sat Jun 17 01:23:14 2017 Adam Akkari
 //
 
 #ifndef ENTITY_HPP
 # define ENTITY_HPP
+
+# include "ecs.hpp"
 
 namespace indie
 {
@@ -17,15 +19,14 @@ namespace indie
   {
     enum EEntity
       {
-	PLAYER,
-	SOFT_BOX,
-	HARD_BOX,
-	BOMB,
-	EXPLOSION,
-	POWERUP
+	BOX,
+	CAMERA
       };
 
     void	registerAllEntities();
+
+    ecs::Entity	createBox();
+    ecs::Entity	createCamera();
   }
 }
 

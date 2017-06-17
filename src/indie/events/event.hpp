@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Fri Jun 16 21:09:13 2017 Noam Silvy
-// Last update Fri Jun 16 22:37:52 2017 Noam Silvy
+// Last update Sat Jun 17 04:57:38 2017 Noam Silvy
 //
 
 #ifndef EVENT_HPP
@@ -17,6 +17,7 @@ namespace indie
   {
     enum EEvent
       {
+	COLLIDED
 	// BOMB_EXPLODED -> event happened
 	// GO_RIGHT -> action requested
       };

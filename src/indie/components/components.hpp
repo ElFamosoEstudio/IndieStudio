@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Fri Jun 16 03:39:22 2017 Noam Silvy
-// Last update Fri Jun 16 21:04:50 2017 Noam Silvy
+// Last update Sat Jun 17 05:46:50 2017 Noam Silvy
 //
 
 #ifndef COMPONENTS_HPP
@@ -13,6 +13,7 @@
 
 # include "Transform.hpp"
 # include "Renderer3d.hpp"
+# include "Skeleton.hpp"
 # include "Camera.hpp"
 # include "Keymap.hpp"
 

@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Thu Jun 15 22:23:05 2017 Adam Akkari
-// Last update Fri Jun 16 16:25:57 2017 Adam Akkari
+// Last update Fri Jun 16 23:44:55 2017 Adam Akkari
 //
 
 #ifndef RENDERER3D_HPP
@@ -28,7 +28,7 @@ namespace indie
 	textures.push_back(tex);
 	mesh = gfx::sceneManager()->addAnimatedMeshSceneNode
 	  (gfx::sceneManager()->getMesh(file.c_str()));
-	// mesh->setMaterialFlag(irr::video::EMF_LIGHTNING, false);
+	mesh->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 	mesh->setMaterialTexture(0, gfx::videoDriver()->getTexture(tex.c_str()));
       }
       std::string				file;
