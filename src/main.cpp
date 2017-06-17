@@ -12,17 +12,17 @@ int	main()
 
   indie::engine::contextManager().push(indie::context::GAME);
 
-  ecs::Entity box = indie::engine::entityManager().create(indie::entity::BOX);
+  ecs::Entity box = indie::engine::entityManager().create(indie::entity::BOX, Transform(0,0,0));
   ecs::Entity cam = indie::engine::entityManager().create(indie::entity::CAMERA);
-
-  indie::engine::entityManager().getComponent<Transform>(box)->position
-    = irr::core::vector3df(0, 0, 0);
+  
+  // indie::engine::entityManager().getComponent<Transform>(box)->position
+  //   = irr::core::vector3df(0, 0, 0);
   indie::engine::entityManager().getComponent<Transform>(box)->rotation
     = irr::core::vector3df(0, 0, 0);
   indie::engine::entityManager().getComponent<Transform>(box)->scale
     = irr::core::vector3df(1, 1, 1);
   indie::engine::entityManager().getComponent<Transform>(cam)->position
-    = irr::core::vector3df(0, 5, 0);
+    = irr::core::vector3df(0, -1, 5);
   indie::engine::entityManager().getComponent<Camera>(cam)->lookat
     = irr::core::vector3df(0, 0, 0);
 

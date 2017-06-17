@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu May 25 18:46:02 2017 Noam Silvy
-// Last update Sat Jun 17 03:18:20 2017 Noam Silvy
+// Last update Sat Jun 17 03:44:02 2017 Adam Akkari
 //
 
 #ifndef ENTITY_MANAGER_HPP
@@ -59,7 +59,7 @@ namespace ecs
       if (it == _factories.end())
 	throw (std::out_of_range("EntityManager: \"Unkown factory type\""));
       auto id = it->second();
-      (void)std::initializer_list<void>{ (this->addComponent(id, std::forward<Args>(args), true), 0)...};
+      (void)std::initializer_list<int>{ (this->addComponent(id, std::forward<Args>(args), true), 0)...};
       return (id);
     }
 
