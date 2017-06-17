@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Sat Jun 17 07:22:26 2017 akram abd-ali
-// Last update Sat Jun 17 08:03:10 2017 akram abd-ali
+// Last update Sat Jun 17 22:25:39 2017 akram abd-ali
 //
 
 #ifndef	        COUNT_DOWN_HPP
@@ -31,7 +31,7 @@ namespace	indie
     CountDown() = delete;
     CountDown(uint32_t ms);
     ~CountDown();
-    CountDown(CountDown const&) = delete;
+    CountDown(CountDown const&);
     CountDown& operator=(CountDown const&) = delete;
   public:
     void reset(uint32_t ms);

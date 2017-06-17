@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 10 03:34:26 2017 akram abd-ali
-// Last update Sat Jun 17 08:19:01 2017 akram abd-ali
+// Last update Sat Jun 17 21:23:12 2017 akram abd-ali
 //
 
 #ifndef ENGINE_HPP
@@ -28,6 +28,15 @@ namespace indie
 						  Timer,
 						  Interval,
 						  BombInfo,
+						  PowerInfo,
+						  LifeNumber,
+						  Damage,
+						  HP,
+						  Movement,
+						  Respawn,
+						  Speed,
+						  PlayerId,
+						  RemoteExplosion,
 						  Spreadable>;
 
     ecs::SystemManager&		systemManager();

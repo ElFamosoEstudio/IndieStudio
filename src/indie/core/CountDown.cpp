@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Sat Jun 17 07:22:44 2017 akram abd-ali
-// Last update Sat Jun 17 08:14:25 2017 akram abd-ali
+// Last update Sat Jun 17 22:26:31 2017 akram abd-ali
 //
 
 #include <iostream>
@@ -14,6 +14,10 @@
 indie::CountDown::~CountDown() {}
 
 indie::CountDown::CountDown(uint32_t ms) : _t0(Clock::now()), _init(ms), _rem(ms)
+{
+}
+
+indie::CountDown::CountDown(CountDown const&o) : _t0(o._t0), _init(o._init), _rem(o._rem)
 {
 }
 

@@ -5,13 +5,13 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Sat Jun 17 02:27:36 2017 akram abd-ali
-// Last update Sat Jun 17 09:52:58 2017 akram abd-ali
+// Last update Sat Jun 17 23:45:18 2017 akram abd-ali
 //
 
 #ifndef BOMB_SYSTEM_HPP
 # define BOMB_SYSTEM_HPP
 
-# include <map>
+# include <unordered_map>
 # include <vector>
 # include "indie.hpp"
 
@@ -22,10 +22,11 @@ namespace indie
     class Bomb : public ecs::ISystem
     {
     private:
-      std::map<ecs::EventTypeDefault, ecs::EventKey>	_subKeys;
+      std::unordered_map<ecs::EventTypeDefault, ecs::EventKey>	_subKeys;
     private:
       void	dropBomb(ecs::Entity entity);
-      void	dropBombErr(ecs::Entity entity);
+      void      removeBomb(ecs::Entity entity);
+      void      explode(ecs::Entity entity);
     public:
       Bomb();
       ~Bomb();
