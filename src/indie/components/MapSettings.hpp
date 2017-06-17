@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat Jun 17 02:55:46 2017 Adam Akkari
-// Last update Sat Jun 17 06:27:24 2017 Adam Akkari
+// Last update Sat Jun 17 06:55:34 2017 Adam Akkari
 //
 
 #ifndef MAPSETTINGS_HPP
@@ -23,7 +23,7 @@ namespace indie
       MapSettings() = delete;
       MapSettings(unsigned int x,
 		  unsigned int y)
-	: size_x(x), size_y(y), walls(new std::list<ecs::Entity>)
+	: size_x(x), size_y(y)
       {
 	if (!(x % 2))
 	  size_x += 1;
@@ -32,7 +32,7 @@ namespace indie
       }
       unsigned int	size_x;
       unsigned int	size_y;
-      std::list<ecs::Entity>	*walls;
+      std::list<ecs::Entity>	walls;
     };
   }
 }
