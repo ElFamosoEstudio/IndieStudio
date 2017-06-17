@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu Jun 15 19:12:49 2017 Noam Silvy
-// Last update Fri Jun 16 22:21:39 2017 Adam Akkari
+// Last update Sat Jun 17 01:23:14 2017 Adam Akkari
 //
 
 #ifndef ENTITY_HPP
@@ -19,7 +19,8 @@ namespace indie
   {
     enum EEntity
       {
-	BOX
+	BOX,
+	CAMERA
       };
 
     void	registerAllEntities();
