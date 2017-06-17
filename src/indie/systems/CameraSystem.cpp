@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Fri Jun 16 20:06:33 2017 Adam Akkari
-// Last update Fri Jun 16 20:30:11 2017 Adam Akkari
+// Last update Sat Jun 17 01:44:36 2017 Adam Akkari
 //
 
 #include "ecs.hpp"
@@ -26,6 +26,7 @@ void	indie::system::CameraSystem::update()
       {
 	idx.second->camera->setPosition(transform_cmp[idx.first]->position);
 	idx.second->camera->setRotation(transform_cmp[idx.first]->rotation);
+	idx.second->camera->setTarget(idx.second->lookat);
       }
 }
 
