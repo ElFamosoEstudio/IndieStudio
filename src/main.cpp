@@ -4,6 +4,36 @@
 
 using namespace indie::component;
 
+void	map()
+{
+  unsigned int size_x = 9;
+  unsigned int size_y = 9;
+  static std::list<ecs::Entity> *walls = new std::list<ecs::Entity>;
+  
+  indie::engine::entityManager().create
+    (indie::entity::BOX, Transform(-1, -1, 0));
+  indie::engine::entityManager().create
+    (indie::entity::BOX, Transform(size_x, -1, 0));
+  indie::engine::entityManager().create
+    (indie::entity::BOX, Transform(-1, size_y, 0));
+  indie::engine::entityManager().create
+    (indie::entity::BOX, Transform(size_x, size_y, 0));
+  for (unsigned int i = 0; i < size_x; i++)
+    {
+      indie::engine::entityManager().create
+	(indie::entity::BOX, Transform(i, -1, 0));
+      indie::engine::entityManager().create
+	(indie::entity::BOX, Transform(i, size_y, 0));
+    }
+  for (unsigned int j = 0; j < size_y; j++)
+    {
+      indie::engine::entityManager().create
+	(indie::entity::BOX, Transform(-1, j, 0));
+      indie::engine::entityManager().create
+	(indie::entity::BOX, Transform(size_x, j, 0));
+    }
+}
+
 int	main()
 {
   indie::system::Collision col;
@@ -12,17 +42,12 @@ int	main()
 
   indie::engine::contextManager().push(indie::context::GAME);
 
-  ecs::Entity box = indie::engine::entityManager().create(indie::entity::BOX, Transform(0,0,0));
+  ecs::Entity bite = indie::engine::entityManager().create
+    (indie::entity::BOX, Transform(-1, -1, 0));
   ecs::Entity cam = indie::engine::entityManager().create(indie::entity::CAMERA);
   
-  // indie::engine::entityManager().getComponent<Transform>(box)->position
-  //   = irr::core::vector3df(0, 0, 0);
-  indie::engine::entityManager().getComponent<Transform>(box)->rotation
-    = irr::core::vector3df(0, 0, 0);
-  indie::engine::entityManager().getComponent<Transform>(box)->scale
-    = irr::core::vector3df(1, 1, 1);
   indie::engine::entityManager().getComponent<Transform>(cam)->position
-    = irr::core::vector3df(0, -1, 5);
+    = irr::core::vector3df(0, -1, 10);
   indie::engine::entityManager().getComponent<Camera>(cam)->lookat
     = irr::core::vector3df(0, 0, 0);
 
