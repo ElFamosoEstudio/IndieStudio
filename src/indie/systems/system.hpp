@@ -4,8 +4,8 @@
 // Made by julien
 // Login   <julien.montagnat@epitech.eu>
 // 
-// Started on  Sun Jun 18 18:20:45 2017 julien
-// Last update Sun Jun 18 19:59:22 2017 julien
+// Started on  Sun Jun 18 20:08:49 2017 julien
+// Last update Sun Jun 18 20:08:49 2017 julien
 //
 
 #ifndef SYSTEM_HPP
@@ -18,6 +18,7 @@
 # include "CameraSystem.hpp"
 # include "MapGenerator.hpp"
 # include "Movement.hpp"
+# include "SysTime.hpp"
 # include "Input.hpp"
 
 namespace indie
@@ -36,7 +37,8 @@ namespace indie
 	MAP_GENERATOR,
 	ASCIIMAPSYSTEM,
 	INPUT,
-	MOVEMENT
+	MOVEMENT,
+	SYSTIME
       };
     void        registerAllSystems();
   }

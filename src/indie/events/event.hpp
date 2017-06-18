@@ -5,7 +5,7 @@
 // Login   <julien.montagnat@epitech.eu>
 // 
 // Started on  Sun Jun 18 19:52:44 2017 julien
-// Last update Sun Jun 18 19:52:45 2017 julien
+// Last update Sun Jun 18 20:22:06 2017 julien
 //
 
 #ifndef EVENT_HPP
@@ -24,12 +24,6 @@ namespace indie
 	DROP_BOMB,
 	DETONATE_BOMB,
 	MAP_3D_FROM_2D,
-	// BOMB_EXPLODED -> event happened
-	// GO_RIGHT -> action requested
-	// GO_RIGHT,
-	// GO_LEFT,
-	// GO_DOWN,
-	// GO_UP,
 	PLAYER_MOVED,
 	BOMB_EXPLODED,
 	REMOVE_SKEL,

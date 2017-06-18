@@ -5,7 +5,7 @@
 // Login   <julien.montagnat@epitech.eu>
 // 
 // Started on  Sun Jun 18 04:03:57 2017 julien
-// Last update Sun Jun 18 18:04:27 2017 julien
+// Last update Sun Jun 18 20:10:50 2017 julien
 //
 
 #include <functional>
@@ -14,17 +14,6 @@
 #include "engine.hpp"
 #include "components.hpp"
 #include "SoundSystem.hpp"
-
-// namespace {
-//   constexpr std::size_t SIZE = 5;
-//   constexpr static const std::array<indie::event::EEvent, SIZE> eventArray =
-//     {
-//       indie::event::EEvent::PLAYER_MOVED,
-//       indie::event::EEvent::BOMB_EXPLODED,
-//       indie::event::EEvent::COLLIDED,
-//       indie::event::EEvent::BOMB_DROPPED
-//     };
-// }
 
 using namespace indie::component;
 

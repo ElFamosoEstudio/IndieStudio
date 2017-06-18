@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat Jun 17 05:13:04 2017 Adam Akkari
-// Last update Sun Jun 18 19:27:38 2017 Adam Akkari
+// Last update Sun Jun 18 20:00:54 2017 Adam Akkari
 //
 
 #include <chrono>
@@ -131,7 +131,7 @@ bool		indie::system::MapGenerator::init_map()
 
   camera = indie::engine::entityManager().create(indie::entity::CAMERA);
   indie::engine::entityManager().getComponent<Transform>(camera)->position
-    = irr::core::vector3df(max_size / 2, (int)(- (max_size * 0.25 / 2 - 1)), max_size * 0.75);
+    = irr::core::vector3df(max_size / 2, (float)(- (max_size / 2 - 0.5)), max_size);
   indie::engine::entityManager().getComponent<Camera>(camera)->lookat
     = irr::core::vector3df(max_size / 2, max_size / 2, 0);
 

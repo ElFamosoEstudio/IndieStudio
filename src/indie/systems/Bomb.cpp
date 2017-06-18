@@ -5,11 +5,11 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Sat Jun 17 02:28:47 2017 akram abd-ali
-// Last update Sun Jun 18 16:47:10 2017 akram abd-ali
+// Last update Sun Jun 18 16:55:47 2017 akram abd-ali
 //
 
 #include "indie.hpp"
-# include <vector3d.h>
+#include <vector3d.h>
 
 void indie::system::Bomb::set3DPropagationPos(component::Transform& trans, uint8_t spread)
 {
