@@ -5,7 +5,7 @@
 // Login   <julien.montagnat@epitech.eu>
 // 
 // Started on  Sun Jun 18 20:08:49 2017 julien
-// Last update Sun Jun 18 20:08:49 2017 julien
+// Last update Sun Jun 18 21:33:38 2017 julien
 //
 
 #ifndef SYSTEM_HPP
@@ -34,6 +34,7 @@ namespace indie
 	CAMERA_SYSTEM,
 	LUASCRIPT_SYSTEM,
 	SOUND_SYSTEM,
+	MUSIC_SYSTEM,
 	MAP_GENERATOR,
 	ASCIIMAPSYSTEM,
 	INPUT,

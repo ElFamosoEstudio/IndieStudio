@@ -5,7 +5,7 @@
 // Login   <julien.montagnat@epitech.eu>
 // 
 // Started on  Sun Jun 18 19:52:44 2017 julien
-// Last update Sun Jun 18 20:22:06 2017 julien
+// Last update Sun Jun 18 21:35:32 2017 julien
 //
 
 #ifndef EVENT_HPP
@@ -35,6 +35,8 @@ namespace indie
 	CHECK_DAMAGE,
 	SPREAD_EXPLOSION,
 	DAMAGE,
+	MENU_MUSIC,
+	GAME_MUSIC,
 	HIT
       };
   }

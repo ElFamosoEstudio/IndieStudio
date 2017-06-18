@@ -5,7 +5,7 @@
 // Login   <julien.montagnat@epitech.eu>
 // 
 // Started on  Sat Jun 17 21:41:53 2017 julien
-// Last update Sun Jun 18 21:11:02 2017 julien
+// Last update Sun Jun 18 21:21:00 2017 julien
 //
 
 #ifndef LUASCRIPT_SYSTEM_HPP
@@ -26,13 +26,6 @@ namespace indie
     class LuaScriptSystem : public ecs::ISystem
     {
     public:
-      const std::map<int, indie::event::EEvent> action =
-	{
-	  {0, indie::event::EEvent::GO_RIGHT},
-	  {1, indie::event::EEvent::GO_LEFT},
-	  {2, indie::event::EEvent::GO_UP},
-	  {3, indie::event::EEvent::GO_DOWN}
-	};
       LuaScriptSystem()
       {
 	auto &lua_info = engine::entityManager().getAllComponents<indie::component::LuaScript>();
@@ -47,7 +40,6 @@ namespace indie
       ~LuaScriptSystem()
       {
 	auto &lua_info = engine::entityManager().getAllComponents<indie::component::LuaScript>();
-	
 	for (auto const &it : lua_info)
 	  {
 	    lua_close(it.second->L);
@@ -82,11 +74,10 @@ namespace indie
 		  lua_pushnumber(it.second->L, (int)pos[idx].Y);
 		  lua_pcall(it.second->L, 3, 1, 0);
 		  lua_pop(it.second->L, 3);
-		  lua_tointeger(it.second->L, -1);
+		  engine::eventManager().emit(lua_tointeger(it.second->L, -1), it.first);
 		}
 	      idx += 1;
 	    }
-	//emit
       }
       ecs::SysType	type() const
       {

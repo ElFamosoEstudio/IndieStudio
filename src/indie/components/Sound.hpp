@@ -5,7 +5,7 @@
 // Login   <julien.montagnat@epitech.eu>
 // 
 // Started on  Sun Jun 18 02:41:48 2017 julien
-// Last update Sun Jun 18 20:13:45 2017 julien
+// Last update Sun Jun 18 21:24:30 2017 julien
 //
 
 #ifndef SOUND_HPP
@@ -27,9 +27,9 @@ namespace indie
 	  {indie::event::EEvent::PLAYER_MOVED, "sounds/move.wav"},
 	  {indie::event::EEvent::BOMB_EXPLODED, "sounds/explosion.wav"},
 	  {indie::event::EEvent::BOMB_DROPPED, "sounds/pop.wav"},
-	  {indie::event::EEvent::COLLIDED, ""},
+	  // {indie::event::EEvent::COLLIDED, ""},
 	  // {indie::event::SoundEvent::JUMP, ""},
-	  // {indie::event::SoundEvent::BROKEN, ""},
+	  // {indie::event::SoundEvent::BROKEN, "sounds/smb_breakblock.wav"},
 	  // {indie::event::SoundEvent::GAMEOVER, ""},
 	  // {indie::event::SoundEvent::CURSOR_MOVE, ""},
 	  // {indie::event::SoundEvent::GET_POWERUP, ""},

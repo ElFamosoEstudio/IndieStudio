@@ -14,7 +14,7 @@ set(BIN_NAME "bomber")
 #set(SOURCE_FILES src/main.cpp)
 
 set(CMAKE_CXX_FLAGS "-g3")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wfatal-errors")
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wfatal-errors")
 
 include_directories(src/ src/ecs src/indie/core src/indie/systems src/indie/components src/indie/entities src/indie/contexts src/indie/events ${IRRLICHT_DIR}/include /usr/include/lua5.1/)
 link_directories(${IRRLICHT_DIR}/linux)

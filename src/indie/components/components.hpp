@@ -5,7 +5,7 @@
 // Login   <julien.montagnat@epitech.eu>
 // 
 // Started on  Sun Jun 18 19:52:31 2017 julien
-// Last update Sun Jun 18 20:53:18 2017 Adam Akkari
+// Last update Sun Jun 18 21:47:31 2017 julien
 //
 
 #ifndef COMPONENTS_HPP
@@ -34,5 +34,6 @@
 # include "Keymap.hpp"
 # include "TagExplosion.hpp"
 # include "TagPlayer.hpp"
+# include "Music.hpp"
 
 #endif //!COMPONENTS_HPP
