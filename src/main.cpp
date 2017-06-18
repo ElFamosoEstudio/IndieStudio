@@ -12,7 +12,12 @@ int	main()
 
   indie::engine::contextManager().push(indie::context::GAME);
 
-  ecs::Entity map = indie::engine::entityManager().create(indie::entity::MAP, MapSettings(17,17));
+  ecs::Entity map = indie::engine::entityManager().create(indie::entity::MAP, MapSettings(7,7));
+  ecs::Entity pl = indie::engine::entityManager().create(indie::entity::PLAYER, Transform(0,0,0));
+
+  indie::engine::entityManager().getComponent<Transform>(pl)->rotation.X = 90;
+  indie::engine::entityManager().getComponent<Transform>(pl)->scale
+    = irr::core::vector3df(0.25, 0.25, 0.25);
 
   while (indie::gfx::device()->run())
     {
