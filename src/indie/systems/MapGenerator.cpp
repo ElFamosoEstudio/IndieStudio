@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat Jun 17 05:13:04 2017 Adam Akkari
-// Last update Sun Jun 18 04:17:33 2017 Adam Akkari
+// Last update Sun Jun 18 06:43:29 2017 Adam Akkari
 //
 
 #include <iostream>
@@ -16,13 +16,12 @@ using namespace indie::component;
 
 indie::system::MapGenerator::MapGenerator()
 {
-  // key1 = engine::eventManager().subscribe
-  //   (event::BOMB_DROPPED, &indie::system::MapGenerator::bombDropped, this);
+  key1 = engine::eventManager().subscribe
+    (event::BOMB_DROPPED, &indie::system::MapGenerator::bombDropped, this);
 }
 
 indie::system::MapGenerator::~MapGenerator()
 {
-  // engine::eventManager().unsubscribe(event::BOMB_DROPPED, key1);
 }
 
 void		indie::system::MapGenerator::bombDropped(ecs::Entity ent)
@@ -31,7 +30,7 @@ void		indie::system::MapGenerator::bombDropped(ecs::Entity ent)
   auto		&ent_tsfm = indie::engine::entityManager().getComponent<Transform>(ent);
   if (settings.size() == 0 || !ent_tsfm)
     {
-      // engine::eventManager().emit(event::DROP_BOMB_ERR, ent);
+      engine::eventManager().emit(event::DROP_BOMB_ERR, ent);
       return ;
     }
   auto			&data = settings.begin()->second->map;
@@ -40,10 +39,25 @@ void		indie::system::MapGenerator::bombDropped(ecs::Entity ent)
 				round(ent_tsfm->position.Y),
 				round(ent_tsfm->position.Z));
 
-  // if (data[new_pos.X + size_x * new_pos.Y].second == BLOCK)
-  //   engine::eventManager().emit(event::DROP_BOMB_ERR, ent);
-  // else
+  if (data[new_pos.X + size_x * new_pos.Y].second == BLOCK)
+    engine::eventManager().emit(event::DROP_BOMB_ERR, ent);
+  else
     data[new_pos.X + size_x * new_pos.Y].second = BOMB;
+}
+
+void	placeCrate(unsigned int i, unsigned int j,
+		   unsigned int size_x, unsigned int size_y,
+		   std::vector<std::pair<ecs::Entity, element> > &data)
+{
+  if ((!(i < 3 && j < 3) || (i == 2 && j == 2)) &&
+      (!(i < 3 && j > size_y - 4) || (i == 2 && j == size_y - 3)) &&
+      (!(i > size_x - 4 && j < 3) || (i == size_x - 3 && j == 2)) &&
+      (!(i > size_x - 4 && j > size_y - 4) || (i == size_x - 3 && j == size_x - 3)))
+    {
+      data[j * size_x + i].first = indie::engine::entityManager().create
+	(indie::entity::CRATE, Transform(i, j, 0));
+      data[j * size_x + i].second = CRATE;
+    }
 }
 
 bool		indie::system::MapGenerator::init_map()
@@ -55,22 +69,22 @@ bool		indie::system::MapGenerator::init_map()
   unsigned int	size_x = settings.begin()->second->size_x;
   unsigned int	size_y = settings.begin()->second->size_y;
   unsigned int	max_size = size_x > size_y ? size_x : size_y;
-  std::list<ecs::Entity>	&walls = settings.begin()->second->walls;
+  std::list<ecs::Entity>	&boxes = settings.begin()->second->boxes;
   std::vector<std::pair<ecs::Entity, element> >	&data = settings.begin()->second->map;
   
-  walls.push_back(indie::engine::entityManager().create
+  boxes.push_back(indie::engine::entityManager().create
 		  (indie::entity::BOX, Transform(-1, -1, 0)));
-  walls.push_back(indie::engine::entityManager().create
+  boxes.push_back(indie::engine::entityManager().create
 		  (indie::entity::BOX, Transform(size_x, -1, 0)));
-  walls.push_back(indie::engine::entityManager().create
+  boxes.push_back(indie::engine::entityManager().create
 		  (indie::entity::BOX, Transform(-1, size_y, 0)));
-  walls.push_back(indie::engine::entityManager().create
+  boxes.push_back(indie::engine::entityManager().create
 		  (indie::entity::BOX, Transform(size_x, size_y, 0)));
   for (unsigned int i = 0; i < size_x; i++)
     {
-      walls.push_back(indie::engine::entityManager().create
+      boxes.push_back(indie::engine::entityManager().create
 		      (indie::entity::BOX, Transform(i, -1, 0)));
-      walls.push_back(indie::engine::entityManager().create
+      boxes.push_back(indie::engine::entityManager().create
 		      (indie::entity::BOX, Transform(i, size_y, 0)));
       for (unsigned int j = 0; j < size_y; j++)
 	{
@@ -81,20 +95,16 @@ bool		indie::system::MapGenerator::init_map()
 	      data[j * size_x + i].second = BLOCK;
 	    }
 	  else
-	    {
-	      data[j * size_x + i].first = indie::engine::entityManager().create
-		(indie::entity::FLOOR, Transform(i, j, -1));
-	      data[j * size_x + i].second = EMPTY;
-	    }
-	  walls.push_back(indie::engine::entityManager().create
+	    placeCrate(i, j, size_x, size_y, data);
+	  boxes.push_back(indie::engine::entityManager().create
 			  (indie::entity::BOX, Transform(-1, j, 0)));
-	  walls.push_back(indie::engine::entityManager().create
+	  boxes.push_back(indie::engine::entityManager().create
 			  (indie::entity::BOX, Transform(size_x, j, 0)));
+	  boxes.push_back(indie::engine::entityManager().create
+			  (indie::entity::FLOOR, Transform(i, j, -1)));
 	}
     }
 
-  std::cout << max_size / 2 << " " << (int)(- (max_size / 2 - 1)) << std::endl;
-  
   camera = indie::engine::entityManager().create(indie::entity::CAMERA);
   indie::engine::entityManager().getComponent<Transform>(camera)->position
     = irr::core::vector3df(max_size / 2, (int)(- (max_size * 0.25 / 2 - 1)), max_size * 0.75);

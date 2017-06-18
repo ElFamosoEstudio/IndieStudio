@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat Jun 17 02:55:46 2017 Adam Akkari
-// Last update Sat Jun 17 21:58:35 2017 Adam Akkari
+// Last update Sun Jun 18 06:32:28 2017 Adam Akkari
 //
 
 #ifndef MAPSETTINGS_HPP
@@ -24,7 +24,7 @@ namespace indie
       {
 	EMPTY,
 	BLOCK,
-	SOFT,
+	CRATE,
 	BOMB,
 	EXPL
       };
@@ -46,7 +46,7 @@ namespace indie
       }
       unsigned int	size_x;
       unsigned int	size_y;
-      std::list<ecs::Entity>	walls;
+      std::list<ecs::Entity>	boxes;
       std::vector<std::pair<ecs::Entity, element> >	map;
     };
   }
