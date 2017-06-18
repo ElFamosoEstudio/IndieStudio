@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Sat Jun 17 20:39:28 2017 akram abd-ali
-// Last update Sat Jun 17 21:13:27 2017 akram abd-ali
+// Last update Sun Jun 18 13:00:54 2017 Adam Akkari
 //
 
 #ifndef MOVEMENT_HPP
@@ -18,10 +18,10 @@ namespace indie
   {
     struct Movement
     {
-      int       value;
+      float	value;
       Movement()
 	: value(0) {}
-      Movement(int num)
+      Movement(float num)
 	: value(num) {}
     };
   }

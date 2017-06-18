@@ -4,8 +4,8 @@
 // Made by julien
 // Login   <julien.montagnat@epitech.eu>
 // 
-// Started on  Sun Jun 18 15:10:31 2017 julien
-// Last update Sun Jun 18 15:10:32 2017 julien
+// Started on  Sun Jun 18 18:20:45 2017 julien
+// Last update Sun Jun 18 18:22:28 2017 julien
 //
 
 #ifndef SYSTEM_HPP
@@ -17,6 +17,7 @@
 # include "Explosion.hpp"
 # include "CameraSystem.hpp"
 # include "MapGenerator.hpp"
+# include "Movement.hpp"
 # include "Input.hpp"
 
 namespace indie
@@ -33,7 +34,8 @@ namespace indie
 	LUASCRIPT_SYSTEM,
 	SOUND_SYSTEM,
 	MAP_GENERATOR,
-	INPUT
+	INPUT,
+	MOVEMENT
       };
     void        registerAllSystems();
   }

@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat Jun 17 02:55:46 2017 Adam Akkari
-// Last update Sun Jun 18 06:32:28 2017 Adam Akkari
+// Last update Sun Jun 18 18:51:45 2017 julien
 //
 
 #ifndef MAPSETTINGS_HPP
@@ -46,6 +46,7 @@ namespace indie
       }
       unsigned int	size_x;
       unsigned int	size_y;
+      std::string	AsciiMap;
       std::list<ecs::Entity>	boxes;
       std::vector<std::pair<ecs::Entity, element> >	map;
     };

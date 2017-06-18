@@ -4,8 +4,8 @@
 // Made by julien
 // Login   <julien.montagnat@epitech.eu>
 // 
-// Started on  Sun Jun 18 15:07:10 2017 julien
-// Last update Sun Jun 18 16:21:32 2017 julien
+// Started on  Sun Jun 18 18:23:24 2017 julien
+// Last update Sun Jun 18 18:23:41 2017 julien
 //
 
 #ifndef EVENT_HPP
@@ -24,7 +24,6 @@ namespace indie
 	DROP_BOMB,
 	DETONATE_BOMB,
 	MAP_3D_FROM_2D,
-	SPREAD_EXPLOSION,
 	// BOMB_EXPLODED -> event happened
 	// GO_RIGHT -> action requested
 	// GO_RIGHT,
@@ -33,10 +32,15 @@ namespace indie
 	// GO_UP,
 	PLAYER_MOVED,
 	BOMB_EXPLODED,
+	REMOVE_SKEL,
+	COL_ADD_BOMB,
 	COLLIDED,
 	BOMB_DROPPED,
 	DROP_BOMB_ERR,
-	EXPLOSION_ERR
+	NO_DAMAGE,
+	CHECK_DAMAGE,
+	SPREAD_EXPLOSION,
+	DAMAGE
       };
   }
 }

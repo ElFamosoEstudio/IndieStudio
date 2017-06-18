@@ -5,7 +5,7 @@
 // Login   <julien.montagnat@epitech.eu>
 // 
 // Started on  Sat Jun 17 21:41:53 2017 julien
-// Last update Sun Jun 18 07:32:37 2017 julien
+// Last update Sun Jun 18 19:42:05 2017 julien
 //
 
 #ifndef LUASCRIPT_SYSTEM_HPP
@@ -26,7 +26,7 @@ namespace indie
     class LuaScriptSystem : public ecs::ISystem
     {
     public:
-      std::map<int, indie::event::EEvent> action =
+      const std::map<int, indie::event::EEvent> action =
 	{
 	  {0, indie::event::EEvent::GO_RIGHT},
 	  {1, indie::event::EEvent::GO_LEFT},
@@ -56,11 +56,13 @@ namespace indie
       void		update()
       {
 	auto &lua_info = engine::entityManager().getAllComponents<indie::component::LuaScript>();
+	auto &map_info = engine::entityManager().getAllComponents<indie::component::MapSettings>();
 
+	if (map_info.size() == 1)
 	for (auto const &it : lua_info)
 	  {
 	    lua_getglobal(it.second->L, it.second->function.c_str());
-	    lua_pushstring(it.second->L, "lol");
+	    lua_pushstring(it.second->L, map_info.begin()->second->AsciiMap.c_str());
 	    lua_pushnumber(it.second->L, 1);
 	    lua_pushnumber(it.second->L, 1);
 	    lua_pcall(it.second->L, 3, 1, 0);

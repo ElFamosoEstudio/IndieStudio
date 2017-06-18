@@ -12,7 +12,7 @@ int	main()
 
   indie::engine::contextManager().push(indie::context::GAME);
 
-  ecs::Entity map = indie::engine::entityManager().create(indie::entity::MAP, MapSettings(17,17));
+  ecs::Entity map = indie::engine::entityManager().create(indie::entity::MAP, MapSettings(7,7));
 
   while (indie::gfx::device()->run())
     {
@@ -20,6 +20,7 @@ int	main()
       indie::gfx::videoDriver()->beginScene(true, true,
 					    irr::video::SColor(255, 255, 255, 255));
       indie::engine::systemManager().update();
+      indie::engine::contextManager().execute();
       indie::gfx::sceneManager()->drawAll();
       indie::gfx::videoDriver()->endScene();
       indie::engine::inputReceiver().enableInputHandling();
