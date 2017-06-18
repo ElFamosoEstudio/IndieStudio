@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Wed Jun 14 02:11:12 2017 Noam Silvy
-// Last update Sun Jun 18 15:28:30 2017 akram abd-ali
+// Last update Sun Jun 18 18:43:20 2017 Noam Silvy
 //
 
 #include "engine.hpp"
@@ -29,4 +29,6 @@ void        indie::system::registerAllSystems()
 						&indie::system::Input::create);
   indie::engine::systemManager().registerSystem(indie::system::MOVEMENT,
 						&indie::system::Movement::create);
+  indie::engine::systemManager().registerSystem(indie::system::ANIMATION,
+						&indie::system::AnimationSystem::create);
 }
