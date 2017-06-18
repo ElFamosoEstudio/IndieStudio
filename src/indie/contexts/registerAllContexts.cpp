@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Wed Jun 14 03:59:36 2017 Noam Silvy
-// Last update Sun Jun 18 20:14:42 2017 akram abd-ali
+// Last update Sun Jun 18 20:42:10 2017 akram abd-ali
 //
 
 #include "ecs.hpp"
@@ -17,6 +17,7 @@ void		indie::context::registerAllContexts()
 {
   ecs::Context	main_menu;
   ecs::Context	game = {{indie::system::INPUT, true},
+			{indie::system::SPAWN, true},
 			{indie::system::COLLISION, true},
 			{indie::system::MESH_RENDERER, true},
 			{indie::system::CAMERA_SYSTEM, true},

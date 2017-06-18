@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Sat Jun 17 02:28:47 2017 akram abd-ali
-// Last update Sun Jun 18 16:55:47 2017 akram abd-ali
+// Last update Sun Jun 18 21:30:34 2017 akram abd-ali
 //
 
 #include "indie.hpp"
@@ -52,6 +52,8 @@ void	indie::system::Bomb::dropBomb(ecs::Entity entity)
 {
   auto&	bombInfos = engine::entityManager().getAllComponents<component::BombInfo>();
 
+  std::cout << "salope" << std::endl;
+
   for (auto& it : bombInfos)
     {
       auto id = it.first;
@@ -66,15 +68,15 @@ void	indie::system::Bomb::dropBomb(ecs::Entity entity)
 	  if (!remote)
 	    {
 	      engine::entityManager()
-		.create(entity::BOMB,
-			component::Transform(transform->position.X,
-					     transform->position.Y,
-					     transform->position.Z),
-			component::Spreadable(bomb->range,
-					      bomb->propagationMask),
-			component::PowerInfo(bomb->power),
-			component::PlayerId(playerId->id),
-			component::Timer(3000, event::DETONATE_BOMB));
+	      	.create(entity::BOMB,
+	      		component::Transform(transform->position.X,
+	      				     transform->position.Y,
+	      				     transform->position.Z),
+	      		component::Spreadable(bomb->range,
+	      				      bomb->propagationMask),
+	      		component::PowerInfo(bomb->power),
+	      		component::PlayerId(playerId->id),
+	      		component::Timer(3000, event::DETONATE_BOMB));
 	    }
 	  else
 	    {

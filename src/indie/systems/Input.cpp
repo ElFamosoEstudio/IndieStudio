@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Sat Jun 17 08:51:46 2017 Noam Silvy
-// Last update Sun Jun 18 11:58:20 2017 Noam Silvy
+// Last update Sun Jun 18 21:18:13 2017 akram abd-ali
 //
 
 #include <memory>
@@ -93,7 +93,6 @@ indie::InputState	Input::_getAxisInputState(irr::u8	id,
 
   if (!_rcvr->getGamePadAxis(id, idx, &axis))
     return (InputState::UP);
-  std::cout << "Axis = " << axis << std::endl;
    if (ABS(axis) <= DEAD_POINT)
     return (InputState::UP);
   return ((isPositive && axis > 0) ? InputState::DOWN :

@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Fri Jun 16 21:09:13 2017 Noam Silvy
-// Last update Sun Jun 18 19:35:53 2017 Adam Akkari
+// Last update Sun Jun 18 20:27:30 2017 akram abd-ali
 //
 
 #ifndef EVENT_HPP
@@ -33,7 +33,8 @@ namespace indie
 	CHECK_DAMAGE,
 	SPREAD_EXPLOSION,
 	DAMAGE,
-	HIT
+	HIT,
+	DIE
       };
   }
 }
