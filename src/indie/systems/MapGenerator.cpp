@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat Jun 17 05:13:04 2017 Adam Akkari
-// Last update Sun Jun 18 20:00:54 2017 Adam Akkari
+// Last update Sun Jun 18 21:55:09 2017 Adam Akkari
 //
 
 #include <chrono>
@@ -17,10 +17,13 @@ using namespace indie::component;
 
 indie::system::MapGenerator::MapGenerator()
 {
-  engine::eventManager().subscribe
+  auto key = engine::eventManager().subscribe
     (event::BOMB_DROPPED, &indie::system::MapGenerator::bombDropped, this);
-  engine::eventManager().subscribe
+  auto key2 = engine::eventManager().subscribe
     (event::CHECK_DAMAGE, &indie::system::MapGenerator::checkDamage, this);
+
+  _eventKeys[event::BOMB_DROPPED] = key;
+  _eventKeys[event::CHECK_DAMAGE] = key2;
 }
 
 indie::system::MapGenerator::~MapGenerator()

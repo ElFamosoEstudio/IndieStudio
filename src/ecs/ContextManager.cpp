@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Thu Jun 15 02:57:29 2017 akram abd-ali
-// Last update Sun Jun 18 16:26:45 2017 Noam Silvy
+// Last update Sun Jun 18 20:03:23 2017 Noam Silvy
 //
 
 #include "ContextManager.hpp"
@@ -89,8 +89,10 @@ void	ecs::ContextManager::_pop()
 	    }
 
 	}
-      if (toDelete == true)
+      if (toDelete == true) {
+	// it.first->unsubscribe();
 	_sysmgr->remove(it.first);
+      }
     }
   _contexts.pop_front();
 }

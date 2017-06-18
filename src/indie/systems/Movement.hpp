@@ -1,11 +1,11 @@
 //
 // Movement.hpp for  in /home/abd-al_a/rendu/IndieStudio
-// 
+//
 // Made by akram abd-ali
 // Login   <abd-al_a@epitech.net>
-// 
+//
 // Started on  Sun Jun 18 15:29:23 2017 akram abd-ali
-// Last update Sun Jun 18 18:59:41 2017 akram abd-ali
+// Last update Sun Jun 18 21:47:15 2017 Noam Silvy
 //
 
 #ifndef MOVEMENT_SYSTEM_HPP
@@ -14,12 +14,13 @@
 # include <unordered_map>
 # include <array>
 # include "indie.hpp"
+# include "ASystem.hpp"
 
 namespace indie
 {
   namespace system
   {
-    class Movement : public ecs::ISystem
+    class Movement : public ASystem
     {
       enum	Dir
 	{
@@ -31,7 +32,7 @@ namespace indie
     private:
       std::unordered_map<ecs::EventTypeDefault, ecs::EventKey>	_subKeys;
       std::unordered_map<ecs::Entity, std::array<bool, 4>>	_movements;
-      
+
     private:
       void	goUp(ecs::Entity);
       void	goDown(ecs::Entity);

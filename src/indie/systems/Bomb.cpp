@@ -1,11 +1,11 @@
 //
 // Bomb.cpp for  in /home/abd-al_a/rendu/IndieStudio
-// 
+//
 // Made by akram abd-ali
 // Login   <abd-al_a@epitech.net>
-// 
+//
 // Started on  Sat Jun 17 02:28:47 2017 akram abd-ali
-// Last update Sun Jun 18 16:55:47 2017 akram abd-ali
+// Last update Sun Jun 18 21:47:42 2017 Noam Silvy
 //
 
 #include "indie.hpp"
@@ -24,7 +24,7 @@ void indie::system::Bomb::set3DPropagationPos(component::Transform& trans, uint8
       break;
     case 4:
       trans.position.X -= 1;
-      trans.position.Y += 1;      
+      trans.position.Y += 1;
       break;
     case 8:
       trans.position.X += 1;
@@ -154,15 +154,13 @@ void	indie::system::Bomb::removeBomb(ecs::Entity entity)
 indie::system::Bomb::Bomb()
 {
   auto key = engine::eventManager().subscribe(event::DROP_BOMB, &indie::system::Bomb::dropBomb, this);
-  _subKeys[event::DROP_BOMB] = key;
+  _eventKeys[event::DROP_BOMB] = key;
   key = engine::eventManager().subscribe(event::DROP_BOMB_ERR, &indie::system::Bomb::removeBomb, this);
-  _subKeys[event::DROP_BOMB_ERR] = key;
+  _eventKeys[event::DROP_BOMB_ERR] = key;
 }
 
 indie::system::Bomb::~Bomb()
 {
-  // for (auto const& it : _subKeys)
-  //   engine::eventManager().unsubscribe(it.first, it.second);
 }
 
 void	indie::system::Bomb::update() {
