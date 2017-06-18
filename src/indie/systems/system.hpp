@@ -1,11 +1,11 @@
 //
 // system.hpp for bomberman in /home/akkari_a/rendu/IndieStudio/src/indie/systems
-// 
+//
 // Made by Adam Akkari
 // Login   <akkari_a@epitech.net>
-// 
+//
 // Started on  Sat Jun 17 00:07:05 2017 Adam Akkari
-// Last update Sun Jun 18 07:56:22 2017 akram abd-ali
+// Last update Sun Jun 18 12:27:33 2017 Noam Silvy
 //
 
 #ifndef SYSTEM_HPP
@@ -17,6 +17,7 @@
 # include "Explosion.hpp"
 # include "CameraSystem.hpp"
 # include "MapGenerator.hpp"
+# include "Input.hpp"
 
 namespace indie
 {
@@ -29,7 +30,8 @@ namespace indie
 	EXPLOSION,
 	MESH_RENDERER,
 	CAMERA_SYSTEM,
-	MAP_GENERATOR
+	MAP_GENERATOR,
+	INPUT
       };
     void        registerAllSystems();
   }
