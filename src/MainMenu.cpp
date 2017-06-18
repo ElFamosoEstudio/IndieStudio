@@ -5,7 +5,7 @@
 // Login   <bento@epitech.net>
 //
 // Started on  Wed Jun 14 01:47:29 2017 Bento
-// Last update Sun Jun 18 01:56:23 2017 Bento
+// Last update Sun Jun 18 17:02:21 2017 Bento
 //
 
 #include "indie.hpp"
@@ -16,10 +16,10 @@ using namespace indie::system;
 MainMenu::MainMenu(void)
 {
   _env = indie::gfx::device()->getGUIEnvironment();
-  _tex.push_back(indie::gfx::videoDriver()->getTexture("./mexi.jpg"));
-  _tex.push_back(indie::gfx::videoDriver()->getTexture("./play.png"));
-  _tex.push_back(indie::gfx::videoDriver()->getTexture("./option.png"));
-  _tex.push_back(indie::gfx::videoDriver()->getTexture("./exit.png"));
+  _tex.push_back(indie::gfx::videoDriver()->getTexture("./img/mexi.jpg"));
+  _tex.push_back(indie::gfx::videoDriver()->getTexture("./img/play.png"));
+  _tex.push_back(indie::gfx::videoDriver()->getTexture("./img/option.png"));
+  _tex.push_back(indie::gfx::videoDriver()->getTexture("./img/exit.png"));
   _env->addImage(_tex[0], core::position2d<int>(0,0));
   _btn.push_back(this->addButton(750, 215, 1130, 300));
   _btn[0]->setImage(_tex[1]);
@@ -27,35 +27,12 @@ MainMenu::MainMenu(void)
   _btn[1]->setImage(_tex[2]);
   _btn.push_back(this->addButton(760, 600, 1130, 685));
   _btn[2]->setImage(_tex[3]);
-  _skin = _env->getSkin();
-  this->setFont(getFont("./myfont.xml"), 0);
+  _env->drawAll();
 }
 
 MainMenu::~MainMenu()
 {
 
-}
-
-IGUIFont	*MainMenu::getFont(std::string const&path)
-{
-  return (_env->getFont(path.c_str()));
-}
-
-void     	MainMenu::setFont(IGUIFont *font, short btn)
-{
-  short		idx;
-
-  if (!font)
-    return ;
-  idx = 0;
-  for (auto const&i: _btn)
-    {
-      if (idx == btn)
-	break;
-      idx += 1;
-    }
-  _btn[idx]->setOverrideFont(font);
-  _skin->setFont(font);
 }
 
 IGUIButton	*MainMenu::addButton(int x1, int y1, int x2, int y2)
@@ -66,9 +43,7 @@ IGUIButton	*MainMenu::addButton(int x1, int y1, int x2, int y2)
 void		MainMenu::update(void)
 {
   if (_btn[0]->isPressed())
-    std::cout << "Play" << std::endl;
-  if (_btn[2]->isPressed())
-    indie::gfx::device()->closeDevice();
+    indie::engine::contextManager().push(indie::context::SUB_MENU);
   _env->drawAll();
 }
 

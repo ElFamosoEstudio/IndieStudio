@@ -5,7 +5,7 @@
 // Login   <bento@epitech.net>
 //
 // Started on  Wed Jun 14 01:23:35 2017 Bento
-// Last update Sun Jun 18 03:01:54 2017 Bento
+// Last update Sun Jun 18 18:32:13 2017 Bento
 //
 
 #pragma once
@@ -37,8 +37,6 @@ namespace indie
       virtual void	update(void) override;
       ecs::SysType	type(void) const override;
       IGUIButton	*addButton(int, int, int, int);
-      void		setFont(IGUIFont *, short);
-      IGUIFont		*getFont(std::string const&);
     };
   };
 };

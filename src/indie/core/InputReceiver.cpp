@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Sun Jun 11 10:31:20 2017 Noam Silvy
-// Last update Thu Jun 15 02:34:22 2017 Noam Silvy
+// Last update Sat Jun 17 21:00:28 2017 Adam Akkari
 //
 
 #include <unistd.h>
@@ -18,7 +18,7 @@ InputReceiver::InputReceiver(irr::IrrlichtDevice *device)
   : _device(device), _isBlocked(false)
 {
   _keyboard.fill(InputState::UP);
-  updateGamePads();
+  // updateGamePads();
   _device->setEventReceiver(this); // last instruction!
 }
 

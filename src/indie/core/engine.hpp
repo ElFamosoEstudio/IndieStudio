@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 10 03:34:26 2017 akram abd-ali
-// Last update Fri Jun 16 21:48:10 2017 akram abd-ali
+// Last update Sun Jun 18 08:02:32 2017 akram abd-ali
 //
 
 #ifndef ENGINE_HPP
@@ -14,13 +14,31 @@
 # include "ecs.hpp"
 # include "InputReceiver.hpp"
 # include "components.hpp"
+# include "CountDown.hpp"
 
 namespace indie
 {
   namespace engine
   {
     using namespace component;
-    using IndieEntityManager = ecs::EntityManager<Transform, Renderer3d, Skeleton, Camera>;
+    using IndieEntityManager = ecs::EntityManager<Transform,
+						  Renderer3d,
+						  Skeleton,
+						  Camera,
+						  Timer,
+						  Interval,
+						  BombInfo,
+						  PowerInfo,
+						  LifeNumber,
+						  Damage,
+						  HP,
+						  Movement,
+						  Respawn,
+						  Speed,
+						  PlayerId,
+						  RemoteExplosion,
+						  Spreadable,
+						  MapSettings>;
 
     ecs::SystemManager&		systemManager();
 
