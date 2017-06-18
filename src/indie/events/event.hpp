@@ -1,11 +1,11 @@
 //
-// event.hpp for  in /home/julien/C++/IndieStudio
+// event.hpp for  in /home/julien/C++/IndieStudio/src/indie
 // 
 // Made by julien
 // Login   <julien.montagnat@epitech.eu>
 // 
-// Started on  Sun Jun 18 18:23:24 2017 julien
-// Last update Sun Jun 18 18:23:41 2017 julien
+// Started on  Sun Jun 18 19:52:44 2017 julien
+// Last update Sun Jun 18 19:52:45 2017 julien
 //
 
 #ifndef EVENT_HPP
@@ -40,7 +40,8 @@ namespace indie
 	NO_DAMAGE,
 	CHECK_DAMAGE,
 	SPREAD_EXPLOSION,
-	DAMAGE
+	DAMAGE,
+	HIT
       };
   }
 }

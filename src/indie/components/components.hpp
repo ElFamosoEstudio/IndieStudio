@@ -1,11 +1,11 @@
 //
-// components.hpp for  in /home/julien/C++/IndieStudio
+// components.hpp for  in /home/julien/C++/IndieStudio/src/indie
 // 
 // Made by julien
 // Login   <julien.montagnat@epitech.eu>
 // 
-// Started on  Sun Jun 18 15:08:46 2017 julien
-// Last update Sun Jun 18 19:40:31 2017 julien
+// Started on  Sun Jun 18 19:52:31 2017 julien
+// Last update Sun Jun 18 19:52:31 2017 julien
 //
 
 #ifndef COMPONENTS_HPP
@@ -32,5 +32,6 @@
 # include "Spreadable.hpp"
 # include "MapSettings.hpp"
 # include "Keymap.hpp"
+# include "TagExplosion.hpp"
 
 #endif //!COMPONENTS_HPP

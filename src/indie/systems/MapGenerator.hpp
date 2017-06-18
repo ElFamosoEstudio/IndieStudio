@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat Jun 17 04:39:24 2017 Adam Akkari
-// Last update Sun Jun 18 03:54:55 2017 Adam Akkari
+// Last update Sun Jun 18 19:26:19 2017 Adam Akkari
 //
 
 #ifndef MAP_GENERATOR_HPP
@@ -23,6 +23,7 @@ namespace indie
     public:
       MapGenerator();
       ~MapGenerator();
+      void		checkDamage(ecs::Entity ent);
       void		bombDropped(ecs::Entity ent);
       bool		init_map();
       void		update();

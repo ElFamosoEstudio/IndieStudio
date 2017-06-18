@@ -1,11 +1,11 @@
 //
-// engine.hpp for  in /home/julien/C++/IndieStudio
+// engine.hpp for  in /home/julien/C++/IndieStudio/src/indie
 // 
 // Made by julien
 // Login   <julien.montagnat@epitech.eu>
 // 
-// Started on  Sun Jun 18 15:07:53 2017 julien
-// Last update Sun Jun 18 19:40:45 2017 julien
+// Started on  Sun Jun 18 19:51:44 2017 julien
+// Last update Sun Jun 18 19:52:02 2017 julien
 //
 
 #ifndef ENGINE_HPP
@@ -42,7 +42,8 @@ namespace indie
 						  MapSettings,
 						  KeyMaps,
 						  LuaScript,
-						  Sound>;
+						  Sound,
+						  TagExplosion>;
 
     ecs::SystemManager&		systemManager();
 

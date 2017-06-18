@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat Jun 17 05:13:04 2017 Adam Akkari
-// Last update Sun Jun 18 08:10:56 2017 akram abd-ali
+// Last update Sun Jun 18 19:27:38 2017 Adam Akkari
 //
 
 #include <chrono>
@@ -17,12 +17,29 @@ using namespace indie::component;
 
 indie::system::MapGenerator::MapGenerator()
 {
-  key1 = engine::eventManager().subscribe
+  engine::eventManager().subscribe
     (event::BOMB_DROPPED, &indie::system::MapGenerator::bombDropped, this);
+  engine::eventManager().subscribe
+    (event::CHECK_DAMAGE, &indie::system::MapGenerator::checkDamage, this);
 }
 
 indie::system::MapGenerator::~MapGenerator()
+{}
+
+void		indie::system::MapGenerator::checkDamage(ecs::Entity ent)
 {
+  auto		&settings = indie::engine::entityManager().getAllComponents<MapSettings>();
+  auto		&ent_tsfm = indie::engine::entityManager().getComponent<Transform>(ent);
+  if (settings.size() == 0 || !ent_tsfm)
+    {
+      engine::eventManager().emit(event::NO_DAMAGE, ent);
+      return ;
+    }
+  auto		&data = settings.begin()->second->map;
+  unsigned int	size_x = settings.begin()->second->size_x;
+
+  if (data[ent_tsfm->position.X + size_x * ent_tsfm->position.Y].second == BLOCK)
+    engine::eventManager().emit(event::NO_DAMAGE, ent);
 }
 
 void		indie::system::MapGenerator::bombDropped(ecs::Entity ent)
