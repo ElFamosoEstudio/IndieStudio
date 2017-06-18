@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Thu Jun  8 22:28:04 2017 akram abd-ali
-// Last update Fri Jun 16 01:56:29 2017 Noam Silvy
+// Last update Sun Jun 18 16:02:58 2017 Noam Silvy
 //
 
 #ifndef CONTEXT_MANAGER_HPP
@@ -15,6 +15,7 @@
 # include <list>
 # include <map>
 # include <stdexcept>
+# include <queue>
 # include "SystemManager.hpp"
 
 namespace ecs
@@ -24,13 +25,19 @@ namespace ecs
 
   class ContextManager
   {
+    enum EStackAction
+      {
+	PUSH,
+	POP
+      };
   private:
     std::list<Context*>			_contexts;
     std::map<ContextType, Context>	_knownContexts;
     SystemManager*			_sysmgr;
+    std::queue<std::pair<EStackAction, std::pair<Context *, bool>>> _todo;
 
-  public:
-    ContextManager() = delete;
+    public:
+    ContextManager();
     ContextManager(SystemManager* sysmgr) : _sysmgr(sysmgr) {}
     ~ContextManager() = default;
     ContextManager(ContextManager const&) = delete;
@@ -47,6 +54,11 @@ namespace ecs
 
     void	registerContext(ContextType	key,
 			        const Context&	context);
+    void	execute();
+
+  private:
+    void	_push(Context *context,	bool disableAll = false);
+    void	_pop();
   };
 }
 

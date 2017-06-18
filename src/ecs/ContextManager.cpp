@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Thu Jun 15 02:57:29 2017 akram abd-ali
-// Last update Thu Jun 15 18:30:34 2017 Noam Silvy
+// Last update Sun Jun 18 16:26:45 2017 Noam Silvy
 //
 
 #include "ContextManager.hpp"
@@ -19,6 +19,11 @@ void	ecs::ContextManager::push(ContextType key, bool disableAll)
 }
 
 void	ecs::ContextManager::push(Context *context, bool disableAll)
+{
+  _todo.push({PUSH, {context, disableAll}});
+}
+
+void	ecs::ContextManager::_push(Context *context, bool disableAll)
 {
   bool	toCreate;
 
@@ -44,6 +49,11 @@ void	ecs::ContextManager::push(Context *context, bool disableAll)
 }
 
 void	ecs::ContextManager::pop()
+{
+  _todo.push({POP, {}});
+}
+
+void	ecs::ContextManager::_pop()
 {
   auto	size = _contexts.size();
 
@@ -83,6 +93,19 @@ void	ecs::ContextManager::pop()
 	_sysmgr->remove(it.first);
     }
   _contexts.pop_front();
+}
+
+void	ecs::ContextManager::execute()
+{
+  while (!_todo.empty())
+    {
+      auto const& action = _todo.front();
+      if (action.first == PUSH)
+	this->_push(action.second.first, action.second.second);
+      else if (action.first == POP)
+        this->_pop();
+      _todo.pop();
+    }
 }
 
 void	ecs::ContextManager::reset()
