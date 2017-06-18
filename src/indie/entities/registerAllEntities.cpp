@@ -5,7 +5,8 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu Jun 15 19:55:55 2017 Noam Silvy
-// Last update Sun Jun 18 06:41:16 2017 akram abd-ali
+// Last update Sun Jun 18 08:00:17 2017 akram abd-ali
+// Last update Sun Jun 18 05:27:06 2017 Adam Akkari
 //
 
 #include "engine.hpp"
@@ -35,4 +36,10 @@ void		indie::entity::registerAllEntities()
 						&indie::entity::createBomb);
   indie::engine::entityManager().registerEntity(indie::entity::EXPLOSION,
 						&indie::entity::createExplosion);
+  indie::engine::entityManager().registerEntity(indie::entity::FLOOR,
+						&indie::entity::createFloor);
+  indie::engine::entityManager().registerEntity(indie::entity::MAP,
+						&indie::entity::createMap);
+  indie::engine::entityManager().registerEntity(indie::entity::CRATE,
+						&indie::entity::createCrate);
 }

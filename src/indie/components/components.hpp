@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Fri Jun 16 03:39:22 2017 Noam Silvy
-// Last update Sat Jun 17 21:25:48 2017 akram abd-ali
+// Last update Sun Jun 18 08:03:30 2017 akram abd-ali
 //
 
 #ifndef COMPONENTS_HPP
@@ -28,5 +28,6 @@
 # include "PlayerId.hpp"
 # include "RemoteExplosion.hpp"
 # include "Spreadable.hpp"
+# include "MapSettings.hpp"
 
 #endif //!COMPONENTS_HPP

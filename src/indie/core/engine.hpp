@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 10 03:34:26 2017 akram abd-ali
-// Last update Sat Jun 17 21:23:12 2017 akram abd-ali
+// Last update Sun Jun 18 08:02:32 2017 akram abd-ali
 //
 
 #ifndef ENGINE_HPP
@@ -37,7 +37,8 @@ namespace indie
 						  Speed,
 						  PlayerId,
 						  RemoteExplosion,
-						  Spreadable>;
+						  Spreadable,
+						  MapSettings>;
 
     ecs::SystemManager&		systemManager();
 

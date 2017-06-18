@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat Jun 17 00:07:05 2017 Adam Akkari
-// Last update Sun Jun 18 06:48:12 2017 akram abd-ali
+// Last update Sun Jun 18 07:56:22 2017 akram abd-ali
 //
 
 #ifndef SYSTEM_HPP
@@ -16,6 +16,7 @@
 # include "Bomb.hpp"
 # include "Explosion.hpp"
 # include "CameraSystem.hpp"
+# include "MapGenerator.hpp"
 
 namespace indie
 {
@@ -27,7 +28,8 @@ namespace indie
 	BOMB,
 	EXPLOSION,
 	MESH_RENDERER,
-	CAMERA_SYSTEM
+	CAMERA_SYSTEM,
+	MAP_GENERATOR
       };
     void        registerAllSystems();
   }
