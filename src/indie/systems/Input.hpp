@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Sat Jun 17 08:51:52 2017 Noam Silvy
-// Last update Sun Jun 18 05:56:38 2017 Noam Silvy
+// Last update Sun Jun 18 21:28:33 2017 Noam Silvy
 //
 
 #ifndef INPUT_SYSTEM_HPP
@@ -16,12 +16,13 @@
 # include "ecs.hpp"
 # include "InputReceiver.hpp"
 # include "Keymap.hpp"
+# include "ASystem.hpp"
 
 namespace indie
 {
   namespace system
   {
-    class Input : public ecs::ISystem
+    class Input : public ASystem
     {
     public:
       using GamePadArray = std::array<InputState, component::GAMEPAD_KEYCODE_COUNT>;

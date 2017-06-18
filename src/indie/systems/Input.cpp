@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Sat Jun 17 08:51:46 2017 Noam Silvy
-// Last update Sun Jun 18 21:18:13 2017 akram abd-ali
+// Last update Sun Jun 18 21:50:24 2017 akram abd-ali
 //
 
 #include <memory>
@@ -81,9 +81,6 @@ bool			Input::_needToBreak(component::KeyMapState state, bool isMatch)
     ret = false;
   return (ret);
 }
-
-#include <chrono>
-#include <thread>
 
 indie::InputState	Input::_getAxisInputState(irr::u8	id,
 						  std::size_t	idx,
