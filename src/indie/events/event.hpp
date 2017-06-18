@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Fri Jun 16 21:09:13 2017 Noam Silvy
-// Last update Sun Jun 18 16:32:43 2017 akram abd-ali
+// Last update Sun Jun 18 16:48:33 2017 akram abd-ali
 //
 
 #ifndef EVENT_HPP
@@ -30,6 +30,8 @@ namespace indie
 	BOMB_DROPPED,
 	DROP_BOMB_ERR,
 	NO_DAMAGE,
+	CHECK_DAMAGE,
+	SPREAD_EXPLOSION,
 	DAMAGE
       };
   }
