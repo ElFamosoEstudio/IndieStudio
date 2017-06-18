@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat Jun 17 04:39:24 2017 Adam Akkari
-// Last update Sun Jun 18 01:06:55 2017 Adam Akkari
+// Last update Sun Jun 18 03:54:55 2017 Adam Akkari
 //
 
 #ifndef MAP_GENERATOR_HPP
@@ -30,6 +30,7 @@ namespace indie
       static ISystem	*create();
 
       ecs::EventKey key1;
+      ecs::Entity	camera;
     };
   }
 }

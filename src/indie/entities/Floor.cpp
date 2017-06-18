@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat Jun 17 22:31:57 2017 Adam Akkari
-// Last update Sun Jun 18 00:26:41 2017 Adam Akkari
+// Last update Sun Jun 18 03:50:32 2017 Adam Akkari
 //
 
 #include "engine.hpp"
@@ -20,6 +20,6 @@ ecs::Entity	indie::entity::createFloor()
 
   id = ent.createEntity();
   ent.addComponentEmplace<Transform>(id);
-  ent.addComponentEmplace<Renderer3d>(id, "cube1.obj", "bite.jpg");
+  ent.addComponentEmplace<Renderer3d>(id, "gfx/cube1.obj", "gfx/floor.jpg");
   return (id);
 }
