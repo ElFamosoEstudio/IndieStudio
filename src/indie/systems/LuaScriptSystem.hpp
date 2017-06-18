@@ -5,7 +5,7 @@
 // Login   <julien.montagnat@epitech.eu>
 // 
 // Started on  Sat Jun 17 21:41:53 2017 julien
-// Last update Sun Jun 18 21:01:31 2017 Adam Akkari
+// Last update Sun Jun 18 21:11:02 2017 julien
 //
 
 #ifndef LUASCRIPT_SYSTEM_HPP
@@ -66,6 +66,8 @@ namespace indie
       }
       void		update()
       {
+	int		idx = 0;
+	std::vector<irr::core::vector3df> pos;
 	auto &lua_info = engine::entityManager().getAllComponents<indie::component::LuaScript>();
 	auto &map_info = engine::entityManager().getAllComponents<indie::component::MapSettings>();
 
@@ -74,11 +76,15 @@ namespace indie
 	    {
 	      lua_getglobal(it.second->L, it.second->function.c_str());
 	      lua_pushstring(it.second->L, map_info.begin()->second->AsciiMap.c_str());
-	      lua_pushnumber(it.second->L, 1);
-	      lua_pushnumber(it.second->L, 1);
-	      lua_pcall(it.second->L, 3, 1, 0);
-	      lua_pop(it.second->L, 3);
-	      lua_tointeger(it.second->L, -1);
+	      if (pos.size() < idx)
+		{
+		  lua_pushnumber(it.second->L, (int)pos[idx].X);
+		  lua_pushnumber(it.second->L, (int)pos[idx].Y);
+		  lua_pcall(it.second->L, 3, 1, 0);
+		  lua_pop(it.second->L, 3);
+		  lua_tointeger(it.second->L, -1);
+		}
+	      idx += 1;
 	    }
 	//emit
       }
