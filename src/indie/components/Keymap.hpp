@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Fri Jun 16 21:05:04 2017 Noam Silvy
-// Last update Sun Jun 18 00:51:20 2017 Noam Silvy
+// Last update Sun Jun 18 12:09:26 2017 Noam Silvy
 //
 
 #ifndef KEYMAP_HPP
@@ -31,6 +31,7 @@ namespace indie
 	NON_BLOCK
       };
 
+    // Don't change the order!
     enum class GamepadKeyCode
       {
 	BUTTON1,
@@ -39,7 +40,6 @@ namespace indie
 	BUTTON4,
 	LB,
 	RB,
-	HOME,
         LLEFT,
 	LRIGHT,
 	LUP,
@@ -49,12 +49,12 @@ namespace indie
         RLEFT,
 	RRIGHT,
 	RUP,
-        RDOWN
+        RDOWN,
+	COUNT
       };
 
-    constexpr auto GAMEPAD_KEYCODE_COUNT = static_cast<
-      std::size_t>(std::numeric_limits<GamepadKeyCode>::max());
-    constexpr auto GAMEPAD_BUTTON_COUNT = static_cast<std::size_t>(GamepadKeyCode::HOME);
+    constexpr auto GAMEPAD_BUTTON_COUNT = static_cast<std::size_t>(GamepadKeyCode::LLEFT);
+    constexpr auto GAMEPAD_KEYCODE_COUNT = static_cast<std::size_t>(GamepadKeyCode::COUNT);
 
     using KeyType = std::uint32_t;
     using AssStateKeyTypes = std::pair<InputState, std::vector<KeyType>>;
