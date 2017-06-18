@@ -17,6 +17,12 @@ void        indie::system::registerAllSystems()
 						&indie::system::SubMenu::create);
   indie::engine::systemManager().registerSystem(indie::system::MAIN_MENU,
 						&indie::system::MainMenu::create);
+  indie::engine::systemManager().registerSystem(indie::system::OVER_MENU,
+						&indie::system::OverMenu::create);
   indie::engine::systemManager().registerSystem(indie::system::MAP_GENERATOR,
 						&indie::system::MapGenerator::create);
+  indie::engine::systemManager().registerSystem(indie::system::INPUT,
+						&indie::system::Input::create);
+  indie::engine::systemManager().registerSystem(indie::system::MOVEMENT,
+						&indie::system::Movement::create);
 }

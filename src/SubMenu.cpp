@@ -27,7 +27,7 @@ void		SubMenu::update(void)
 	  _i++;
 	  if (_i % 2 == 0 && j < 4)
 	    {
-	      i->setImage(indie::gfx::videoDriver()->getTexture("./img/pl.png"));
+	      i->setImage(indie::gfx::videoDriver()->getTexture("./img/player.png"));
 	      _img[j]->setImage(indie::gfx::videoDriver()->getTexture("./img/boy.png"));
 	    }
 	  else if (j < 4)
@@ -44,6 +44,12 @@ void		SubMenu::update(void)
 SubMenu::SubMenu()
 {
   _env = indie::gfx::device()->getGUIEnvironment();;
+  IGUISkin	*skin = _env->getSkin();
+  IGUIFont	*font = _env->getFont("myfont.xml");
+  if (font)
+    skin->setFont(font);
+  skin->setFont(_env->getBuiltInFont(), EGDF_TOOLTIP);
+  font->draw(L"Choose players and AI's.", rect<s32>(200,200, 200, 200), SColor(255, 255, 255, 255));
   ITexture *tex = indie::gfx::device()->getVideoDriver()
     ->getTexture("./img/tes.jpg");
   IGUIImage *image
@@ -66,11 +72,13 @@ SubMenu::SubMenu()
   _btn.push_back(this->addButton(1000, 400, 1295, 475));
   _btn.push_back(this->addButton(1400, 400, 1695, 475));
   _btn.push_back(this->addButton(0, 0, 245, 75));
-  _btn[0]->setImage(indie::gfx::videoDriver()->getTexture("./img/pl.png"));
+  _btn.push_back(this->addButton(1300, 800, 1595, 875));
+  _btn[0]->setImage(indie::gfx::videoDriver()->getTexture("./img/player.png"));
   _btn[1]->setImage(indie::gfx::videoDriver()->getTexture("./img/ia.png"));
   _btn[2]->setImage(indie::gfx::videoDriver()->getTexture("./img/ia.png"));
   _btn[3]->setImage(indie::gfx::videoDriver()->getTexture("./img/ia.png"));
   _btn[4]->setImage(indie::gfx::videoDriver()->getTexture("./img/back.png"));
+  _btn[5]->setImage(indie::gfx::videoDriver()->getTexture("./img/launch.png"));
   _i = 0;
 }
 

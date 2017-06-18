@@ -11,8 +11,9 @@ int	main()
   indie::init(); // For now: registers all factories
 
   // indie::engine::contextManager().push(indie::context::GAME);
-  // indie::engine::contextManager().push(indie::context::SUB_MENU);
   indie::engine::contextManager().push(indie::context::MAIN_MENU);
+  // indie::engine::contextManager().push(indie::context::SUB_MENU);
+  // indie::engine::contextManager().push(indie::context::OVER_MENU);
 
   ecs::Entity map = indie::engine::entityManager().create(indie::entity::MAP, MapSettings(17,17));
 
@@ -22,6 +23,7 @@ int	main()
       indie::gfx::videoDriver()->beginScene(true, true,
 					    irr::video::SColor(255, 255, 255, 255));
       indie::engine::systemManager().update();
+      indie::engine::contextManager().execute();
       indie::gfx::sceneManager()->drawAll();
       indie::gfx::videoDriver()->endScene();
       indie::engine::inputReceiver().enableInputHandling();

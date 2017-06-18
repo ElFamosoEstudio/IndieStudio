@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Sat Jun 17 02:28:47 2017 akram abd-ali
-// Last update Sun Jun 18 06:32:33 2017 akram abd-ali
+// Last update Sun Jun 18 16:33:25 2017 akram abd-ali
 //
 
 #include "indie.hpp"
@@ -134,8 +134,8 @@ void	indie::system::Bomb::explode(ecs::Entity entity)
 		    component::Spreadable((spreadable->range - 1),
 					  dir),
 		    component::PlayerId(playerId->id),
-		    component::Timer(50, event::SPREAD_EXPLOSION));
-	  engine::eventManager().emit(event::SPREAD_EXPLOSION, id);
+		    component::Timer(50, event::NO_DAMAGE));
+	  engine::eventManager().emit(event::NO_DAMAGE, id);
 	}
     }
 }

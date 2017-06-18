@@ -5,7 +5,7 @@
 // Login   <bento@epitech.net>
 //
 // Started on  Wed Jun 14 01:47:29 2017 Bento
-// Last update Sun Jun 18 17:02:21 2017 Bento
+// Last update Sun Jun 18 22:26:59 2017 Bento
 //
 
 #include "indie.hpp"
@@ -19,13 +19,13 @@ MainMenu::MainMenu(void)
   _tex.push_back(indie::gfx::videoDriver()->getTexture("./img/mexi.jpg"));
   _tex.push_back(indie::gfx::videoDriver()->getTexture("./img/play.png"));
   _tex.push_back(indie::gfx::videoDriver()->getTexture("./img/option.png"));
-  _tex.push_back(indie::gfx::videoDriver()->getTexture("./img/exit.png"));
+  _tex.push_back(indie::gfx::videoDriver()->getTexture("./img/ex.png"));
   _env->addImage(_tex[0], core::position2d<int>(0,0));
-  _btn.push_back(this->addButton(750, 215, 1130, 300));
+  _btn.push_back(this->addButton(750, 215, 1130, 295));
   _btn[0]->setImage(_tex[1]);
-  _btn.push_back(this->addButton(750, 400, 1170, 485));
+  _btn.push_back(this->addButton(770, 400, 1120, 485));
   _btn[1]->setImage(_tex[2]);
-  _btn.push_back(this->addButton(760, 600, 1130, 685));
+  _btn.push_back(this->addButton(755, 605, 1130, 685));
   _btn[2]->setImage(_tex[3]);
   _env->drawAll();
 }
@@ -44,6 +44,8 @@ void		MainMenu::update(void)
 {
   if (_btn[0]->isPressed())
     indie::engine::contextManager().push(indie::context::SUB_MENU);
+  if (_btn[2]->isPressed())
+    indie::gfx::device()->closeDevice();
   _env->drawAll();
 }
 

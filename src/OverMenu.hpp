@@ -15,7 +15,7 @@ namespace indie
   {
     class OverMenu : public ecs::ISystem
     {
-      std::array<ITexture*, 1>	_txt;
+      std::array<IGUIImage*, 1>		_txt;
       std::array<IGUIButton*, 2>	_btn;
       IGUIEnvironment			*_env;
     public:

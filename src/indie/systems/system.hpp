@@ -8,7 +8,10 @@
 # include "CameraSystem.hpp"
 # include "MainMenu.hpp"
 # include "SubMenu.hpp"
+# include "OverMenu.hpp"
 # include "MapGenerator.hpp"
+# include "Movement.hpp"
+# include "Input.hpp"
 
 namespace indie
 {
@@ -24,7 +27,9 @@ namespace indie
 	MAIN_MENU,
 	SUB_MENU,
 	OVER_MENU,
-	MAP_GENERATOR
+	MAP_GENERATOR,
+	INPUT,
+	MOVEMENT
       };
     void        registerAllSystems();
   }
