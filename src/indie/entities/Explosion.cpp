@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Sun Jun 18 06:41:35 2017 akram abd-ali
-// Last update Sun Jun 18 15:55:19 2017 akram abd-ali
+// Last update Sun Jun 18 19:13:44 2017 Adam Akkari
 //
 
 #include "engine.hpp"
@@ -19,5 +19,7 @@ ecs::Entity	indie::entity::createExplosion()
   ecs::Entity	id;
 
   id = ent.createEntity();
+  ent.addComponentEmplace<Transform>(id);
+  ent.addComponentEmplace<TagExplosion>(id);
   return (id);
 }

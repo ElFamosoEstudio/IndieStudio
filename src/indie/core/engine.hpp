@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 10 03:34:26 2017 akram abd-ali
-// Last update Sun Jun 18 12:24:18 2017 Noam Silvy
+// Last update Sun Jun 18 19:12:12 2017 Adam Akkari
 //
 
 #ifndef ENGINE_HPP
@@ -39,7 +39,8 @@ namespace indie
 						  RemoteExplosion,
 						  Spreadable,
 						  MapSettings,
-						  KeyMaps>;
+						  KeyMaps,
+						  TagExplosion>;
 
     ecs::SystemManager&		systemManager();
 
