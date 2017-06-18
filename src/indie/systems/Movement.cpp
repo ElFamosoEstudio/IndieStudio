@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sun Jun 18 15:29:28 2017 akram abd-ali
-// Last update Sun Jun 18 21:24:07 2017 Noam Silvy
+// Last update Sun Jun 18 21:47:20 2017 Noam Silvy
 //
 
 #include <vector3d.h>
@@ -31,85 +31,128 @@ indie::system::Movement::~Movement()
 {
 }
 
-
 void	indie::system::Movement::goLeft(ecs::Entity entity)
 {
-  auto& speeds = engine::entityManager().getAllComponents<indie::component::Speed>();
-
-  for (auto& it : speeds)
-    {
-      auto id = it.first;
-      auto const& speed = it.second;
-      auto const& move = engine::entityManager().getComponent<indie::component::Movement>(id);
-      if (!move)
-	continue ;
-      auto& transform = engine::entityManager().getComponent<indie::component::Transform>(id);
-      if (!transform)
-	continue ;
-      transform->position.X += (move->value * speed->value);
-    }
+  auto const& it = _movements.find(entity);
+  if (it == _movements.end())
+    _movements[entity] = {false, false, false, false};
+  _movements[entity][LEFT] = true;
 }
 
 void	indie::system::Movement::goRight(ecs::Entity entity)
 {
-  auto& speeds = engine::entityManager().getAllComponents<indie::component::Speed>();
-
-  for (auto& it : speeds)
-    {
-      auto id = it.first;
-      auto const& speed = it.second;
-      auto const& move = engine::entityManager().getComponent<indie::component::Movement>(id);
-      if (!move)
-	continue ;
-      auto& transform = engine::entityManager().getComponent<indie::component::Transform>(id);
-      if (!transform)
-	continue ;
-      transform->position.X -= (move->value * speed->value);
-    }
+  auto const& it = _movements.find(entity);
+  if (it == _movements.end())
+    _movements[entity] = {false, false, false, false};
+  _movements[entity][RIGHT] = true;
 }
 
 void	indie::system::Movement::goUp(ecs::Entity entity)
 {
-  auto& speeds = engine::entityManager().getAllComponents<indie::component::Speed>();
-
-  for (auto& it : speeds)
-    {
-      auto id = it.first;
-      auto const& speed = it.second;
-      auto const& move = engine::entityManager().getComponent<indie::component::Movement>(id);
-      if (!move)
-	continue ;
-      auto& transform = engine::entityManager().getComponent<indie::component::Transform>(id);
-      if (!transform)
-	continue ;
-      transform->position.Y += (move->value * speed->value);
-    }
+  auto const& it = _movements.find(entity);
+  if (it == _movements.end())
+    _movements[entity] = {false, false, false, false};
+  _movements[entity][UP] = true;
 }
 
 void	indie::system::Movement::goDown(ecs::Entity entity)
 {
-  auto& speeds = engine::entityManager().getAllComponents<indie::component::Speed>();
+  auto const& it = _movements.find(entity);
+  if (it == _movements.end())
+    _movements[entity] = {false, false, false, false};
+  _movements[entity][DOWN] = true;
+}
 
-  for (auto& it : speeds)
+
+void	indie::system::Movement::update()
+{
+  for (auto& it : _movements)
     {
       auto id = it.first;
-      auto const& speed = it.second;
+      auto const& speed = engine::entityManager().getComponent<indie::component::Speed>(id);;
       auto const& move = engine::entityManager().getComponent<indie::component::Movement>(id);
-      if (!move)
-	continue ;
       auto& transform = engine::entityManager().getComponent<indie::component::Transform>(id);
-      if (!transform)
-	continue ;
-      transform->position.Y -= (move->value * speed->value);
+      auto reset = [&]() {
+	for (int i = 0; i < 4; ++i)
+	  {
+	    it.second[i] = false;
+	  }
+      };
+      if (!transform || !speed || !move)
+	{
+	  reset();
+	  continue ;
+	}
+      int three = 0;
+      float len = ((move->value * speed->value) * 2);
+      float sqlen = 0.707 * len;
+      for (int i = 0; i < 4; ++i)
+	{
+	  if (it.second[i] == true)
+	    three++;
+	}
+      if ((three >= 3) || (it.second[UP] && it.second[DOWN]) || (it.second[LEFT] && it.second[RIGHT]))
+	{
+	  reset();
+	  continue ;
+	}
+      if (it.second[UP])
+	{
+	  transform->position.Y += len;
+	  transform->rotation.Z = 0;
+	}
+      else if (it.second[DOWN])
+	{
+	  transform->position.Y -= len;
+	  transform->rotation.Z = 180;
+	}
+      else if (it.second[LEFT])
+	{
+	  transform->position.X += len;
+	  transform->rotation.Z = 90;
+	}
+      else if (it.second[RIGHT])
+	{
+	  transform->position.X -= len;
+	  transform->rotation.Z = 270;
+	}
+      if ((it.second[UP]) && (it.second[LEFT]))
+	{
+	  transform->position.Y += sqlen;
+	  transform->position.X += sqlen;
+	  transform->rotation.Z = 45;
+	}
+      else if ((it.second[UP]) && (it.second[RIGHT]))
+	{
+	  transform->position.Y += sqlen;
+	  transform->position.X -= sqlen;
+	  transform->rotation.Z = 315;
+	}
+      else if ((it.second[DOWN]) && (it.second[LEFT]))
+	{
+	  transform->position.Y -= sqlen;
+	  transform->position.X += sqlen;
+	  transform->rotation.Z = 135;
+	}
+      else if ((it.second[DOWN]) && (it.second[RIGHT]))
+	{
+	  transform->position.Y -= sqlen;
+	  transform->position.X -= sqlen;
+	  transform->rotation.Z = 225;
+	}
+      reset();
     }
 }
 
+<<<<<<< HEAD
 
 void	indie::system::Movement::update()
 {
 
 }
 
+=======
+>>>>>>> 204df1289fd20735273e33f62985a25f814df341
 ecs::SysType	indie::system::Movement::type() const
 {
   return (system::MOVEMENT);

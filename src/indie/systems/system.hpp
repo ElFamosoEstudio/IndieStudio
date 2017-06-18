@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 //
 // Started on  Sat Jun 17 00:07:05 2017 Adam Akkari
-// Last update Sun Jun 18 20:58:35 2017 Noam Silvy
+// Last update Sun Jun 18 21:47:00 2017 Noam Silvy
 //
 
 #ifndef SYSTEM_HPP
@@ -18,6 +18,7 @@
 # include "CameraSystem.hpp"
 # include "MapGenerator.hpp"
 # include "Movement.hpp"
+# include "SysTime.hpp"
 # include "Input.hpp"
 
 namespace indie
@@ -33,7 +34,8 @@ namespace indie
 	CAMERA_SYSTEM,
 	MAP_GENERATOR,
 	INPUT,
-	MOVEMENT
+	MOVEMENT,
+	SYSTIME
       };
     void        registerAllSystems();
   }
