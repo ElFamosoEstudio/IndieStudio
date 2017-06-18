@@ -5,10 +5,11 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat Jun 17 05:13:04 2017 Adam Akkari
-// Last update Sun Jun 18 06:43:29 2017 Adam Akkari
+// Last update Sun Jun 18 07:11:26 2017 Adam Akkari
 //
 
-#include <iostream>
+#include <chrono>
+#include <random>
 #include "indie.hpp"
 #include "MapGenerator.hpp"
 
@@ -47,16 +48,20 @@ void		indie::system::MapGenerator::bombDropped(ecs::Entity ent)
 
 void	placeCrate(unsigned int i, unsigned int j,
 		   unsigned int size_x, unsigned int size_y,
-		   std::vector<std::pair<ecs::Entity, element> > &data)
+		   std::vector<std::pair<ecs::Entity, element> > &data,
+		   unsigned int val)
 {
   if ((!(i < 3 && j < 3) || (i == 2 && j == 2)) &&
       (!(i < 3 && j > size_y - 4) || (i == 2 && j == size_y - 3)) &&
       (!(i > size_x - 4 && j < 3) || (i == size_x - 3 && j == 2)) &&
       (!(i > size_x - 4 && j > size_y - 4) || (i == size_x - 3 && j == size_x - 3)))
     {
-      data[j * size_x + i].first = indie::engine::entityManager().create
-	(indie::entity::CRATE, Transform(i, j, 0));
-      data[j * size_x + i].second = CRATE;
+      if (val % 10)
+	{
+	  data[j * size_x + i].first = indie::engine::entityManager().create
+	    (indie::entity::CRATE, Transform(i, j, 0));
+	  data[j * size_x + i].second = CRATE;
+	}
     }
 }
 
@@ -71,6 +76,8 @@ bool		indie::system::MapGenerator::init_map()
   unsigned int	max_size = size_x > size_y ? size_x : size_y;
   std::list<ecs::Entity>	&boxes = settings.begin()->second->boxes;
   std::vector<std::pair<ecs::Entity, element> >	&data = settings.begin()->second->map;
+  unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+  std::mt19937 gen(seed);
   
   boxes.push_back(indie::engine::entityManager().create
 		  (indie::entity::BOX, Transform(-1, -1, 0)));
@@ -95,7 +102,7 @@ bool		indie::system::MapGenerator::init_map()
 	      data[j * size_x + i].second = BLOCK;
 	    }
 	  else
-	    placeCrate(i, j, size_x, size_y, data);
+	    placeCrate(i, j, size_x, size_y, data, gen());
 	  boxes.push_back(indie::engine::entityManager().create
 			  (indie::entity::BOX, Transform(-1, j, 0)));
 	  boxes.push_back(indie::engine::entityManager().create
