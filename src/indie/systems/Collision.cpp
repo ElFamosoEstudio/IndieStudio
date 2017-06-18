@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Fri Jun 16 17:56:19 2017 akram abd-ali
-// Last update Sun Jun 18 15:08:25 2017 akram abd-ali
+// Last update Sun Jun 18 20:56:37 2017 Noam Silvy
 //
 
 #include "irrlicht.h"
@@ -16,16 +16,14 @@ indie::system::Collision::Collision()
 {
   auto key = engine::eventManager().
     subscribe(event::REMOVE_SKEL, &indie::system::Collision::removeSkel, this);
-  _subKeys[event::REMOVE_SKEL] = key;
+  _eventKeys[event::REMOVE_SKEL] = key;
   key = engine::eventManager().
     subscribe(event::COL_ADD_BOMB, &indie::system::Collision::addBombsToAnimator, this);
-  _subKeys[event::COL_ADD_BOMB] = key;
+  _eventKeys[event::COL_ADD_BOMB] = key;
 }
 
 indie::system::Collision::~Collision()
 {
-  // for (auto const& it : _subKeys)
-  //   engine::eventManager().unsubscribe(it.first, it.second);
 }
 
 void	indie::system::Collision::addBombsToAnimator(ecs::Entity entity)
