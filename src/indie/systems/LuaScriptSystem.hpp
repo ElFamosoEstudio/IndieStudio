@@ -5,7 +5,7 @@
 // Login   <julien.montagnat@epitech.eu>
 // 
 // Started on  Sat Jun 17 21:41:53 2017 julien
-// Last update Sun Jun 18 19:42:05 2017 julien
+// Last update Sun Jun 18 20:45:46 2017 Adam Akkari
 //
 
 #ifndef LUASCRIPT_SYSTEM_HPP
@@ -47,11 +47,21 @@ namespace indie
       ~LuaScriptSystem()
       {
 	auto &lua_info = engine::entityManager().getAllComponents<indie::component::LuaScript>();
-
+	
 	for (auto const &it : lua_info)
 	  {
 	    lua_close(it.second->L);
 	  }
+      }
+      std::vector<indie::component::Transform>	getPlayerPos()
+      {
+	std::vector<indie::component::Transform>	player;
+	auto	&players = engine::entityManager().getAllComponents<indie::component::TagPlayer>();
+
+	for (auto &idx:players)
+	  player.push_back
+	    (engine::entityManager().getComponent<indie::component::Transform>(idx.first));
+	return (player);
       }
       void		update()
       {
