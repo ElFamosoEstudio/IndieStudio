@@ -1,22 +1,21 @@
 //
-// Input.hpp for  in /home/abd-al_a/rendu/IndieStudio
+// Input.hpp for indie studio in /home/silvy_n/projects/IndieStudio/src/indie/systems
 //
-// Made by akram abd-ali
-// Login   <abd-al_a@epitech.net>
+// Made by Noam Silvy
+// Login   <silvy_n@epitech.net>
 //
-// Started on  Mon Jun 12 20:47:37 2017 akram abd-ali
-// Last update Fri Jun 16 01:46:00 2017 Adam Akkari
+// Started on  Sat Jun 17 08:51:52 2017 Noam Silvy
+// Last update Sun Jun 18 05:56:38 2017 Noam Silvy
 //
 
 #ifndef INPUT_SYSTEM_HPP
 # define INPUT_SYSTEM_HPP
 
-# include <cstddef>
-# include <map>
-# include <iostream>
+# include <array>
+# include "irrlicht.h"
 # include "ecs.hpp"
 # include "InputReceiver.hpp"
-# include "system.hpp"
+# include "Keymap.hpp"
 
 namespace indie
 {
@@ -24,27 +23,29 @@ namespace indie
   {
     class Input : public ecs::ISystem
     {
-    private:
-      indie::InputReceiver	*_receiver;
     public:
-      Input() = default;
-      Input(indie::InputReceiver *receiver) : _receiver(receiver) {}
+      using GamePadArray = std::array<InputState, component::GAMEPAD_KEYCODE_COUNT>;
+    private:
+      GamePadArray	_gamepad;
+      InputReceiver	*_rcvr;
+    public:
+      Input();
       ~Input() = default;
       Input(Input const&) = delete;
       Input& operator=(Input const&) = delete;
-    public:
-      void	update() {
-	// std::cout << "update input" << std::endl;
-      }
-      ecs::SysType	type() const
-      {
-	return (system::INPUT);
-      }
-      static ISystem	*create()
-      {
-	return new Input;
-      }
+
+      void		update() override;
+      ecs::SysType	type() const override;
+      static ISystem	*create();
+
+    private:
+      void		_updateGamePad(irr::u8 id);
+      InputState	_getAxisInputState(irr::u8	id,
+					   std::size_t	idx,
+					   bool		isPositive);
+      bool		_needToBreak(component::KeyMapState state, bool isMatch);
     };
   }
 }
-#endif // !INPUT_SYSTEM_HPP
+
+#endif //!INPUT_SYSTEM_HPP

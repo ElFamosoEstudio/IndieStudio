@@ -1,17 +1,15 @@
 //
 // Box.cpp for bomberman in /home/akkari_a/rendu/IndieStudio/src/indie/entities
-// 
+//
 // Made by Adam Akkari
 // Login   <akkari_a@epitech.net>
-// 
+//
 // Started on  Fri Jun 16 21:40:38 2017 Adam Akkari
-// Last update Sun Jun 18 03:50:26 2017 Adam Akkari
+// Last update Sun Jun 18 12:26:19 2017 Noam Silvy
 //
 
-#include "engine.hpp"
-#include "entity.hpp"
-
-using namespace indie::component;
+#include "irrlicht.h"
+#include "indie.hpp"
 
 ecs::Entity	indie::entity::createBox()
 {

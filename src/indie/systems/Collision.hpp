@@ -1,11 +1,11 @@
 //
 // Collision.hpp for  in /home/abd-al_a/rendu/IndieStudio
-// 
+//
 // Made by akram abd-ali
 // Login   <abd-al_a@epitech.net>
-// 
+//
 // Started on  Fri Jun 16 17:24:21 2017 akram abd-ali
-// Last update Fri Jun 16 21:33:43 2017 akram abd-ali
+// Last update Sun Jun 18 04:02:58 2017 Noam Silvy
 //
 
 #ifndef COLLISION_SYSTEM_HPP
@@ -22,7 +22,7 @@ namespace indie
     private:
 
     public:
-      Collision() = default;
+      Collision();
       ~Collision() = default;
       Collision(Collision const&) = delete;
       Collision& operator=(Collision const&) = delete;
