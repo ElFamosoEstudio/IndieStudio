@@ -5,11 +5,11 @@
 // Login   <bento@epitech.net>
 //
 // Started on  Wed Jun 14 01:47:29 2017 Bento
-// Last update Sat Jun 17 23:03:47 2017 Bento
+// Last update Sun Jun 18 01:56:23 2017 Bento
 //
 
 #include "indie.hpp"
-#include "Menu.hpp"
+#include "MainMenu.hpp"
 
 using namespace indie::system;
 
@@ -34,16 +34,6 @@ MainMenu::MainMenu(void)
 MainMenu::~MainMenu()
 {
 
-}
-
-IrrlichtDevice		*MainMenu::getResizedDevice()
-{
-  IrrlichtDevice	*nulldevice = createDevice(video::EDT_NULL);
-
-  core::dimension2d<u32> deskres = nulldevice->getVideoModeList()->getDesktopResolution();
-  std::cout << deskres.Height << std::endl;
-  IrrlichtDevice	*newDevice = createDevice(irr::video::EDT_DIRECT3D9, deskres, 16, false);
-  return (newDevice);
 }
 
 IGUIFont	*MainMenu::getFont(std::string const&path)
@@ -75,7 +65,6 @@ IGUIButton	*MainMenu::addButton(int x1, int y1, int x2, int y2)
 
 void		MainMenu::update(void)
 {
-  // this->getResizedDevice();
   if (_btn[0]->isPressed())
     std::cout << "Play" << std::endl;
   if (_btn[2]->isPressed())

@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Wed Jun 14 13:56:47 2017 Noam Silvy
-// Last update Sat Jun 17 05:46:01 2017 Bento
+// Last update Sun Jun 18 01:42:30 2017 Bento
 //
 
 #ifndef CONTEXT_HPP
@@ -20,7 +20,8 @@ namespace indie
 	SPLASH_SCREEN,
 	MAIN_MENU,
 	GAME,
-	PAUSE_MENU
+	PAUSE_MENU,
+	SUB_MENU
       };
 
     void	registerAllContexts();
