@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Wed Jun 14 02:11:12 2017 Noam Silvy
-// Last update Sun Jun 18 15:28:30 2017 akram abd-ali
+// Last update Sun Jun 18 16:57:31 2017 akram abd-ali
 //
 
 #include "engine.hpp"
@@ -18,7 +18,7 @@ void        indie::system::registerAllSystems()
   indie::engine::systemManager().registerSystem(indie::system::BOMB,
 						&indie::system::Bomb::create);
   indie::engine::systemManager().registerSystem(indie::system::EXPLOSION,
-						&indie::system::Bomb::create);
+						&indie::system::Explosion::create);
   indie::engine::systemManager().registerSystem(indie::system::MESH_RENDERER,
 						&indie::system::MeshRenderer::create);
   indie::engine::systemManager().registerSystem(indie::system::CAMERA_SYSTEM,
@@ -29,4 +29,6 @@ void        indie::system::registerAllSystems()
 						&indie::system::Input::create);
   indie::engine::systemManager().registerSystem(indie::system::MOVEMENT,
 						&indie::system::Movement::create);
+  indie::engine::systemManager().registerSystem(indie::system::SYSTIME,
+						&indie::system::SysTime::create);
 }
