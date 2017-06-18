@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Fri Jun 16 21:40:38 2017 Adam Akkari
-// Last update Sun Jun 18 03:50:26 2017 Adam Akkari
+// Last update Sun Jun 18 11:52:20 2017 akram abd-ali
 //
 
 #include "engine.hpp"
@@ -21,5 +21,7 @@ ecs::Entity	indie::entity::createBox()
   id = ent.createEntity();
   ent.addComponentEmplace<Transform>(id);
   ent.addComponentEmplace<Renderer3d>(id, "gfx/cube1.obj", "gfx/brick.jpg");
+  auto &render = ent.getComponent<Renderer3d>(id);
+  ent.addComponentEmplace<Skeleton>(id, render->mesh);
   return (id);
 }

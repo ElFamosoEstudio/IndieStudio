@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Fri Jun 16 21:09:13 2017 Noam Silvy
-// Last update Sun Jun 18 07:58:01 2017 akram abd-ali
+// Last update Sun Jun 18 14:46:24 2017 akram abd-ali
 //
 
 #ifndef EVENT_HPP
@@ -21,12 +21,15 @@ namespace indie
 	DETONATE_BOMB,
 	MAP_3D_FROM_2D,
 	SPREAD_EXPLOSION,
+	REMOVE_SKEL,
+	COL_ADD_BOMB,
+	
 	// BOMB_EXPLODED -> event happened
 	// GO_RIGHT -> action requested
 	COLLIDED,
 	BOMB_DROPPED,
 	DROP_BOMB_ERR,
-	EXPLOSION_ERR
+	EXPLOSION_RM
       };
   }
 }
