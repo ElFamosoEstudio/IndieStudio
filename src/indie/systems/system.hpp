@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat Jun 17 00:07:05 2017 Adam Akkari
-// Last update Sat Jun 17 00:07:05 2017 Adam Akkari
+// Last update Sun Jun 18 02:41:16 2017 julien
 //
 
 #ifndef SYSTEM_HPP
@@ -23,7 +23,9 @@ namespace indie
       {
 	COLLISION,
 	MESH_RENDERER,
-	CAMERA_SYSTEM
+	CAMERA_SYSTEM,
+	LUASCRIPT_SYSTEM,
+	SOUND_SYSTEM
       };
     void        registerAllSystems();
   }

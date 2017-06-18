@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Fri Jun 16 21:09:13 2017 Noam Silvy
-// Last update Sat Jun 17 00:38:56 2017 akram abd-ali
+// Last update Sun Jun 18 13:04:22 2017 julien
 //
 
 #ifndef EVENT_HPP
@@ -19,6 +19,13 @@ namespace indie
       {
 	// BOMB_EXPLODED -> event happened
 	// GO_RIGHT -> action requested
+	GO_RIGHT,
+	GO_LEFT,
+	GO_DOWN,
+	GO_UP,
+	PLAYER_MOVED,
+	BOMB_DROPED,
+	BOMB_EXPLODED,
 	COLLIDED
       };
   }
