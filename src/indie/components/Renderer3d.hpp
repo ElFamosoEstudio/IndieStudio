@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Thu Jun 15 22:23:05 2017 Adam Akkari
-// Last update Fri Jun 16 23:44:55 2017 Adam Akkari
+// Last update Sun Jun 18 16:02:28 2017 Adam Akkari
 //
 
 #ifndef RENDERER3D_HPP
