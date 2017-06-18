@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Sun Jun 11 10:31:20 2017 Noam Silvy
-// Last update Thu Jun 15 02:34:22 2017 Noam Silvy
+// Last update Sun Jun 18 12:23:23 2017 Noam Silvy
 //
 
 #include <unistd.h>
@@ -26,7 +26,6 @@ void	InputReceiver::Gamepad::update(irr::u32 axes)
 {
   this->buttons.fill(InputState::UP);
   this->oldButtons = 0;
-  this->pov.fill(InputState::UP);
   auto axes_size = static_cast<std::vector<float>::size_type>(axes);
   this->axes.resize(axes_size);
   this->axes.assign(axes_size, 0.0f);
@@ -39,9 +38,8 @@ void	InputReceiver::updateGamePads()
   if (_gamePadsSupported = _device->activateJoysticks(gamePadsInfoArray)) {
     auto size = gamePadsInfoArray.size();
     _gamePads.clear();
-    for (irr::u32 idx = 0; idx < size; idx++) {
+    for (irr::u32 idx = 0; idx < size; idx++)
       _gamePads[gamePadsInfoArray[idx].Joystick].update(gamePadsInfoArray[idx].Axes);
-    }
   }
 }
 
@@ -86,8 +84,9 @@ void	InputReceiver::_updateJoystickButtons(irr::SEvent::SJoystickEvent const& ev
 
 void	InputReceiver::_updateJoystickAxes(irr::SEvent::SJoystickEvent const& event)
 {
-  for (int i = 0, numAxes = _gamePads[event.Joystick].axes.size(); i < numAxes; ++i)
+  for (int i = 0, numAxes = _gamePads[event.Joystick].axes.size(); i < numAxes; ++i) {
     _gamePads[event.Joystick].axes[i] = event.Axis[i] / MAX_S16;
+  }
 }
 
 bool	InputReceiver::_onEventJoystick(irr::SEvent::SJoystickEvent const& event)

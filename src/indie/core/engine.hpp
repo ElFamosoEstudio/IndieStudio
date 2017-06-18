@@ -1,11 +1,11 @@
 //
-// Engine.hpp for  in /home/abd-al_a/rendu/IndieStudio
-//
-// Made by akram abd-ali
-// Login   <abd-al_a@epitech.net>
-//
-// Started on  Sat Jun 10 03:34:26 2017 akram abd-ali
-// Last update Sun Jun 18 05:50:51 2017 julien
+// engine.hpp for  in /home/julien/C++/IndieStudio
+// 
+// Made by julien
+// Login   <julien.montagnat@epitech.eu>
+// 
+// Started on  Sun Jun 18 15:07:53 2017 julien
+// Last update Sun Jun 18 15:08:34 2017 julien
 //
 
 #ifndef ENGINE_HPP
@@ -14,13 +14,35 @@
 # include "ecs.hpp"
 # include "InputReceiver.hpp"
 # include "components.hpp"
+# include "CountDown.hpp"
 
 namespace indie
 {
   namespace engine
   {
     using namespace component;
-    using IndieEntityManager = ecs::EntityManager<Transform, Renderer3d, Skeleton, Camera, LuaScript, Sound>;
+
+    using IndieEntityManager = ecs::EntityManager<Transform,
+						  Renderer3d,
+						  Skeleton,
+						  Camera,
+						  Timer,
+						  Interval,
+						  BombInfo,
+						  PowerInfo,
+						  LifeNumber,
+						  Damage,
+						  HP,
+						  Movement,
+						  Respawn,
+						  Speed,
+						  PlayerId,
+						  RemoteExplosion,
+						  Spreadable,
+						  MapSettings,
+						  KeyMaps,
+						  LuaScript,
+						  Sound>;
 
     ecs::SystemManager&		systemManager();
 
@@ -31,9 +53,8 @@ namespace indie
     indie::InputReceiver&	inputReceiver();
 
     IndieEntityManager&		entityManager();
-
-    void			init();
   }
+  void			init();
 }
 
 #endif // !ENGINE_HPP

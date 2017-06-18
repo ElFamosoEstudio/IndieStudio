@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Thu Jun  8 01:13:05 2017 akram abd-ali
-// Last update Fri Jun 16 01:57:20 2017 Noam Silvy
+// Last update Sun Jun 18 12:27:44 2017 Noam Silvy
 //
 
 #ifndef		EVENT_MANAGER_HPP
@@ -25,14 +25,18 @@ namespace		ecs
   template<typename EventType = EventTypeDefault>
   class EventManager
   {
+  public:
+  private:
     class Event
     {
     private:
-      std::map<EventKey, std::function<void(Entity)>>	_callbacks;
+      std::map<EventKey, std::function<void(Entity)> >	_callbacks;
       EventKey						_nextKey;
     public:
-      Event() = default;
-      Event(std::function<void(Entity)> &&callback, EventKey& key) {
+      Event() : _nextKey(0) {}
+      Event(std::function<void(Entity)> &&callback, EventKey& key)
+	: _nextKey(0)
+      {
 	key = subscribe(std::move(callback));
       }
       ~Event() = default;
@@ -59,7 +63,6 @@ namespace		ecs
     };
 
   private:
-    static EventManager* _obj;
     std::map<EventType, std::unique_ptr<Event>> _events;
   public:
     EventManager() = default;

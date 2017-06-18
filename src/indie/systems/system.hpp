@@ -1,11 +1,11 @@
 //
-// system.hpp for bomberman in /home/akkari_a/rendu/IndieStudio/src/indie/systems
+// system.hpp for  in /home/julien/C++/IndieStudio
 // 
-// Made by Adam Akkari
-// Login   <akkari_a@epitech.net>
+// Made by julien
+// Login   <julien.montagnat@epitech.eu>
 // 
-// Started on  Sat Jun 17 00:07:05 2017 Adam Akkari
-// Last update Sun Jun 18 02:41:16 2017 julien
+// Started on  Sun Jun 18 15:10:31 2017 julien
+// Last update Sun Jun 18 15:10:32 2017 julien
 //
 
 #ifndef SYSTEM_HPP
@@ -13,7 +13,11 @@
 
 # include "MeshRenderer.hpp"
 # include "Collision.hpp"
+# include "Bomb.hpp"
+# include "Explosion.hpp"
 # include "CameraSystem.hpp"
+# include "MapGenerator.hpp"
+# include "Input.hpp"
 
 namespace indie
 {
@@ -22,10 +26,14 @@ namespace indie
     enum ESystem
       {
 	COLLISION,
+	BOMB,
+	EXPLOSION,
 	MESH_RENDERER,
 	CAMERA_SYSTEM,
 	LUASCRIPT_SYSTEM,
-	SOUND_SYSTEM
+	SOUND_SYSTEM,
+	MAP_GENERATOR,
+	INPUT
       };
     void        registerAllSystems();
   }

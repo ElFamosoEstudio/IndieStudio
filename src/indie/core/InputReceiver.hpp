@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Sun Jun 11 00:24:41 2017 Noam Silvy
-// Last update Thu Jun 15 01:33:55 2017 Noam Silvy
+// Last update Fri Jun 16 23:06:42 2017 Noam Silvy
 //
 
 #ifndef INPUT_RECEIVER_HPP
@@ -21,18 +21,10 @@
 
 namespace indie
 {
+  enum class InputState { UP = 0, DOWN, PRESSED, RELEASED };
+
   class InputReceiver : public irr::IEventReceiver
   {
-  public:
-    enum class InputState { UP = 0, DOWN, PRESSED, RELEASED };
-    enum PovDir
-      {
-	POV_UP,
-	POV_DOWN,
-	POV_LEFT,
-	POV_RIGHT,
-	NUMBER_OF_POV
-      };
   public:
     using Keyboard = std::array<InputState, irr::KEY_KEY_CODES_COUNT>;
   private:
@@ -44,7 +36,6 @@ namespace indie
     {
       std::array<InputState, NUMBER_OF_BUTTONS>	buttons;
       irr::u32					oldButtons;
-      std::array<InputState, NUMBER_OF_POV>	pov;
       std::vector<float>			axes;
       void update(irr::u32 axes);
     };
@@ -73,9 +64,6 @@ namespace indie
   private:
     bool _onEventKeyboard(irr::SEvent::SKeyInput const& input);
     void _updateJoystickButtons(irr::SEvent::SJoystickEvent const& event);
-    void _updateJoystickPovNative(irr::SEvent::SJoystickEvent const& event);
-    void _updateJoystickPovWithAxes(irr::SEvent::SJoystickEvent const& event);
-    void _updateJoystickPov(irr::SEvent::SJoystickEvent const& event);
     void _updateJoystickAxes(irr::SEvent::SJoystickEvent const& event);
     bool _onEventJoystick(irr::SEvent::SJoystickEvent const& event);
   };

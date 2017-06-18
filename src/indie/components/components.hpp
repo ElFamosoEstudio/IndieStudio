@@ -1,11 +1,11 @@
 //
-// components.hpp for indie studio in /home/silvy_n/projects/IndieStudio/src/indie/components
-//
-// Made by Noam Silvy
-// Login   <silvy_n@epitech.net>
-//
-// Started on  Fri Jun 16 03:39:22 2017 Noam Silvy
-// Last update Sun Jun 18 03:08:50 2017 julien
+// components.hpp for  in /home/julien/C++/IndieStudio
+// 
+// Made by julien
+// Login   <julien.montagnat@epitech.eu>
+// 
+// Started on  Sun Jun 18 15:08:46 2017 julien
+// Last update Sun Jun 18 15:09:05 2017 julien
 //
 
 #ifndef COMPONENTS_HPP
@@ -17,5 +17,20 @@
 # include "Camera.hpp"
 # include "LuaScript.hpp"
 # include "Sound.hpp"
+# include "Timer.hpp"
+# include "Interval.hpp"
+# include "BombInfo.hpp"
+# include "PowerInfo.hpp"
+# include "LifeNumber.hpp"
+# include "Damage.hpp"
+# include "HP.hpp"
+# include "Movement.hpp"
+# include "Respawn.hpp"
+# include "Speed.hpp"
+# include "PlayerId.hpp"
+# include "RemoteExplosion.hpp"
+# include "Spreadable.hpp"
+# include "MapSettings.hpp"
+# include "Keymap.hpp"
 
 #endif //!COMPONENTS_HPP

@@ -12,19 +12,7 @@ int	main()
 
   indie::engine::contextManager().push(indie::context::GAME);
 
-  ecs::Entity box = indie::engine::entityManager().create(indie::entity::BOX, Transform(1, 0, 0));
-  ecs::Entity cam = indie::engine::entityManager().create(indie::entity::CAMERA);
-
-  // indie::engine::entityManager().getComponent<Transform>(box)->position
-  //   = irr::core::vector3df(0, 0, 0);
-  indie::engine::entityManager().getComponent<Transform>(box)->rotation
-    = irr::core::vector3df(0, 0, 0);
-  indie::engine::entityManager().getComponent<Transform>(box)->scale
-    = irr::core::vector3df(1, 1, 1);
-  indie::engine::entityManager().getComponent<Transform>(cam)->position
-    = irr::core::vector3df(0, -1, 5);
-  indie::engine::entityManager().getComponent<Camera>(cam)->lookat
-    = irr::core::vector3df(0, 0, 0);
+  ecs::Entity map = indie::engine::entityManager().create(indie::entity::MAP, MapSettings(17,17));
 
   while (indie::gfx::device()->run())
     {
@@ -34,7 +22,7 @@ int	main()
       indie::engine::systemManager().update();
       indie::gfx::sceneManager()->drawAll();
       indie::gfx::videoDriver()->endScene();
-      indie::engine::inputReceiver().enableInputHandling();	
+      indie::engine::inputReceiver().enableInputHandling();
     }
   indie::engine::inputReceiver().disableInputHandling();
   indie::gfx::device()->drop();

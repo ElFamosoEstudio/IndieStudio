@@ -5,24 +5,33 @@
 // Login   <julien.montagnat@epitech.eu>
 // 
 // Started on  Sun Jun 18 04:03:57 2017 julien
-// Last update Sun Jun 18 13:23:37 2017 julien
+// Last update Sun Jun 18 18:04:27 2017 julien
 //
 
+#include <functional>
+#include "event.hpp"
+#include "Sound.hpp"
 #include "engine.hpp"
 #include "components.hpp"
 #include "SoundSystem.hpp"
 
+// namespace {
+//   constexpr std::size_t SIZE = 5;
+//   constexpr static const std::array<indie::event::EEvent, SIZE> eventArray =
+//     {
+//       indie::event::EEvent::PLAYER_MOVED,
+//       indie::event::EEvent::BOMB_EXPLODED,
+//       indie::event::EEvent::COLLIDED,
+//       indie::event::EEvent::BOMB_DROPPED
+//     };
+// }
+
 using namespace indie::component;
 
-//map[id] -> map[even] -> buffer
-
-//subscribe in constructor all sound even needed even -> ptr func
-
-//subscribe move &callback
-
-//callback template sur event
-
-
+void	indie::system::SoundSystem::callback(indie::event::EEvent event, ecs::Entity id)
+{
+  _sound_list.push({event, id});
+}
 
 indie::system::SoundSystem::SoundSystem()
 {
@@ -35,8 +44,26 @@ indie::system::SoundSystem::SoundSystem()
 	tmpsound.loadFromFile(elem.second);
 	_sound[elem.first][it.first] = tmpsound;
       }
-  for (auto & elem : _sound)
-    engine::eventManager().subscribe(elem.first, &callback<elem>);
+  engine::eventManager().subscribe(indie::event::EEvent::PLAYER_MOVED,
+				   std::bind(&SoundSystem::callback, this,
+					     indie::event::EEvent::PLAYER_MOVED,
+					     std::placeholders::_1));
+  engine::eventManager().subscribe(indie::event::EEvent::BOMB_EXPLODED,
+				   std::bind(&SoundSystem::callback, this,
+					     indie::event::EEvent::BOMB_EXPLODED,
+					     std::placeholders::_1));
+  engine::eventManager().subscribe(indie::event::EEvent::BOMB_EXPLODED,
+				   std::bind(&SoundSystem::callback, this,
+					     indie::event::EEvent::COLLIDED,
+					     std::placeholders::_1));
+  engine::eventManager().subscribe(indie::event::EEvent::COLLIDED,
+				   std::bind(&SoundSystem::callback, this,
+					     indie::event::EEvent::PLAYER_MOVED,
+					     std::placeholders::_1));
+  engine::eventManager().subscribe(indie::event::EEvent::BOMB_DROPPED,
+				   std::bind(&SoundSystem::callback, this,
+					     indie::event::EEvent::BOMB_DROPPED,
+					     std::placeholders::_1));
 }
 
 void	indie::system::SoundSystem::update()
