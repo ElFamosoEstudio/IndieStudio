@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sun Jun 18 12:15:10 2017 Adam Akkari
-// Last update Sun Jun 18 16:03:57 2017 Adam Akkari
+// Last update Sun Jun 18 20:33:46 2017 Adam Akkari
 //
 
 #include "engine.hpp"
@@ -26,5 +26,6 @@ ecs::Entity	indie::entity::createPlayer()
   ent.addComponentEmplace<HP>(id, 1);
   ent.addComponentEmplace<Speed>(id, 1);
   ent.addComponentEmplace<Movement>(id, 0.05f);
+  ent.addComponentEmplace<TagPlayer>(id);
   return (id);
 }
