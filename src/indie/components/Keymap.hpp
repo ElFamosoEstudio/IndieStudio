@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Fri Jun 16 21:05:04 2017 Noam Silvy
-// Last update Sun Jun 18 12:09:26 2017 Noam Silvy
+// Last update Sun Jun 18 12:17:58 2017 Noam Silvy
 //
 
 #ifndef KEYMAP_HPP
@@ -72,3 +72,39 @@ namespace indie
 }
 
 #endif //!KEYMAP_HPP
+
+// component::KeyMaps   mapStack;
+// component::KeyMap	map = {{event::GO_RIGHT,
+// 				{InputState::DOWN,
+// 				 {static_cast<component::KeyType>(component::
+// 								  GamepadKeyCode::LRIGHT)}}},
+// 			       {event::GO_LEFT,
+// 				{InputState::DOWN,
+// 				 {static_cast<component::KeyType>(component::
+// 								  GamepadKeyCode::LLEFT)}}},
+// 			       {event::GO_UP,
+// 				{InputState::DOWN,
+// 				 {static_cast<component::KeyType>(component::
+// 								  GamepadKeyCode::LUP)}}},
+// 			       {event::GO_DOWN,
+// 				{InputState::DOWN,
+// 				 {static_cast<component::KeyType>(component::
+// 								  GamepadKeyCode::LDOWN)}}}};
+
+// mapStack.id = 0;
+// mapStack.keymaps.push_front({map, indie::component::KeyMapState::NORMAL});
+// entityManager.addComponent(id, mapStack);
+
+// std::cout << "CREATED CollisionSystem" << std::endl;
+// indie::engine::eventManager().subscribe(indie::event::GO_RIGHT, [](ecs::Entity id){
+//     std::cout << "RECEIVED GO_RIGHT from " << id << std::endl;
+//   });
+// indie::engine::eventManager().subscribe(indie::event::GO_LEFT, [](ecs::Entity id){
+//     std::cout << "RECEIVED GO_LEFT from " << id << std::endl;
+//   });
+// indie::engine::eventManager().subscribe(indie::event::GO_UP, [](ecs::Entity id){
+//     std::cout << "RECEIVED GO_UP from " << id << std::endl;
+//   });
+// indie::engine::eventManager().subscribe(indie::event::GO_DOWN, [](ecs::Entity id){
+//     std::cout << "RECEIVED GO_DOWN from " << id << std::endl;
+//   });
