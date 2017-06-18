@@ -20,6 +20,7 @@ int	main()
       indie::gfx::videoDriver()->beginScene(true, true,
 					    irr::video::SColor(255, 255, 255, 255));
       indie::engine::systemManager().update();
+      indie::engine::contextManager().execute();
       indie::gfx::sceneManager()->drawAll();
       indie::gfx::videoDriver()->endScene();
       indie::engine::inputReceiver().enableInputHandling();
