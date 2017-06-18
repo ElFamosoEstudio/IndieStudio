@@ -34,7 +34,7 @@ int	main()
       indie::engine::systemManager().update();
       indie::gfx::sceneManager()->drawAll();
       indie::gfx::videoDriver()->endScene();
-      indie::engine::inputReceiver().enableInputHandling();	
+      indie::engine::inputReceiver().enableInputHandling();
     }
   indie::engine::inputReceiver().disableInputHandling();
   indie::gfx::device()->drop();
