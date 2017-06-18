@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 17 02:27:36 2017 akram abd-ali
-// Last update Sun Jun 18 21:26:40 2017 Noam Silvy
+// Last update Sun Jun 18 22:22:57 2017 akram abd-ali
 //
 
 #ifndef BOMB_SYSTEM_HPP
@@ -13,7 +13,6 @@
 
 # include <unordered_map>
 # include <vector>
-# include "components.hpp"
 # include "indie.hpp"
 # include "ASystem.hpp"
 

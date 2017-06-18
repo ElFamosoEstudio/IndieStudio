@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Sun Jun 18 20:21:40 2017 akram abd-ali
-// Last update Sun Jun 18 21:20:56 2017 akram abd-ali
+// Last update Sun Jun 18 22:02:57 2017 akram abd-ali
 //
 
 #include "Spawn.hpp"
@@ -19,7 +19,7 @@ indie::system::Spawn::Spawn()
 {
   auto key = engine::eventManager().
     subscribe(event::DIE, &indie::system::Spawn::respawn, this);
-  _subKeys[event::DIE] = key;
+  _eventKeys[event::DIE] = key;
     component::Transform t;
   t.scale.X = 0.25;
   t.scale.Y = 0.25;
@@ -54,12 +54,6 @@ indie::system::Spawn::Spawn()
   mapStack.keymaps.push_front({keys, indie::component::KeyMapState::NORMAL});
   indie::engine::entityManager().addComponent(id, mapStack, true);
 
-}
-
-indie::system::Spawn::~Spawn()
-{
-  // for (auto const& it : _subKeys)
-  //   engine::eventManager().unsubscribe(it.first, it.second);
 }
 
 void	indie::system::Spawn::update()

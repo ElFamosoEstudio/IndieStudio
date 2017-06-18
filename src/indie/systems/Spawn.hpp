@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Sun Jun 18 20:21:52 2017 akram abd-ali
-// Last update Sun Jun 18 20:33:31 2017 akram abd-ali
+// Last update Sun Jun 18 22:03:07 2017 akram abd-ali
 //
 
 #ifndef SPAWN_SYSTEM_HPP
@@ -14,19 +14,17 @@
 # include <unordered_map>
 # include <array>
 # include "indie.hpp"
+# include "ASystem.hpp"
 
 namespace indie
 {
   namespace system
   {
-    class Spawn : public ecs::ISystem
+    class Spawn : public ASystem
     {
-    private:
-      std::unordered_map<ecs::EventTypeDefault, ecs::EventKey>	_subKeys;
-    private:
     public:
       Spawn();
-      ~Spawn();
+      ~Spawn() = default;
       Spawn(Spawn const&) = delete;
       Spawn& operator=(Spawn const&) = delete;
     public:

@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu May 25 18:46:02 2017 Noam Silvy
-// Last update Sun Jun 18 12:20:59 2017 Noam Silvy
+// Last update Sun Jun 18 22:39:27 2017 akram abd-ali
 //
 
 #ifndef ENTITY_MANAGER_HPP
@@ -108,7 +108,7 @@ namespace ecs
       auto it = components.find(id);
 
       if (it == components.end())
-	throw (std::out_of_range(_getOutOfRangeMsg<Comp>(id))); // or return ;
+	return ;
       components.erase(it);
     }
 
