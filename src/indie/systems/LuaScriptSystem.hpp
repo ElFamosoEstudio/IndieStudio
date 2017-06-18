@@ -5,7 +5,7 @@
 // Login   <julien.montagnat@epitech.eu>
 // 
 // Started on  Sat Jun 17 21:41:53 2017 julien
-// Last update Sun Jun 18 20:45:46 2017 Adam Akkari
+// Last update Sun Jun 18 21:01:31 2017 Adam Akkari
 //
 
 #ifndef LUASCRIPT_SYSTEM_HPP
@@ -53,14 +53,15 @@ namespace indie
 	    lua_close(it.second->L);
 	  }
       }
-      std::vector<indie::component::Transform>	getPlayerPos()
+      std::vector<irr::core::vector3df>	getPlayerPos()
       {
-	std::vector<indie::component::Transform>	player;
+	std::vector<irr::core::vector3df>	player;
 	auto	&players = engine::entityManager().getAllComponents<indie::component::TagPlayer>();
 
 	for (auto &idx:players)
 	  player.push_back
-	    (engine::entityManager().getComponent<indie::component::Transform>(idx.first));
+	    (engine::entityManager().getComponent<indie::component::Transform>(idx.first)
+	     ->position);
 	return (player);
       }
       void		update()
@@ -69,16 +70,16 @@ namespace indie
 	auto &map_info = engine::entityManager().getAllComponents<indie::component::MapSettings>();
 
 	if (map_info.size() == 1)
-	for (auto const &it : lua_info)
-	  {
-	    lua_getglobal(it.second->L, it.second->function.c_str());
-	    lua_pushstring(it.second->L, map_info.begin()->second->AsciiMap.c_str());
-	    lua_pushnumber(it.second->L, 1);
-	    lua_pushnumber(it.second->L, 1);
-	    lua_pcall(it.second->L, 3, 1, 0);
-	    lua_pop(it.second->L, 3);
-	    lua_tointeger(it.second->L, -1);
-	  }
+	  for (auto const &it : lua_info)
+	    {
+	      lua_getglobal(it.second->L, it.second->function.c_str());
+	      lua_pushstring(it.second->L, map_info.begin()->second->AsciiMap.c_str());
+	      lua_pushnumber(it.second->L, 1);
+	      lua_pushnumber(it.second->L, 1);
+	      lua_pcall(it.second->L, 3, 1, 0);
+	      lua_pop(it.second->L, 3);
+	      lua_tointeger(it.second->L, -1);
+	    }
 	//emit
       }
       ecs::SysType	type() const

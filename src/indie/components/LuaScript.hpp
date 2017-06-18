@@ -5,7 +5,7 @@
 // Login   <julien.montagnat@epitech.eu>
 // 
 // Started on  Sat Jun 17 21:33:38 2017 julien
-// Last update Sun Jun 18 05:59:57 2017 julien
+// Last update Sun Jun 18 20:50:57 2017 Adam Akkari
 //
 
 #ifndef LUASCRIPT_HPP

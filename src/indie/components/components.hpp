@@ -5,7 +5,7 @@
 // Login   <julien.montagnat@epitech.eu>
 // 
 // Started on  Sun Jun 18 19:52:31 2017 julien
-// Last update Sun Jun 18 19:52:31 2017 julien
+// Last update Sun Jun 18 20:53:18 2017 Adam Akkari
 //
 
 #ifndef COMPONENTS_HPP
@@ -33,5 +33,6 @@
 # include "MapSettings.hpp"
 # include "Keymap.hpp"
 # include "TagExplosion.hpp"
+# include "TagPlayer.hpp"
 
 #endif //!COMPONENTS_HPP

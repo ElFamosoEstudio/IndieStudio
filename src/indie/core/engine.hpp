@@ -5,7 +5,7 @@
 // Login   <julien.montagnat@epitech.eu>
 // 
 // Started on  Sun Jun 18 19:51:44 2017 julien
-// Last update Sun Jun 18 19:52:02 2017 julien
+// Last update Sun Jun 18 20:53:54 2017 Adam Akkari
 //
 
 #ifndef ENGINE_HPP
@@ -43,7 +43,8 @@ namespace indie
 						  KeyMaps,
 						  LuaScript,
 						  Sound,
-						  TagExplosion>;
+						  TagExplosion,
+						  TagPlayer>;
 
     ecs::SystemManager&		systemManager();
 
