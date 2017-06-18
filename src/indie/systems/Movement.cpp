@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sun Jun 18 15:29:28 2017 akram abd-ali
-// Last update Sun Jun 18 21:47:20 2017 Noam Silvy
+// Last update Sun Jun 18 21:50:15 2017 Noam Silvy
 //
 
 #include <vector3d.h>
@@ -144,15 +144,6 @@ void	indie::system::Movement::update()
     }
 }
 
-<<<<<<< HEAD
-
-void	indie::system::Movement::update()
-{
-
-}
-
-=======
->>>>>>> 204df1289fd20735273e33f62985a25f814df341
 ecs::SysType	indie::system::Movement::type() const
 {
   return (system::MOVEMENT);
