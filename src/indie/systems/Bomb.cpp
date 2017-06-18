@@ -5,13 +5,48 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Sat Jun 17 02:28:47 2017 akram abd-ali
-// Last update Sun Jun 18 01:06:36 2017 akram abd-ali
+// Last update Sun Jun 18 06:32:33 2017 akram abd-ali
 //
 
-#include "Bomb.hpp"
-#include "Spreadable.hpp"
 #include "indie.hpp"
 # include <vector3d.h>
+
+void indie::system::Bomb::set3DPropagationPos(component::Transform& trans, uint8_t spread)
+{
+  switch (spread)
+    {
+    case 1:
+      trans.position.X += 1;
+      trans.position.Y += 1;
+      break;
+    case 2:
+      trans.position.Y += 1;
+      break;
+    case 4:
+      trans.position.X -= 1;
+      trans.position.Y += 1;      
+      break;
+    case 8:
+      trans.position.X += 1;
+      break;
+    case 16:
+      trans.position.X -= 1;
+      break;
+    case 32:
+      trans.position.X += 1;
+      trans.position.Y -= 1;
+      break;
+    case 64:
+      trans.position.Y -= 1;
+      break;
+    case 128:
+      trans.position.X -= 1;
+      trans.position.Y -= 1;
+      break;
+    default:
+      break;
+    }
+}
 
 void	indie::system::Bomb::dropBomb(ecs::Entity entity)
 {
@@ -21,7 +56,6 @@ void	indie::system::Bomb::dropBomb(ecs::Entity entity)
     {
       auto id = it.first;
       auto& bomb = it.second;
-      // auto &timer = engine::entityManager().getComponent<component::RemoteExplosion>(id);
       if (bomb->count > 0)
 	{
 	  auto &remote = engine::entityManager().getComponent<component::RemoteExplosion>(id);
@@ -65,34 +99,43 @@ void	indie::system::Bomb::explode(ecs::Entity entity)
   auto&	spreadable = engine::entityManager().getComponent<component::Spreadable>(entity);
   auto& transform = engine::entityManager().getComponent<component::Transform>(entity);
   auto& playerId = engine::entityManager().getComponent<component::PlayerId>(entity);
-  // auto& 2dPos = engine::entityManager().getComponent<component::2DPos>(entity);
 
   if ((!powerInfo)
       || (!playerId)
       || (!transform)
       || (!spreadable)
-      // || (!2dPos)
       || (spreadable->range == 0)
       || (spreadable->propagationMask == 0))
     {
       removeBomb(entity);
       return ;
     }
+
+  uint8_t dir = 0;
   for (uint8_t i = 0; i < 8; ++i)
     {
       if ((i == 0)
-	  || ((1 << i) & spreadable->propagationMask))
+	  || ((1 << (i - 1)) & spreadable->propagationMask))
 	{
-	  engine::entityManager()
+	  component::Transform trans(transform->position.X,
+				     transform->position.Y,
+				     transform->position.Z);
+	  if (i != 0)
+	    {
+	      dir = 1 << (i - 1);
+	      set3DPropagationPos(trans, dir);
+	    }
+	  auto id = engine::entityManager()
 	    .create(entity::EXPLOSION,
 		    component::Damage(powerInfo->power),
-		    component::Transform(transform->position.X,
-					 transform->position.Y,
-					 transform->position.Z),
-		    component::Spreadable(bomb->range,
-					  bomb->propagationMask),
+		    component::Transform(trans.position.X,
+					 trans.position.Y,
+					 trans.position.Z),
+		    component::Spreadable((spreadable->range - 1),
+					  dir),
 		    component::PlayerId(playerId->id),
-		    component::Timer(3000, event::DETONATE_BOMB));
+		    component::Timer(50, event::SPREAD_EXPLOSION));
+	  engine::eventManager().emit(event::SPREAD_EXPLOSION, id);
 	}
     }
 }
@@ -118,8 +161,8 @@ indie::system::Bomb::Bomb()
 
 indie::system::Bomb::~Bomb()
 {
-  for (auto const& it : _subKeys)
-    engine::eventManager().unsubscribe(it.first, it.second);
+  // for (auto const& it : _subKeys)
+  //   engine::eventManager().unsubscribe(it.first, it.second);
 }
 
 void	indie::system::Bomb::update() {

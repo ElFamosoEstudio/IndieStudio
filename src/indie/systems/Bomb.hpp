@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Sat Jun 17 02:27:36 2017 akram abd-ali
-// Last update Sat Jun 17 23:45:18 2017 akram abd-ali
+// Last update Sun Jun 18 05:33:47 2017 akram abd-ali
 //
 
 #ifndef BOMB_SYSTEM_HPP
@@ -13,6 +13,7 @@
 
 # include <unordered_map>
 # include <vector>
+#include "components.hpp"
 # include "indie.hpp"
 
 namespace indie
@@ -28,6 +29,7 @@ namespace indie
       void      removeBomb(ecs::Entity entity);
       void      explode(ecs::Entity entity);
     public:
+      static void set3DPropagationPos(component::Transform& trans, uint8_t spread);
       Bomb();
       ~Bomb();
       Bomb(Bomb const&) = delete;
