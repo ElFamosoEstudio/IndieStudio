@@ -1,11 +1,11 @@
 //
 // Collision.cpp for  in /home/abd-al_a/rendu/IndieStudio
-// 
+//
 // Made by akram abd-ali
 // Login   <abd-al_a@epitech.net>
-// 
+//
 // Started on  Fri Jun 16 17:56:19 2017 akram abd-ali
-// Last update Sun Jun 18 12:59:11 2017 akram abd-ali
+// Last update Sun Jun 18 15:08:25 2017 akram abd-ali
 //
 
 #include "irrlicht.h"
@@ -82,8 +82,7 @@ void	indie::system::Collision::removeSkel(ecs::Entity entity)
   cur->selector->drop();
 }
 
-void	indie::system::Collision::update()
-{
+void	indie::system::Collision::update() {
   auto&	skels = engine::entityManager().getAllComponents<indie::component::Skeleton>();
 
   for (auto& it : skels)
