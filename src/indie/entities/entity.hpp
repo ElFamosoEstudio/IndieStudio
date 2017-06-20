@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu Jun 15 19:12:49 2017 Noam Silvy
-// Last update Sun Jun 18 13:02:07 2017 Adam Akkari
+// Last update Tue Jun 20 20:19:45 2017 Adam Akkari
 //
 
 #ifndef ENTITY_HPP
@@ -26,7 +26,8 @@ namespace indie
 	FLOOR,
 	MAP,
 	CRATE,
-	PLAYER
+	PLAYER,
+	BONUS
       };
 
     void	registerAllEntities();
@@ -39,6 +40,7 @@ namespace indie
     ecs::Entity	createMap();
     ecs::Entity	createCrate();
     ecs::Entity createPlayer();
+    ecs::Entity	createBonus();
   }
 }
 

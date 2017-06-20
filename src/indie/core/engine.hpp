@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 10 03:34:26 2017 akram abd-ali
-// Last update Sun Jun 18 19:12:12 2017 Adam Akkari
+// Last update Tue Jun 20 20:49:20 2017 Adam Akkari
 //
 
 #ifndef ENGINE_HPP
@@ -40,7 +40,8 @@ namespace indie
 						  Spreadable,
 						  MapSettings,
 						  KeyMaps,
-						  TagExplosion>;
+						  TagExplosion,
+						  BonusSettings>;
 
     ecs::SystemManager&		systemManager();
 

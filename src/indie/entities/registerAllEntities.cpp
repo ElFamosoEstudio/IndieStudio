@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu Jun 15 19:55:55 2017 Noam Silvy
-// Last update Sun Jun 18 13:02:28 2017 Adam Akkari
+// Last update Tue Jun 20 20:19:37 2017 Adam Akkari
 //
 
 #include "engine.hpp"
@@ -43,4 +43,6 @@ void		indie::entity::registerAllEntities()
 						&indie::entity::createCrate);
   indie::engine::entityManager().registerEntity(indie::entity::PLAYER,
 						&indie::entity::createPlayer);
+  indie::engine::entityManager().registerEntity(indie::entity::BONUS,
+						&indie::entity::createBonus);
 }
