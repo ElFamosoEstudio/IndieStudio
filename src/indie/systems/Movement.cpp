@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sun Jun 18 15:29:28 2017 akram abd-ali
-// Last update Tue Jun 20 23:15:29 2017 Noam Silvy
+// Last update Tue Jun 20 23:31:47 2017 Noam Silvy
 //
 
 #include <vector3d.h>
@@ -161,12 +161,12 @@ void	indie::system::Movement::update()
 	  else if (it.second[LEFT])
 	    {
 	      transform->position.X += len;
-	      transform->rotation.Z = 90;
+	      transform->rotation.Z = 270;
 	    }
 	  else if (it.second[RIGHT])
 	    {
 	      transform->position.X -= len;
-	      transform->rotation.Z = 270;
+	      transform->rotation.Z = 90;
 	    }
 	}
       reset();
