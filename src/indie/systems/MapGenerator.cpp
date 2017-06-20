@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat Jun 17 05:13:04 2017 Adam Akkari
-// Last update Tue Jun 20 21:08:39 2017 Adam Akkari
+// Last update Tue Jun 20 21:11:13 2017 Adam Akkari
 //
 
 #include <chrono>
@@ -68,7 +68,7 @@ void		indie::system::MapGenerator::bombDropped(ecs::Entity ent)
   else
     {
       data[new_pos.X + size_x * new_pos.Y].second = indie::component::BOMB;
-      ent_tsfm.position = new_pos;
+      ent_tsfm->position = new_pos;
     }
 }
 
