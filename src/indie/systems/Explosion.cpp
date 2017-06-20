@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sun Jun 18 06:01:58 2017 akram abd-ali
-// Last update Sun Jun 18 23:36:22 2017 akram abd-ali
+// Last update Tue Jun 20 20:42:29 2017 akram abd-ali
 //
 
 #include "indie.hpp"
@@ -16,57 +16,61 @@
 void	indie::system::Explosion::spreadExplosion(ecs::Entity entity)
 {
   auto		&ent = indie::engine::entityManager();
-  auto& damage = engine::entityManager().getComponent<component::Damage>(entity);
-  auto&	spreadable = engine::entityManager().getComponent<component::Spreadable>(entity);
-  auto& transform = engine::entityManager().getComponent<component::Transform>(entity);
-  auto& playerId = engine::entityManager().getComponent<component::PlayerId>(entity);
+  auto& damage = ent.getComponent<component::Damage>(entity);
+  auto&	spreadable = ent.getComponent<component::Spreadable>(entity);
+  auto& transform = ent.getComponent<component::Transform>(entity);
+  auto& playerId = ent.getComponent<component::PlayerId>(entity);
 
+  ent.addComponentEmplace<component::Timer>(entity, 1000, event::NO_DAMAGE);
   if ((!damage)
       || (!playerId)
       || (!transform)
-      || (!spreadable)
-      || (spreadable->range == 0)
-      || (spreadable->propagationMask == 0))
+      || (!spreadable))
     {
       removeExplosion(entity);
       return ;
     }
 
   uint8_t dir = 0;
-  for (uint8_t i = 1; i < 8; ++i)
+  if ((spreadable->range != 0)
+      && (spreadable->propagationMask != 0))
     {
-      if ((1 << (i - 1)) & spreadable->propagationMask)
+      for (uint8_t i = 1; i < 8; ++i)
 	{
-	  component::Transform trans(transform->position.X,
-				     transform->position.Y,
-				     transform->position.Z);
-	  dir = 1 << (i - 1);
-	  Bomb::set3DPropagationPos(trans, dir);
-	  component::Transform t;
-	  t.scale.X = 0.01;
-	  t.scale.Y = 0.01;
-	  t.scale.Z = 0.01;
-	  t.position.X = trans.position.X;
-	  t.position.Y = trans.position.Y;
-	  t.position.Z = trans.position.Z;
-	  auto id = engine::entityManager()
-	    .create(entity::EXPLOSION,
-		    component::Damage(damage->value),
-		    component::Spreadable((spreadable->range - 1),
-					  dir),
-		    component::PlayerId(playerId->id),
-		    component::Timer(50, event::SPREAD_EXPLOSION));
-	  engine::eventManager().emit(event::CHECK_DAMAGE, id);
+	  if ((1 << (i - 1)) & spreadable->propagationMask)
+	    {
+	      component::Transform trans(transform->position.X,
+					 transform->position.Y,
+					 transform->position.Z);
+	      dir = 1 << (i - 1);
+	      Bomb::set3DPropagationPos(trans, dir);
+	      component::Transform t;
+	      t.scale.X = 0.25;
+	      t.scale.Y = 0.25;
+	      t.scale.Z = 0.25;
+	      t.position.X = trans.position.X;
+	      t.position.Y = trans.position.Y;
+	      t.position.Z = trans.position.Z;
+	      auto id = engine::entityManager()
+		.create(entity::EXPLOSION,
+			component::Damage(damage->value),
+			component::Transform(t),
+			component::Spreadable((spreadable->range - 1),
+					      dir),
+			component::PlayerId(playerId->id),
+			component::Timer(100, event::SPREAD_EXPLOSION));
+	      engine::eventManager().emit(event::CHECK_DAMAGE, id);
+
+	    }
 	}
     }
-  ent.addComponentEmplace<component::Timer>(entity, 300, event::NO_DAMAGE);
 }
 
 void	indie::system::Explosion::removeExplosion(ecs::Entity entity)
 {
   auto& render = engine::entityManager().getComponent<component::Renderer3d>(entity);
-  // if (render && render->mesh)
-  //   gfx::sceneManager()->addToDeletionQueue(render->mesh);
+  if (render && render->mesh)
+    gfx::sceneManager()->addToDeletionQueue(render->mesh);
   engine::entityManager().removeEntity(entity);
 }
 

@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 10 03:34:26 2017 akram abd-ali
-// Last update Tue Jun 20 19:28:09 2017 Noam Silvy
+// Last update Tue Jun 20 23:12:50 2017 Noam Silvy
 //
 
 #ifndef ENGINE_HPP
@@ -41,7 +41,8 @@ namespace indie
 						  Spreadable,
 						  MapSettings,
 						  KeyMaps,
-						  TagExplosion>;
+						  TagExplosion,
+						  TagCrate>;
 
     ecs::SystemManager&		systemManager();
 

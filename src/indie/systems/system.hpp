@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 //
 // Started on  Sat Jun 17 00:07:05 2017 Adam Akkari
-// Last update Tue Jun 20 19:16:23 2017 Noam Silvy
+// Last update Tue Jun 20 23:15:39 2017 Noam Silvy
 //
 
 #ifndef SYSTEM_HPP
@@ -19,6 +19,7 @@
 # include "MapGenerator.hpp"
 # include "Movement.hpp"
 # include "Spawn.hpp"
+# include "Die.hpp"
 # include "SysTime.hpp"
 # include "Input.hpp"
 # include "AnimationSystem.hpp"
@@ -39,7 +40,8 @@ namespace indie
 	MOVEMENT,
 	ANIMATION,
 	SYSTIME,
-	SPAWN
+	SPAWN,
+	DIE
       };
     void        registerAllSystems();
   }

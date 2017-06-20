@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 //
 // Started on  Thu Jun 15 22:23:05 2017 Adam Akkari
-// Last update Tue Jun 20 20:49:26 2017 Noam Silvy
+// Last update Tue Jun 20 23:15:44 2017 Noam Silvy
 //
 
 #ifndef RENDERER3D_HPP
@@ -29,6 +29,7 @@ namespace indie
 	mesh = gfx::sceneManager()->addAnimatedMeshSceneNode
 	  (gfx::sceneManager()->getMesh(file.c_str()));
 	mesh->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+	mesh->setVisible(false);
 	mesh->setMaterialTexture(0, gfx::videoDriver()->getTexture(tex.c_str()));
       }
       Renderer3d(std::string const &file)
@@ -36,6 +37,7 @@ namespace indie
       {
 	mesh = gfx::sceneManager()->addAnimatedMeshSceneNode
 	  (gfx::sceneManager()->getMesh(file.c_str()));
+	mesh->setVisible(false);
 	mesh->setMaterialFlag(irr::video::EMF_LIGHTING, false);
       }
       std::string				file;
