@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat Jun 17 05:13:04 2017 Adam Akkari
-// Last update Tue Jun 20 20:56:51 2017 Adam Akkari
+// Last update Tue Jun 20 21:01:47 2017 Adam Akkari
 //
 
 #include <chrono>
@@ -40,6 +40,7 @@ void		indie::system::MapGenerator::checkDamage(ecs::Entity ent)
     }
   auto		&data = settings.begin()->second->map;
   unsigned int	size_x = settings.begin()->second->size_x;
+  unsigned int	size_y = settings.begin()->second->size_y;
 
   if (data[ent_tsfm->position.X + size_x * ent_tsfm->position.Y].second == BLOCK ||
       ent_tsfm->position.X >= size_x || ent_tsfm->position.X < 0 ||
