@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Sun Jun 18 18:32:29 2017 Noam Silvy
-// Last update Sun Jun 18 23:33:47 2017 Noam Silvy
+// Last update Tue Jun 20 19:33:55 2017 Noam Silvy
 //
 
 #ifndef ANIMATION_SYSTEM_HPP
@@ -29,7 +29,7 @@ namespace indie
       AnimationSystem();
     public:
       void		update() override;
-      SysType		type() const override;
+      ecs::SysType	type() const override;
       static ISystem	*create();
     };
   }

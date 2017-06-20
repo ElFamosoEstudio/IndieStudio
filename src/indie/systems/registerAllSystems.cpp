@@ -5,15 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Wed Jun 14 02:11:12 2017 Noam Silvy
-<<<<<<< HEAD
-<<<<<<< HEAD
-// Last update Sun Jun 18 18:43:20 2017 Noam Silvy
-=======
-// Last update Sun Jun 18 16:57:31 2017 akram abd-ali
->>>>>>> 2192dcbe8310405204617f11d6f0ebb39cf1c253
-=======
-// Last update Sun Jun 18 20:31:11 2017 akram abd-ali
->>>>>>> ff6015233349ceba488d534275933c4cbd7b5cf2
+// Last update Tue Jun 20 19:29:17 2017 Noam Silvy
 //
 
 #include "engine.hpp"
@@ -37,16 +29,10 @@ void        indie::system::registerAllSystems()
 						&indie::system::Input::create);
   indie::engine::systemManager().registerSystem(indie::system::MOVEMENT,
 						&indie::system::Movement::create);
-<<<<<<< HEAD
   indie::engine::systemManager().registerSystem(indie::system::ANIMATION,
 						&indie::system::AnimationSystem::create);
-=======
   indie::engine::systemManager().registerSystem(indie::system::SYSTIME,
 						&indie::system::SysTime::create);
-<<<<<<< HEAD
->>>>>>> 2192dcbe8310405204617f11d6f0ebb39cf1c253
-=======
   indie::engine::systemManager().registerSystem(indie::system::SPAWN,
 						&indie::system::Spawn::create);
->>>>>>> ff6015233349ceba488d534275933c4cbd7b5cf2
 }

@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Sun Jun 18 18:16:11 2017 Noam Silvy
-// Last update Sun Jun 18 18:31:16 2017 Noam Silvy
+// Last update Tue Jun 20 21:02:02 2017 Noam Silvy
 //
 
 #ifndef ANIMATION_HPP
@@ -22,8 +22,6 @@ namespace indie
   {
     struct Animation
     {
-      irr::s32							begin;
-      irr::s32							end;
       std::map<event::EEvent, std::pair<irr::s32, irr::s32>>	cursor;
     };
   }

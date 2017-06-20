@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Sat Jun 17 08:51:46 2017 Noam Silvy
-// Last update Sun Jun 18 21:50:24 2017 akram abd-ali
+// Last update Tue Jun 20 22:55:53 2017 Noam Silvy
 //
 
 #include <memory>
@@ -102,9 +102,13 @@ void	        Input::_updateGamePad(irr::u8 id)
   bool		positive = true;
   std::size_t	i;
 
-  for (i = 0; i < GAMEPAD_BUTTON_COUNT; i++)
-    _gamepad[i] = (_rcvr->isGamePadButtonState(id, i, InputState::DOWN) ?
-		   InputState::DOWN : InputState::UP);
+  for (i = 0; i < GAMEPAD_BUTTON_COUNT; i++) {
+    for (InputState state = InputState::UP; state < InputState::RELEASED;) {
+      if (_rcvr->isGamePadButtonState(id, i, state))
+	_gamepad[i] = state;
+      state = static_cast<InputState>((int)state + 1);
+    }
+  }
   auto idx = 0;
   for (; i < GAMEPAD_KEYCODE_COUNT; i++) {
     _gamepad[i] = _getAxisInputState(id, idx, positive = !positive);
