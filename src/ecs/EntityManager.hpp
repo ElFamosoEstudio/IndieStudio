@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu May 25 18:46:02 2017 Noam Silvy
-// Last update Sun Jun 18 22:39:27 2017 akram abd-ali
+// Last update Tue Jun 20 18:56:24 2017 akram abd-ali
 //
 
 #ifndef ENTITY_MANAGER_HPP
@@ -114,7 +114,7 @@ namespace ecs
 
     void				removeEntity(Entity id)
     {
-      static auto rmEntity = [id](auto &components) {
+      auto rmEntity = [id](auto &components) {
 	auto it = components.find(id);
 	if (it != components.end())
 	  components.erase(it);

@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Sun Jun 18 16:53:45 2017 akram abd-ali
-// Last update Sun Jun 18 23:12:06 2017 akram abd-ali
+// Last update Tue Jun 20 20:36:56 2017 akram abd-ali
 //
 
 #include "SysTime.hpp"
@@ -20,10 +20,7 @@ void	indie::system::SysTime::update()
       auto& timer = it.second;
       timer->countDown.update();
       if (timer->countDown.get() == 0)
-	{
-	  engine::eventManager().emit(timer->eventType, id);
-	  engine::entityManager().removeComponent<component::Timer>(id);
-	}
+	engine::eventManager().emit(timer->eventType, id);
     }
 
   auto& intervals = engine::entityManager().getAllComponents<component::Interval>();

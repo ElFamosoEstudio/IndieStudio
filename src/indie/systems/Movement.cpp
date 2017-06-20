@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sun Jun 18 15:29:28 2017 akram abd-ali
-// Last update Sun Jun 18 21:59:44 2017 akram abd-ali
+// Last update Tue Jun 20 02:45:03 2017 akram abd-ali
 //
 
 #include <vector3d.h>
@@ -96,49 +96,57 @@ void	indie::system::Movement::update()
 	  reset();
 	  continue ;
 	}
-      if (it.second[UP])
-	{
-	  transform->position.Y += len;
-	  transform->rotation.Z = 0;
-	}
-      else if (it.second[DOWN])
-	{
-	  transform->position.Y -= len;
-	  transform->rotation.Z = 180;
-	}
-      else if (it.second[LEFT])
-	{
-	  transform->position.X += len;
-	  transform->rotation.Z = 90;
-	}
-      else if (it.second[RIGHT])
-	{
-	  transform->position.X -= len;
-	  transform->rotation.Z = 270;
-	}
+      bool done = false;
       if ((it.second[UP]) && (it.second[LEFT]))
 	{
+	  done = true;
 	  transform->position.Y += sqlen;
 	  transform->position.X += sqlen;
 	  transform->rotation.Z = 45;
 	}
       else if ((it.second[UP]) && (it.second[RIGHT]))
 	{
+	  done = true;
 	  transform->position.Y += sqlen;
 	  transform->position.X -= sqlen;
 	  transform->rotation.Z = 315;
 	}
       else if ((it.second[DOWN]) && (it.second[LEFT]))
 	{
+	  done = true;
 	  transform->position.Y -= sqlen;
 	  transform->position.X += sqlen;
 	  transform->rotation.Z = 135;
 	}
       else if ((it.second[DOWN]) && (it.second[RIGHT]))
 	{
+	  done = true;
 	  transform->position.Y -= sqlen;
 	  transform->position.X -= sqlen;
 	  transform->rotation.Z = 225;
+	}
+      if (done == false)
+	{
+	  if (it.second[UP])
+	    {
+	      transform->position.Y += len;
+	      transform->rotation.Z = 0;
+	    }
+	  else if (it.second[DOWN])
+	    {
+	      transform->position.Y -= len;
+	      transform->rotation.Z = 180;
+	    }
+	  else if (it.second[LEFT])
+	    {
+	      transform->position.X += len;
+	      transform->rotation.Z = 90;
+	    }
+	  else if (it.second[RIGHT])
+	    {
+	      transform->position.X -= len;
+	      transform->rotation.Z = 270;
+	    }
 	}
       reset();
     }

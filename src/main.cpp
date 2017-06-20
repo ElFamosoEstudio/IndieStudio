@@ -12,7 +12,7 @@ int	main()
 
   indie::engine::contextManager().push(indie::context::GAME);
 
-  ecs::Entity map = indie::engine::entityManager().create(indie::entity::MAP, MapSettings(12,12));
+  ecs::Entity map = indie::engine::entityManager().create(indie::entity::MAP, MapSettings(9,9));
 
   while (indie::gfx::device()->run())
     {

@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 //
 // Started on  Fri Jun 16 21:40:38 2017 Adam Akkari
-// Last update Sun Jun 18 15:13:04 2017 akram abd-ali
+// Last update Tue Jun 20 20:57:05 2017 akram abd-ali
 //
 
 #include "irrlicht.h"
@@ -20,6 +20,7 @@ ecs::Entity	indie::entity::createBox()
   ent.addComponentEmplace<component::Transform>(id);
   ent.addComponentEmplace<component::Renderer3d>(id, "gfx/cube1.obj", "gfx/brick.jpg");
   auto &render = ent.getComponent<component::Renderer3d>(id);
-  ent.addComponentEmplace<component::Skeleton>(id, render->mesh);
+  if (render)
+    ent.addComponentEmplace<component::Skeleton>(id, render->mesh);
   return (id);
 }
