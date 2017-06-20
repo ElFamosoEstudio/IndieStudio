@@ -5,10 +5,11 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 17 02:28:47 2017 akram abd-ali
-// Last update Sun Jun 18 21:47:42 2017 Noam Silvy
+// Last update Sun Jun 18 23:36:13 2017 akram abd-ali
 //
 
-#include "indie.hpp"
+#include "Bomb.hpp"
+#include "Timer.hpp"
 #include <vector3d.h>
 
 void indie::system::Bomb::set3DPropagationPos(component::Transform& trans, uint8_t spread)
@@ -65,24 +66,31 @@ void	indie::system::Bomb::dropBomb(ecs::Entity entity)
 	    continue ;
 	  if (!remote)
 	    {
-	      engine::entityManager()
-		.create(entity::BOMB,
-			component::Transform(transform->position.X,
-					     transform->position.Y,
-					     transform->position.Z),
-			component::Spreadable(bomb->range,
-					      bomb->propagationMask),
-			component::PowerInfo(bomb->power),
-			component::PlayerId(playerId->id),
-			component::Timer(3000, event::DETONATE_BOMB));
+	      auto id = engine::entityManager()
+	      	.create(entity::BOMB,
+	      		component::Transform(transform->position.X,
+	      				     transform->position.Y,
+	      				     transform->position.Z),
+	      		component::Spreadable(bomb->range,
+	      				      bomb->propagationMask),
+	      		component::PowerInfo(bomb->power),
+	      		component::PlayerId(playerId->id),
+	      		component::Timer(3000, event::DETONATE_BOMB));
+	      std::cout << "id " << id<< std::endl;
+	      std::cout << "id " <<   id <<"bmb count  "  << bomb->count<< "id player  "<<(int)playerId->id << std::endl;
 	    }
 	  else
 	    {
-	      engine::entityManager()
+	      component::Transform t;
+	      t.scale.X = 0.01;
+	      t.scale.Y = 0.01;
+	      t.scale.Z = 0.01;
+	      t.position.X = transform->position.X;
+	      t.position.Y = transform->position.Y;
+	      t.position.Z = transform->position.Z;
+	      auto id = engine::entityManager()
 		.create(entity::BOMB,
-			component::Transform(transform->position.X,
-					     transform->position.Y,
-					     transform->position.Z),
+			t,
 			component::Spreadable(bomb->range,
 					      bomb->propagationMask),
 			component::PowerInfo(bomb->power),
@@ -138,16 +146,33 @@ void	indie::system::Bomb::explode(ecs::Entity entity)
 	  engine::eventManager().emit(event::CHECK_DAMAGE, id);
 	}
     }
+  removeBomb(entity);
 }
 
 void	indie::system::Bomb::removeBomb(ecs::Entity entity)
 {
-  auto&	bombInfo = engine::entityManager().getComponent<component::BombInfo>(entity);
-  if (bombInfo)
-    bombInfo->count += 1;
+  auto&	pId = engine::entityManager().getComponent<component::PlayerId>(entity);
+  if (pId)
+    {
+      auto&	bombInfos = engine::entityManager().getAllComponents<component::BombInfo>();
+
+      for (auto& it : bombInfos)
+	{
+	  auto id = it.first;
+	  auto&	pIdB = engine::entityManager().getComponent<component::PlayerId>(id);
+	  if (!pIdB)
+	    continue ;
+	  if (pIdB->id == pId->id)
+	    {
+	      auto& bomb = it.second;
+	      bomb->count += 1;
+	      std::cout <<     bomb->count << std::endl;
+	    }
+	}
+    }
   auto& render = engine::entityManager().getComponent<component::Renderer3d>(entity);
-  if (render && render->mesh)
-    gfx::sceneManager()->addToDeletionQueue(render->mesh);
+  // if (render && render->mesh)
+  //   gfx::sceneManager()->addToDeletionQueue(render->mesh);
   engine::entityManager().removeEntity(entity);
 }
 
@@ -157,6 +182,8 @@ indie::system::Bomb::Bomb()
   _eventKeys[event::DROP_BOMB] = key;
   key = engine::eventManager().subscribe(event::DROP_BOMB_ERR, &indie::system::Bomb::removeBomb, this);
   _eventKeys[event::DROP_BOMB_ERR] = key;
+  key = engine::eventManager().subscribe(event::DETONATE_BOMB, &indie::system::Bomb::explode, this);
+  _eventKeys[event::DETONATE_BOMB] = key;
 }
 
 indie::system::Bomb::~Bomb()

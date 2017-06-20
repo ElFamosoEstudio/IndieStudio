@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu May 25 18:46:02 2017 Noam Silvy
-// Last update Sun Jun 18 12:20:59 2017 Noam Silvy
+// Last update Tue Jun 20 19:00:15 2017 Noam Silvy
 //
 
 #ifndef ENTITY_MANAGER_HPP
@@ -108,13 +108,13 @@ namespace ecs
       auto it = components.find(id);
 
       if (it == components.end())
-	throw (std::out_of_range(_getOutOfRangeMsg<Comp>(id))); // or return ;
+	return ;
       components.erase(it);
     }
 
     void				removeEntity(Entity id)
     {
-      static auto rmEntity = [id](auto &components) {
+      auto rmEntity = [id](auto &components) {
 	auto it = components.find(id);
 	if (it != components.end())
 	  components.erase(it);

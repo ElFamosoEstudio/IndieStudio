@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Sat Jun 17 10:08:20 2017 akram abd-ali
-// Last update Sun Jun 18 14:41:01 2017 akram abd-ali
+// Last update Sun Jun 18 23:34:31 2017 akram abd-ali
 //
 
 #include "engine.hpp"
@@ -19,8 +19,10 @@ ecs::Entity	indie::entity::createBomb()
   ecs::Entity	id;
 
   id = ent.createEntity();
+  ent.addComponentEmplace<Renderer3d>(id, "gfx/ball.obj", "gfx/black.jpg");
   auto &render = ent.getComponent<Renderer3d>(id);
-  ent.addComponentEmplace<Skeleton>(id, render->mesh);
+  if (render)
+    ent.addComponentEmplace<Skeleton>(id, render->mesh);
   ent.addComponentEmplace<HP>(id, 1);
   return (id);
 }

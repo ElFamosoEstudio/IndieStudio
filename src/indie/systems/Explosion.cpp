@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sun Jun 18 06:01:58 2017 akram abd-ali
-// Last update Sun Jun 18 21:25:30 2017 Noam Silvy
+// Last update Sun Jun 18 23:36:22 2017 akram abd-ali
 //
 
 #include "indie.hpp"
@@ -42,12 +42,16 @@ void	indie::system::Explosion::spreadExplosion(ecs::Entity entity)
 				     transform->position.Z);
 	  dir = 1 << (i - 1);
 	  Bomb::set3DPropagationPos(trans, dir);
+	  component::Transform t;
+	  t.scale.X = 0.01;
+	  t.scale.Y = 0.01;
+	  t.scale.Z = 0.01;
+	  t.position.X = trans.position.X;
+	  t.position.Y = trans.position.Y;
+	  t.position.Z = trans.position.Z;
 	  auto id = engine::entityManager()
 	    .create(entity::EXPLOSION,
 		    component::Damage(damage->value),
-		    component::Transform(trans.position.X,
-					 trans.position.Y,
-					 trans.position.Z),
 		    component::Spreadable((spreadable->range - 1),
 					  dir),
 		    component::PlayerId(playerId->id),
@@ -61,8 +65,8 @@ void	indie::system::Explosion::spreadExplosion(ecs::Entity entity)
 void	indie::system::Explosion::removeExplosion(ecs::Entity entity)
 {
   auto& render = engine::entityManager().getComponent<component::Renderer3d>(entity);
-  if (render && render->mesh)
-    gfx::sceneManager()->addToDeletionQueue(render->mesh);
+  // if (render && render->mesh)
+  //   gfx::sceneManager()->addToDeletionQueue(render->mesh);
   engine::entityManager().removeEntity(entity);
 }
 
