@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 17 02:28:47 2017 akram abd-ali
-// Last update Sun Jun 18 23:36:13 2017 akram abd-ali
+// Last update Tue Jun 20 19:10:58 2017 akram abd-ali
 //
 
 #include "Bomb.hpp"
@@ -64,33 +64,29 @@ void	indie::system::Bomb::dropBomb(ecs::Entity entity)
 	  auto &transform = engine::entityManager().getComponent<component::Transform>(id);
 	  if (!transform || !playerId)
 	    continue ;
+	  component::Transform t;
+	  t.scale.X = 0.35;
+	  t.scale.Y = 0.35;
+	  t.scale.Z = 0.35;
+	  t.position.X = transform->position.X;
+	  t.position.Y = transform->position.Y;
+	  t.position.Z = transform->position.Z;
 	  if (!remote)
 	    {
 	      auto id = engine::entityManager()
 	      	.create(entity::BOMB,
-	      		component::Transform(transform->position.X,
-	      				     transform->position.Y,
-	      				     transform->position.Z),
+	      		component::Transform(t),
 	      		component::Spreadable(bomb->range,
 	      				      bomb->propagationMask),
 	      		component::PowerInfo(bomb->power),
 	      		component::PlayerId(playerId->id),
 	      		component::Timer(3000, event::DETONATE_BOMB));
-	      std::cout << "id " << id<< std::endl;
-	      std::cout << "id " <<   id <<"bmb count  "  << bomb->count<< "id player  "<<(int)playerId->id << std::endl;
 	    }
 	  else
 	    {
-	      component::Transform t;
-	      t.scale.X = 0.01;
-	      t.scale.Y = 0.01;
-	      t.scale.Z = 0.01;
-	      t.position.X = transform->position.X;
-	      t.position.Y = transform->position.Y;
-	      t.position.Z = transform->position.Z;
 	      auto id = engine::entityManager()
 		.create(entity::BOMB,
-			t,
+			component::Transform(t),
 			component::Spreadable(bomb->range,
 					      bomb->propagationMask),
 			component::PowerInfo(bomb->power),
@@ -125,20 +121,22 @@ void	indie::system::Bomb::explode(ecs::Entity entity)
       if ((i == 0)
 	  || ((1 << (i - 1)) & spreadable->propagationMask))
 	{
-	  component::Transform trans(transform->position.X,
-				     transform->position.Y,
-				     transform->position.Z);
+	  component::Transform t;
+	  t.scale.X = 0.25;
+	  t.scale.Y = 0.25;
+	  t.scale.Z = 0.25;
+	  t.position.X = transform->position.X;
+	  t.position.Y = transform->position.Y;
+	  t.position.Z = transform->position.Z;
 	  if (i != 0)
 	    {
 	      dir = 1 << (i - 1);
-	      set3DPropagationPos(trans, dir);
+	      set3DPropagationPos(t, dir);
 	    }
 	  auto id = engine::entityManager()
 	    .create(entity::EXPLOSION,
 		    component::Damage(powerInfo->power),
-		    component::Transform(trans.position.X,
-					 trans.position.Y,
-					 trans.position.Z),
+		    component::Transform(t),
 		    component::Spreadable((spreadable->range - 1),
 					  dir),
 		    component::PlayerId(playerId->id),
@@ -166,13 +164,12 @@ void	indie::system::Bomb::removeBomb(ecs::Entity entity)
 	    {
 	      auto& bomb = it.second;
 	      bomb->count += 1;
-	      std::cout <<     bomb->count << std::endl;
 	    }
 	}
     }
   auto& render = engine::entityManager().getComponent<component::Renderer3d>(entity);
-  // if (render && render->mesh)
-  //   gfx::sceneManager()->addToDeletionQueue(render->mesh);
+  if (render && render->mesh)
+    gfx::sceneManager()->addToDeletionQueue(render->mesh);
   engine::entityManager().removeEntity(entity);
 }
 

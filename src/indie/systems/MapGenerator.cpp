@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat Jun 17 05:13:04 2017 Adam Akkari
-// Last update Sun Jun 18 21:55:09 2017 Adam Akkari
+// Last update Tue Jun 20 21:11:13 2017 Adam Akkari
 //
 
 #include <chrono>
@@ -40,8 +40,11 @@ void		indie::system::MapGenerator::checkDamage(ecs::Entity ent)
     }
   auto		&data = settings.begin()->second->map;
   unsigned int	size_x = settings.begin()->second->size_x;
+  unsigned int	size_y = settings.begin()->second->size_y;
 
-  if (data[ent_tsfm->position.X + size_x * ent_tsfm->position.Y].second == BLOCK)
+  if (data[ent_tsfm->position.X + size_x * ent_tsfm->position.Y].second == BLOCK ||
+      ent_tsfm->position.X >= size_x || ent_tsfm->position.X < 0 ||
+      ent_tsfm->position.Y >= size_y || ent_tsfm->position.Y < 0)
     engine::eventManager().emit(event::NO_DAMAGE, ent);
 }
 
@@ -63,7 +66,10 @@ void		indie::system::MapGenerator::bombDropped(ecs::Entity ent)
   if (data[new_pos.X + size_x * new_pos.Y].second == BLOCK)
     engine::eventManager().emit(event::DROP_BOMB_ERR, ent);
   else
-    data[new_pos.X + size_x * new_pos.Y].second = indie::component::BOMB;
+    {
+      data[new_pos.X + size_x * new_pos.Y].second = indie::component::BOMB;
+      ent_tsfm->position = new_pos;
+    }
 }
 
 void	placeCrate(unsigned int i, unsigned int j,

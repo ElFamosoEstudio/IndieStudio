@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Thu May 25 18:46:02 2017 Noam Silvy
-// Last update Tue Jun 20 19:00:15 2017 Noam Silvy
+// Last update Tue Jun 20 20:59:00 2017 akram abd-ali
 //
 
 #ifndef ENTITY_MANAGER_HPP

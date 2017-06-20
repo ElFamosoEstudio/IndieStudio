@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 10 03:34:26 2017 akram abd-ali
-// Last update Tue Jun 20 20:49:20 2017 Adam Akkari
+// Last update Tue Jun 20 21:55:44 2017 Adam Akkari
 //
 
 #ifndef ENGINE_HPP
@@ -41,7 +41,8 @@ namespace indie
 						  MapSettings,
 						  KeyMaps,
 						  TagExplosion,
-						  BonusSettings>;
+						  BonusSettings,
+						  TagCrate>;
 
     ecs::SystemManager&		systemManager();
 

@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Thu Jun 15 23:36:51 2017 Adam Akkari
-// Last update Fri Jun 16 20:13:14 2017 Adam Akkari
+// Last update Tue Jun 20 19:25:47 2017 akram abd-ali
 //
 
 #include "ecs.hpp"
@@ -22,12 +22,15 @@ void		indie::system::MeshRenderer::update()
   auto		&renderer_cmp = engine::entityManager().getAllComponents<Renderer3d>();
 
   for (auto &idx:renderer_cmp)
+    {
     if (transform_cmp.find(idx.first) != transform_cmp.end())
       {
-	idx.second->mesh->setPosition(transform_cmp[idx.first]->position);
-	idx.second->mesh->setRotation(transform_cmp[idx.first]->rotation);
-	idx.second->mesh->setScale(transform_cmp[idx.first]->scale);
+	idx.second->mesh->setVisible(true);
+  	idx.second->mesh->setPosition(transform_cmp[idx.first]->position);
+  	idx.second->mesh->setRotation(transform_cmp[idx.first]->rotation);
+  	idx.second->mesh->setScale(transform_cmp[idx.first]->scale);
       }
+    }
 }
 
 ecs::SysType	indie::system::MeshRenderer::type() const

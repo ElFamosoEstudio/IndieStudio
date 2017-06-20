@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Fri Jun 16 03:39:22 2017 Noam Silvy
-// Last update Tue Jun 20 20:39:27 2017 Adam Akkari
+// Last update Tue Jun 20 21:56:54 2017 Adam Akkari
 //
 
 #ifndef COMPONENTS_HPP
@@ -32,5 +32,6 @@
 # include "Keymap.hpp"
 # include "TagExplosion.hpp"
 # include "BonusSettings.hpp"
+# include "TagCrate.hpp"
 
 #endif //!COMPONENTS_HPP

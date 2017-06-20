@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sun Jun 18 05:23:30 2017 Adam Akkari
-// Last update Sun Jun 18 14:39:05 2017 akram abd-ali
+// Last update Tue Jun 20 20:50:55 2017 akram abd-ali
 //
 
 #include "engine.hpp"
@@ -21,8 +21,10 @@ ecs::Entity	indie::entity::createCrate()
   id = ent.createEntity();
   ent.addComponentEmplace<Transform>(id);
   ent.addComponentEmplace<Renderer3d>(id, "gfx/cube1.obj", "gfx/crate.jpg");
+  ent.addComponentEmplace<TagCrate>(id);
   auto &render = ent.getComponent<Renderer3d>(id);
-  ent.addComponentEmplace<Skeleton>(id, render->mesh);
+  if (render)
+    ent.addComponentEmplace<Skeleton>(id, render->mesh);
   ent.addComponentEmplace<HP>(id, 1);
   return (id);
 }

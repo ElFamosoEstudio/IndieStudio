@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Sat Jun 17 07:22:44 2017 akram abd-ali
-// Last update Sat Jun 17 22:26:31 2017 akram abd-ali
+// Last update Tue Jun 20 20:35:17 2017 akram abd-ali
 //
 
 #include <iostream>
@@ -13,23 +13,33 @@
 
 indie::CountDown::~CountDown() {}
 
-indie::CountDown::CountDown(uint32_t ms) : _t0(Clock::now()), _init(ms), _rem(ms)
+indie::CountDown::CountDown(int ms)
+  : _t0(Clock::now()), _init(ms), _rem(ms), _done(false)
 {
 }
 
-indie::CountDown::CountDown(CountDown const&o) : _t0(o._t0), _init(o._init), _rem(o._rem)
+indie::CountDown::CountDown(CountDown const&o)
+  : _t0(o._t0), _init(o._init), _rem(o._rem), _done(o._done)
 {
 }
 
-void	indie::CountDown::reset(uint32_t ms)
+void	indie::CountDown::reset(int ms)
 {
   _init = ms;
   _rem = ms;
   _t0 = Clock::now();
+  _done = false;
 }
 
-uint32_t indie::CountDown::get() const
+int indie::CountDown::get() const
 {
+  if ((_rem == 0) && (_done == false))
+    {
+      _done = true;
+      return (0);
+    }
+  else if (_done == true)
+    return (-1);
   return (_rem);
 }
 

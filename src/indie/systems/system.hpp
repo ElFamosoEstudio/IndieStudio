@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 //
 // Started on  Sat Jun 17 00:07:05 2017 Adam Akkari
-// Last update Tue Jun 20 21:37:22 2017 Adam Akkari
+// Last update Tue Jun 20 21:55:00 2017 Adam Akkari
 //
 
 #ifndef SYSTEM_HPP
@@ -19,6 +19,7 @@
 # include "MapGenerator.hpp"
 # include "Movement.hpp"
 # include "Spawn.hpp"
+# include "Die.hpp"
 # include "SysTime.hpp"
 # include "Input.hpp"
 # include "BonusSystem.hpp"
@@ -39,7 +40,8 @@ namespace indie
 	MOVEMENT,
 	SYSTIME,
 	SPAWN,
-	BONUS_SYSTEM
+	BONUS_SYSTEM,
+	DIE
       };
     void        registerAllSystems();
   }
