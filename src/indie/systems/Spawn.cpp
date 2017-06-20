@@ -1,18 +1,19 @@
 //
 // Spawn.cpp for  in /home/abd-al_a/rendu/IndieStudio
-// 
+//
 // Made by akram abd-ali
 // Login   <abd-al_a@epitech.net>
-// 
+//
 // Started on  Sun Jun 18 20:21:40 2017 akram abd-ali
-// Last update Sun Jun 18 22:02:57 2017 akram abd-ali
+// Last update Tue Jun 20 19:02:00 2017 Noam Silvy
 //
 
+#include "Keycodes.h"
 #include "Spawn.hpp"
 
 void	indie::system::Spawn::respawn(ecs::Entity entity)
 {
-  
+
 }
 
 indie::system::Spawn::Spawn()
@@ -32,25 +33,20 @@ indie::system::Spawn::Spawn()
   component::KeyMaps mapStack;
   component::KeyMap  keys({{event::GO_RIGHT,
 				{InputState::DOWN,
-				 {static_cast<component::KeyType>(component::
-								  GamepadKeyCode::LRIGHT)}}},
+				    {irr::KEY_RIGHT}}},
 			       {event::GO_LEFT,
 				{InputState::DOWN,
-				 {static_cast<component::KeyType>(component::
-								  GamepadKeyCode::LLEFT)}}},
+				    {irr::KEY_LEFT}}},
 			       {event::GO_UP,
 				{InputState::DOWN,
-				 {static_cast<component::KeyType>(component::
-								  GamepadKeyCode::LUP)}}},
+				    {irr::KEY_UP}}},
 				 {event::GO_DOWN,
 				     {InputState::DOWN,
-					 {static_cast<component::KeyType>(component::
-									  GamepadKeyCode::LDOWN)}}},
+					 {irr::KEY_DOWN}}},
 				   {event::DROP_BOMB,
 				       {InputState::DOWN,
-					   {static_cast<component::KeyType>(component::
-									    GamepadKeyCode::BUTTON1)}}}});
-  mapStack.id = 1;
+					   {irr::KEY_SPACE}}}});
+  mapStack.id = indie::component::KEYBOARD_ID;
   mapStack.keymaps.push_front({keys, indie::component::KeyMapState::NORMAL});
   indie::engine::entityManager().addComponent(id, mapStack, true);
 
