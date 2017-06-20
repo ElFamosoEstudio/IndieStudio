@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 //
 // Started on  Sat Jun 17 00:07:05 2017 Adam Akkari
-// Last update Sun Jun 18 21:50:49 2017 akram abd-ali
+// Last update Tue Jun 20 21:37:22 2017 Adam Akkari
 //
 
 #ifndef SYSTEM_HPP
@@ -21,6 +21,7 @@
 # include "Spawn.hpp"
 # include "SysTime.hpp"
 # include "Input.hpp"
+# include "BonusSystem.hpp"
 
 namespace indie
 {
@@ -37,7 +38,8 @@ namespace indie
 	INPUT,
 	MOVEMENT,
 	SYSTIME,
-	SPAWN
+	SPAWN,
+	BONUS_SYSTEM
       };
     void        registerAllSystems();
   }

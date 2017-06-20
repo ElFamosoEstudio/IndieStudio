@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Tue Jun 20 20:20:47 2017 Adam Akkari
-// Last update Tue Jun 20 20:25:26 2017 Adam Akkari
+// Last update Tue Jun 20 21:33:01 2017 Adam Akkari
 //
 
 #ifndef BONUS_SETTINGS_HPP
@@ -20,7 +20,7 @@ namespace indie
 	DEFAULT,
 	SPEED,
 	RANGE,
-	BOMB
+	POWER
       };
 
     struct BonusSettings

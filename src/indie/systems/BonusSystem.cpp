@@ -5,25 +5,36 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Tue Jun 20 20:52:43 2017 Adam Akkari
-// Last update Tue Jun 20 20:54:37 2017 Adam Akkari
+// Last update Tue Jun 20 21:50:40 2017 Adam Akkari
 //
 
 #include "indie.hpp"
-#include "BonusSystem.hpp"
+#include "components.hpp"
+
+#include <iostream>
 
 using namespace indie::component;
 
 void		indie::system::BonusSystem::update()
 {
+  auto		&bonuses = engine::entityManager().getAllComponents<BonusSettings>();
+  auto		&transform_cmp = engine::entityManager().getAllComponents<Transform>();
 
+  for (auto &idx:bonuses)
+    {
+      if (transform_cmp.find(idx.first) != transform_cmp.end())
+	{
+	  transform_cmp[idx.first]->rotation.Z += 2;
+	}
+    }
 }
 
-ecs::Systype	indie::system::MeshRenderer::type() const
+ecs::SysType	indie::system::BonusSystem::type() const
 {
   return (system::BONUS_SYSTEM);
 }
 
-ecs::ISystem	*indie::system::MeshRenderer::create()
+ecs::ISystem	*indie::system::BonusSystem::create()
 {
-  return (new MeshRenderer);
+  return (new BonusSystem);
 }

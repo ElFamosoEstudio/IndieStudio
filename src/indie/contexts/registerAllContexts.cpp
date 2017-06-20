@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Wed Jun 14 03:59:36 2017 Noam Silvy
-// Last update Sun Jun 18 20:42:10 2017 akram abd-ali
+// Last update Tue Jun 20 21:39:06 2017 Adam Akkari
 //
 
 #include "ecs.hpp"
@@ -26,7 +26,8 @@ void		indie::context::registerAllContexts()
 			{indie::system::EXPLOSION, true},
   			{indie::system::MOVEMENT, true},
   			{indie::system::SYSTIME, true},
-  			{indie::system::COLLISION, true}};
+  			{indie::system::COLLISION, true},
+			{indie::system::BONUS_SYSTEM, true}};
 
   indie::engine::contextManager().registerContext(MAIN_MENU, main_menu);
   indie::engine::contextManager().registerContext(GAME, game);
