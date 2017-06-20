@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat Jun 17 05:13:04 2017 Adam Akkari
-// Last update Tue Jun 20 21:01:47 2017 Adam Akkari
+// Last update Tue Jun 20 21:08:39 2017 Adam Akkari
 //
 
 #include <chrono>
@@ -66,7 +66,10 @@ void		indie::system::MapGenerator::bombDropped(ecs::Entity ent)
   if (data[new_pos.X + size_x * new_pos.Y].second == BLOCK)
     engine::eventManager().emit(event::DROP_BOMB_ERR, ent);
   else
-    data[new_pos.X + size_x * new_pos.Y].second = indie::component::BOMB;
+    {
+      data[new_pos.X + size_x * new_pos.Y].second = indie::component::BOMB;
+      ent_tsfm.position = new_pos;
+    }
 }
 
 void	placeCrate(unsigned int i, unsigned int j,
