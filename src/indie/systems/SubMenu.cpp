@@ -19,6 +19,11 @@ void		SubMenu::update(void)
       indie::engine::contextManager().pop();
       return ;
     }
+  if (_btn[5]->isPressed())
+    {
+      indie::engine::contextManager().push(indie::context::GAME);
+      return ;
+    }
   int	j = 0;
   for (auto &i: _btn)
     {
@@ -84,7 +89,7 @@ SubMenu::SubMenu()
 
 SubMenu::~SubMenu()
 {
-
+  // _env->clear();
 }
 
 IGUIButton	*SubMenu::addButton(int x1, int y1, int x2, int y2)

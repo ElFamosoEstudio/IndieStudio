@@ -5,23 +5,22 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Fri Jun 16 17:24:21 2017 akram abd-ali
-// Last update Sun Jun 18 15:07:46 2017 akram abd-ali
+// Last update Sun Jun 18 20:59:07 2017 Noam Silvy
 //
 
 #ifndef COLLISION_SYSTEM_HPP
 # define COLLISION_SYSTEM_HPP
 
 # include <unordered_map>
-# include "ecs.hpp"
+# include "indie.hpp"
+# include "ASystem.hpp"
 
 namespace indie
 {
   namespace system
   {
-    class Collision : public ecs::ISystem
+    class Collision : public ASystem
     {
-    private:
-      std::unordered_map<ecs::EventTypeDefault, ecs::EventKey>	_subKeys;
     public:
       Collision();
       ~Collision();

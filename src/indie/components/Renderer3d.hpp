@@ -1,11 +1,11 @@
 //
 // Renderer3d.hpp for bomberman in /home/akkari_a/rendu/IndieStudio/src/indie/components
-// 
+//
 // Made by Adam Akkari
 // Login   <akkari_a@epitech.net>
-// 
+//
 // Started on  Thu Jun 15 22:23:05 2017 Adam Akkari
-// Last update Fri Jun 16 23:44:55 2017 Adam Akkari
+// Last update Tue Jun 20 23:15:44 2017 Noam Silvy
 //
 
 #ifndef RENDERER3D_HPP
@@ -29,7 +29,16 @@ namespace indie
 	mesh = gfx::sceneManager()->addAnimatedMeshSceneNode
 	  (gfx::sceneManager()->getMesh(file.c_str()));
 	mesh->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+	mesh->setVisible(false);
 	mesh->setMaterialTexture(0, gfx::videoDriver()->getTexture(tex.c_str()));
+      }
+      Renderer3d(std::string const &file)
+	: file(file)
+      {
+	mesh = gfx::sceneManager()->addAnimatedMeshSceneNode
+	  (gfx::sceneManager()->getMesh(file.c_str()));
+	mesh->setVisible(false);
+	mesh->setMaterialFlag(irr::video::EMF_LIGHTING, false);
       }
       std::string				file;
       std::vector<std::string>			textures;

@@ -1,15 +1,16 @@
 //
 // Bomb.cpp for  in /home/abd-al_a/rendu/IndieStudio
-// 
+//
 // Made by akram abd-ali
 // Login   <abd-al_a@epitech.net>
-// 
+//
 // Started on  Sat Jun 17 02:28:47 2017 akram abd-ali
-// Last update Sun Jun 18 16:33:25 2017 akram abd-ali
+// Last update Tue Jun 20 19:10:58 2017 akram abd-ali
 //
 
-#include "indie.hpp"
-# include <vector3d.h>
+#include "Bomb.hpp"
+#include "Timer.hpp"
+#include <vector3d.h>
 
 void indie::system::Bomb::set3DPropagationPos(component::Transform& trans, uint8_t spread)
 {
@@ -24,7 +25,7 @@ void indie::system::Bomb::set3DPropagationPos(component::Transform& trans, uint8
       break;
     case 4:
       trans.position.X -= 1;
-      trans.position.Y += 1;      
+      trans.position.Y += 1;
       break;
     case 8:
       trans.position.X += 1;
@@ -63,26 +64,29 @@ void	indie::system::Bomb::dropBomb(ecs::Entity entity)
 	  auto &transform = engine::entityManager().getComponent<component::Transform>(id);
 	  if (!transform || !playerId)
 	    continue ;
+	  component::Transform t;
+	  t.scale.X = 0.35;
+	  t.scale.Y = 0.35;
+	  t.scale.Z = 0.35;
+	  t.position.X = transform->position.X;
+	  t.position.Y = transform->position.Y;
+	  t.position.Z = transform->position.Z;
 	  if (!remote)
 	    {
-	      engine::entityManager()
-		.create(entity::BOMB,
-			component::Transform(transform->position.X,
-					     transform->position.Y,
-					     transform->position.Z),
-			component::Spreadable(bomb->range,
-					      bomb->propagationMask),
-			component::PowerInfo(bomb->power),
-			component::PlayerId(playerId->id),
-			component::Timer(3000, event::DETONATE_BOMB));
+	      auto id = engine::entityManager()
+	      	.create(entity::BOMB,
+	      		component::Transform(t),
+	      		component::Spreadable(bomb->range,
+	      				      bomb->propagationMask),
+	      		component::PowerInfo(bomb->power),
+	      		component::PlayerId(playerId->id),
+	      		component::Timer(3000, event::DETONATE_BOMB));
 	    }
 	  else
 	    {
-	      engine::entityManager()
+	      auto id = engine::entityManager()
 		.create(entity::BOMB,
-			component::Transform(transform->position.X,
-					     transform->position.Y,
-					     transform->position.Z),
+			component::Transform(t),
 			component::Spreadable(bomb->range,
 					      bomb->propagationMask),
 			component::PowerInfo(bomb->power),
@@ -117,34 +121,52 @@ void	indie::system::Bomb::explode(ecs::Entity entity)
       if ((i == 0)
 	  || ((1 << (i - 1)) & spreadable->propagationMask))
 	{
-	  component::Transform trans(transform->position.X,
-				     transform->position.Y,
-				     transform->position.Z);
+	  component::Transform t;
+	  t.scale.X = 0.25;
+	  t.scale.Y = 0.25;
+	  t.scale.Z = 0.25;
+	  t.position.X = transform->position.X;
+	  t.position.Y = transform->position.Y;
+	  t.position.Z = transform->position.Z;
 	  if (i != 0)
 	    {
 	      dir = 1 << (i - 1);
-	      set3DPropagationPos(trans, dir);
+	      set3DPropagationPos(t, dir);
 	    }
 	  auto id = engine::entityManager()
 	    .create(entity::EXPLOSION,
 		    component::Damage(powerInfo->power),
-		    component::Transform(trans.position.X,
-					 trans.position.Y,
-					 trans.position.Z),
+		    component::Transform(t),
 		    component::Spreadable((spreadable->range - 1),
 					  dir),
 		    component::PlayerId(playerId->id),
-		    component::Timer(50, event::NO_DAMAGE));
-	  engine::eventManager().emit(event::NO_DAMAGE, id);
+		    component::Timer(50, event::SPREAD_EXPLOSION));
+	  engine::eventManager().emit(event::CHECK_DAMAGE, id);
 	}
     }
+  removeBomb(entity);
 }
 
 void	indie::system::Bomb::removeBomb(ecs::Entity entity)
 {
-  auto&	bombInfo = engine::entityManager().getComponent<component::BombInfo>(entity);
-  if (bombInfo)
-    bombInfo->count += 1;
+  auto&	pId = engine::entityManager().getComponent<component::PlayerId>(entity);
+  if (pId)
+    {
+      auto&	bombInfos = engine::entityManager().getAllComponents<component::BombInfo>();
+
+      for (auto& it : bombInfos)
+	{
+	  auto id = it.first;
+	  auto&	pIdB = engine::entityManager().getComponent<component::PlayerId>(id);
+	  if (!pIdB)
+	    continue ;
+	  if (pIdB->id == pId->id)
+	    {
+	      auto& bomb = it.second;
+	      bomb->count += 1;
+	    }
+	}
+    }
   auto& render = engine::entityManager().getComponent<component::Renderer3d>(entity);
   if (render && render->mesh)
     gfx::sceneManager()->addToDeletionQueue(render->mesh);
@@ -154,15 +176,15 @@ void	indie::system::Bomb::removeBomb(ecs::Entity entity)
 indie::system::Bomb::Bomb()
 {
   auto key = engine::eventManager().subscribe(event::DROP_BOMB, &indie::system::Bomb::dropBomb, this);
-  _subKeys[event::DROP_BOMB] = key;
+  _eventKeys[event::DROP_BOMB] = key;
   key = engine::eventManager().subscribe(event::DROP_BOMB_ERR, &indie::system::Bomb::removeBomb, this);
-  _subKeys[event::DROP_BOMB_ERR] = key;
+  _eventKeys[event::DROP_BOMB_ERR] = key;
+  key = engine::eventManager().subscribe(event::DETONATE_BOMB, &indie::system::Bomb::explode, this);
+  _eventKeys[event::DETONATE_BOMB] = key;
 }
 
 indie::system::Bomb::~Bomb()
 {
-  // for (auto const& it : _subKeys)
-  //   engine::eventManager().unsubscribe(it.first, it.second);
 }
 
 void	indie::system::Bomb::update() {

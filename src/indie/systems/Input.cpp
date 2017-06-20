@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Sat Jun 17 08:51:46 2017 Noam Silvy
-// Last update Sun Jun 18 11:58:20 2017 Noam Silvy
+// Last update Tue Jun 20 22:55:53 2017 Noam Silvy
 //
 
 #include <memory>
@@ -82,9 +82,6 @@ bool			Input::_needToBreak(component::KeyMapState state, bool isMatch)
   return (ret);
 }
 
-#include <chrono>
-#include <thread>
-
 indie::InputState	Input::_getAxisInputState(irr::u8	id,
 						  std::size_t	idx,
 						  bool		isPositive)
@@ -93,7 +90,6 @@ indie::InputState	Input::_getAxisInputState(irr::u8	id,
 
   if (!_rcvr->getGamePadAxis(id, idx, &axis))
     return (InputState::UP);
-  std::cout << "Axis = " << axis << std::endl;
    if (ABS(axis) <= DEAD_POINT)
     return (InputState::UP);
   return ((isPositive && axis > 0) ? InputState::DOWN :
@@ -106,9 +102,13 @@ void	        Input::_updateGamePad(irr::u8 id)
   bool		positive = true;
   std::size_t	i;
 
-  for (i = 0; i < GAMEPAD_BUTTON_COUNT; i++)
-    _gamepad[i] = (_rcvr->isGamePadButtonState(id, i, InputState::DOWN) ?
-		   InputState::DOWN : InputState::UP);
+  for (i = 0; i < GAMEPAD_BUTTON_COUNT; i++) {
+    for (InputState state = InputState::UP; state < InputState::RELEASED;) {
+      if (_rcvr->isGamePadButtonState(id, i, state))
+	_gamepad[i] = state;
+      state = static_cast<InputState>((int)state + 1);
+    }
+  }
   auto idx = 0;
   for (; i < GAMEPAD_KEYCODE_COUNT; i++) {
     _gamepad[i] = _getAxisInputState(id, idx, positive = !positive);

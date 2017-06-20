@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sat Jun 17 05:13:04 2017 Adam Akkari
-// Last update Sun Jun 18 08:10:56 2017 akram abd-ali
+// Last update Tue Jun 20 21:11:13 2017 Adam Akkari
 //
 
 #include <chrono>
@@ -17,12 +17,35 @@ using namespace indie::component;
 
 indie::system::MapGenerator::MapGenerator()
 {
-  key1 = engine::eventManager().subscribe
+  auto key = engine::eventManager().subscribe
     (event::BOMB_DROPPED, &indie::system::MapGenerator::bombDropped, this);
+  auto key2 = engine::eventManager().subscribe
+    (event::CHECK_DAMAGE, &indie::system::MapGenerator::checkDamage, this);
+
+  _eventKeys[event::BOMB_DROPPED] = key;
+  _eventKeys[event::CHECK_DAMAGE] = key2;
 }
 
 indie::system::MapGenerator::~MapGenerator()
+{}
+
+void		indie::system::MapGenerator::checkDamage(ecs::Entity ent)
 {
+  auto		&settings = indie::engine::entityManager().getAllComponents<MapSettings>();
+  auto		&ent_tsfm = indie::engine::entityManager().getComponent<Transform>(ent);
+  if (settings.size() == 0 || !ent_tsfm)
+    {
+      engine::eventManager().emit(event::NO_DAMAGE, ent);
+      return ;
+    }
+  auto		&data = settings.begin()->second->map;
+  unsigned int	size_x = settings.begin()->second->size_x;
+  unsigned int	size_y = settings.begin()->second->size_y;
+
+  if (data[ent_tsfm->position.X + size_x * ent_tsfm->position.Y].second == BLOCK ||
+      ent_tsfm->position.X >= size_x || ent_tsfm->position.X < 0 ||
+      ent_tsfm->position.Y >= size_y || ent_tsfm->position.Y < 0)
+    engine::eventManager().emit(event::NO_DAMAGE, ent);
 }
 
 void		indie::system::MapGenerator::bombDropped(ecs::Entity ent)
@@ -43,7 +66,10 @@ void		indie::system::MapGenerator::bombDropped(ecs::Entity ent)
   if (data[new_pos.X + size_x * new_pos.Y].second == BLOCK)
     engine::eventManager().emit(event::DROP_BOMB_ERR, ent);
   else
-    data[new_pos.X + size_x * new_pos.Y].second = indie::component::BOMB;
+    {
+      data[new_pos.X + size_x * new_pos.Y].second = indie::component::BOMB;
+      ent_tsfm->position = new_pos;
+    }
 }
 
 void	placeCrate(unsigned int i, unsigned int j,
@@ -114,7 +140,7 @@ bool		indie::system::MapGenerator::init_map()
 
   camera = indie::engine::entityManager().create(indie::entity::CAMERA);
   indie::engine::entityManager().getComponent<Transform>(camera)->position
-    = irr::core::vector3df(max_size / 2, (int)(- (max_size * 0.25 / 2 - 1)), max_size * 0.75);
+    = irr::core::vector3df(max_size / 2, (float)(- (max_size / 2 - 0.5)), max_size);
   indie::engine::entityManager().getComponent<Camera>(camera)->lookat
     = irr::core::vector3df(max_size / 2, max_size / 2, 0);
 

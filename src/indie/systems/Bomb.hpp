@@ -1,11 +1,11 @@
 //
 // Bomb.hpp for  in /home/abd-al_a/rendu/IndieStudio
-// 
+//
 // Made by akram abd-ali
 // Login   <abd-al_a@epitech.net>
-// 
+//
 // Started on  Sat Jun 17 02:27:36 2017 akram abd-ali
-// Last update Sun Jun 18 05:33:47 2017 akram abd-ali
+// Last update Sun Jun 18 22:22:57 2017 akram abd-ali
 //
 
 #ifndef BOMB_SYSTEM_HPP
@@ -13,14 +13,14 @@
 
 # include <unordered_map>
 # include <vector>
-#include "components.hpp"
 # include "indie.hpp"
+# include "ASystem.hpp"
 
 namespace indie
 {
   namespace system
   {
-    class Bomb : public ecs::ISystem
+    class Bomb : public ASystem
     {
     private:
       std::unordered_map<ecs::EventTypeDefault, ecs::EventKey>	_subKeys;

@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 10 03:34:26 2017 akram abd-ali
-// Last update Sun Jun 18 12:24:18 2017 Noam Silvy
+// Last update Tue Jun 20 23:12:50 2017 Noam Silvy
 //
 
 #ifndef ENGINE_HPP
@@ -23,6 +23,7 @@ namespace indie
     using namespace component;
     using IndieEntityManager = ecs::EntityManager<Transform,
 						  Renderer3d,
+						  Animation,
 						  Skeleton,
 						  Camera,
 						  Timer,
@@ -39,7 +40,9 @@ namespace indie
 						  RemoteExplosion,
 						  Spreadable,
 						  MapSettings,
-						  KeyMaps>;
+						  KeyMaps,
+						  TagExplosion,
+						  TagCrate>;
 
     ecs::SystemManager&		systemManager();
 

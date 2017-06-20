@@ -1,3 +1,13 @@
+//
+// system.hpp for bomberman in /home/akkari_a/rendu/IndieStudio/src/indie/systems
+//
+// Made by Adam Akkari
+// Login   <akkari_a@epitech.net>
+//
+// Started on  Sat Jun 17 00:07:05 2017 Adam Akkari
+// Last update Tue Jun 20 23:40:38 2017 Noam Silvy
+//
+
 #ifndef SYSTEM_HPP
 # define SYSTEM_HPP
 
@@ -11,7 +21,11 @@
 # include "OverMenu.hpp"
 # include "MapGenerator.hpp"
 # include "Movement.hpp"
+# include "Spawn.hpp"
+# include "Die.hpp"
+# include "SysTime.hpp"
 # include "Input.hpp"
+# include "AnimationSystem.hpp"
 
 namespace indie
 {
@@ -29,7 +43,11 @@ namespace indie
 	OVER_MENU,
 	MAP_GENERATOR,
 	INPUT,
-	MOVEMENT
+	MOVEMENT,
+	ANIMATION,
+	SYSTIME,
+	SPAWN,
+	DIE
       };
     void        registerAllSystems();
   }

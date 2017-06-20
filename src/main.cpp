@@ -10,12 +10,8 @@ int	main()
   indie::system::MeshRenderer col2;
   indie::init(); // For now: registers all factories
 
-  // indie::engine::contextManager().push(indie::context::GAME);
   indie::engine::contextManager().push(indie::context::MAIN_MENU);
-  // indie::engine::contextManager().push(indie::context::SUB_MENU);
-  // indie::engine::contextManager().push(indie::context::OVER_MENU);
-
-  ecs::Entity map = indie::engine::entityManager().create(indie::entity::MAP, MapSettings(17,17));
+  ecs::Entity map = indie::engine::entityManager().create(indie::entity::MAP, MapSettings(9,9));
 
   while (indie::gfx::device()->run())
     {

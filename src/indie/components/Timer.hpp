@@ -5,11 +5,11 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Sat Jun 17 04:42:26 2017 akram abd-ali
-// Last update Sat Jun 17 10:25:04 2017 akram abd-ali
+// Last update Sun Jun 18 22:30:21 2017 akram abd-ali
 //
 
-#ifndef TIMER_HPP
-# define TIMER_HPP
+#ifndef THE_TIMER_HPP
+# define THE_TIMER_HPP
 
 # include "CountDown.hpp"
 
@@ -29,4 +29,4 @@ namespace indie
   }
 }
 
-#endif // TIMER_HPP
+#endif // !THE_TIMER_HPP
