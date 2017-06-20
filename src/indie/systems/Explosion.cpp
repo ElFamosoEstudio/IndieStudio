@@ -1,11 +1,11 @@
 //
 // Explosion.cpp for  in /home/abd-al_a/rendu/IndieStudio
-// 
+//
 // Made by akram abd-ali
 // Login   <abd-al_a@epitech.net>
-// 
+//
 // Started on  Sun Jun 18 06:01:58 2017 akram abd-ali
-// Last update Sun Jun 18 16:45:50 2017 akram abd-ali
+// Last update Sun Jun 18 21:25:30 2017 Noam Silvy
 //
 
 #include "indie.hpp"
@@ -71,21 +71,37 @@ indie::system::Explosion::Explosion()
   auto key = engine::eventManager().subscribe(event::SPREAD_EXPLOSION,
 					      &indie::system::Explosion::spreadExplosion,
 					      this);
-  _subKeys[event::SPREAD_EXPLOSION] = key;
+  _eventKeys[event::SPREAD_EXPLOSION] = key;
   key = engine::eventManager().subscribe(event::NO_DAMAGE,
 					 &indie::system::Explosion::removeExplosion,
 					 this);
-  _subKeys[event::NO_DAMAGE] = key;
+  _eventKeys[event::NO_DAMAGE] = key;
 }
 
 indie::system::Explosion::~Explosion()
 {
-  // for (auto const& it : _subKeys)
-  //   engine::eventManager().unsubscribe(it.first, it.second);
 }
 
-void	indie::system::Explosion::update() {
+void	indie::system::Explosion::update()
+{
+  auto	&explosions = engine::entityManager().getAllComponents<component::TagExplosion>();
+  auto	&damageables = engine::entityManager().getAllComponents<component::HP>();
 
+  for (auto &idx:explosions)
+    {
+      auto	&tsfm = engine::entityManager().getComponent<component::Transform>(idx.first);
+
+      for (auto &idx2:damageables)
+	{
+	  auto	&tsfm2 = engine::entityManager().getComponent<component::Transform>(idx2.first);
+	  irr::core::vector3df	tmp(round(tsfm2->position.X),
+				    round(tsfm2->position.Y),
+				    round(tsfm2->position.Z));
+
+	  if (tsfm->position == tmp)
+	    engine::eventManager().emit(event::HIT, idx2.first);
+	}
+    }
 }
 
 ecs::SysType	indie::system::Explosion::type() const

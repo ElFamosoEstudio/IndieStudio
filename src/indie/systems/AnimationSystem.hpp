@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Sun Jun 18 18:32:29 2017 Noam Silvy
-// Last update Sun Jun 18 19:19:12 2017 Noam Silvy
+// Last update Sun Jun 18 23:33:47 2017 Noam Silvy
 //
 
 #ifndef ANIMATION_SYSTEM_HPP
@@ -15,15 +15,15 @@
 # include <utility>
 # include <queue>
 # include "indie.hpp"
+# include "ASystem.hpp"
 
 namespace indie
 {
   namespace system
   {
-    class AnimationSystem : public ecs::ISystem
+    class AnimationSystem : public ASystem
     {
     private:
-      std::list<ecs::EventKey>				_eventKeys;
       std::queue<std::pair<event::EEvent, ecs::Entity>> _tasks;
     public:
       AnimationSystem();
