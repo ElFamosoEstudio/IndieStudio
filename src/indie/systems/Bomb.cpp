@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 17 02:28:47 2017 akram abd-ali
-// Last update Wed Jun 21 04:06:07 2017 akram abd-ali
+// Last update Wed Jun 21 18:49:21 2017 akram abd-ali
 //
 
 #include "Bomb.hpp"
@@ -56,46 +56,49 @@ void	indie::system::Bomb::dropBomb(ecs::Entity entity)
   for (auto& it : bombInfos)
     {
       auto id = it.first;
-      auto& bomb = it.second;
-      if (bomb->count > 0)
+      if (id == entity)
 	{
-	  auto &remote = engine::entityManager().getComponent<component::RemoteExplosion>(id);
-	  auto &playerId = engine::entityManager().getComponent<component::PlayerId>(id);
-	  auto &transform = engine::entityManager().getComponent<component::Transform>(id);
-	  if (!transform || !playerId)
-	    continue ;
-	  component::Transform t;
-	  t.scale.X = 0.33;
-	  t.scale.Y = 0.33;
-	  t.scale.Z = 0.33;
-	  t.position.X = transform->position.X;
-	  t.position.Y = transform->position.Y;
-	  t.position.Z = transform->position.Z;
-	  if (!remote)
+	  auto& bomb = it.second;
+	  if (bomb->count > 0)
 	    {
-	      auto id = engine::entityManager()
-	      	.create(entity::BOMB,
-	      		component::Transform(t),
-	      		component::Spreadable(bomb->range,
-	      				      bomb->propagationMask),
-	      		component::PowerInfo(bomb->power),
-	      		component::PlayerId(playerId->id),
-	      		component::Timer(2500, event::DETONATE_BOMB));
-	      engine::eventManager().emit(event::BOMB_DROPPED, id);
+	      auto &remote = engine::entityManager().getComponent<component::RemoteExplosion>(id);
+	      auto &playerId = engine::entityManager().getComponent<component::PlayerId>(id);
+	      auto &transform = engine::entityManager().getComponent<component::Transform>(id);
+	      if (!transform || !playerId)
+		continue ;
+	      component::Transform t;
+	      t.scale.X = 0.33;
+	      t.scale.Y = 0.33;
+	      t.scale.Z = 0.33;
+	      t.position.X = transform->position.X;
+	      t.position.Y = transform->position.Y;
+	      t.position.Z = transform->position.Z;
+	      if (!remote)
+		{
+		  auto id = engine::entityManager()
+		    .create(entity::BOMB,
+			    component::Transform(t),
+			    component::Spreadable(bomb->range,
+						  bomb->propagationMask),
+			    component::PowerInfo(bomb->power),
+			    component::PlayerId(playerId->id),
+			    component::Timer(2500, event::DETONATE_BOMB));
+		  engine::eventManager().emit(event::BOMB_DROPPED, id);
+		}
+	      else
+		{
+		  auto id = engine::entityManager()
+		    .create(entity::BOMB,
+			    component::Transform(t),
+			    component::Spreadable(bomb->range,
+						  bomb->propagationMask),
+			    component::PowerInfo(bomb->power),
+			    component::PlayerId(playerId->id),
+			    component::Timer(200, event::COL_ADD_ELEM));
+		  engine::eventManager().emit(event::BOMB_DROPPED, id);
+		}
+	      bomb->count -= 1;
 	    }
-	  else
-	    {
-	      auto id = engine::entityManager()
-		.create(entity::BOMB,
-			component::Transform(t),
-			component::Spreadable(bomb->range,
-					      bomb->propagationMask),
-			component::PowerInfo(bomb->power),
-			component::PlayerId(playerId->id),
-			component::Timer(200, event::COL_ADD_ELEM));
-	      engine::eventManager().emit(event::BOMB_DROPPED, id);
-	    }
-	  bomb->count -= 1;
 	}
     }
 }

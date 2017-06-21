@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Tue Jun 20 20:52:43 2017 Adam Akkari
-// Last update Wed Jun 21 04:41:17 2017 akram abd-ali
+// Last update Wed Jun 21 18:30:58 2017 akram abd-ali
 //
 
 #include <random>
@@ -31,7 +31,6 @@ void	indie::system::BonusSystem::addBonus(ecs::Entity entity)
   auto& bonus = engine::entityManager().getComponent<component::BonusSettings>(obj);
   if (!bonus)
     return ;
-  std::cout << "yolo" << std::endl;
   auto&	bombInfos = engine::entityManager().getComponent<component::BombInfo>(player);
   auto&	speed = engine::entityManager().getComponent<component::Speed>(player);
   if ((bonus->type == component::BONUS_SPEED) && (speed) && (speed->value <= 0.8))

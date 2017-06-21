@@ -18,7 +18,7 @@ size_t acc = 0;
 int	main()
 {
   indie::init(); // For now: registers all factories
-  indie::engine::contextManager().push(indie::context::MAIN_MENU);
+  indie::engine::contextManager().push(indie::context::GAME);
   ecs::Entity map = indie::engine::entityManager().create(indie::entity::MAP, MapSettings(9,9));
 
   while (indie::gfx::device()->run())
