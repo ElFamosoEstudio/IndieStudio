@@ -1,11 +1,11 @@
 //
 // Renderer3d.hpp for bomberman in /home/akkari_a/rendu/IndieStudio/src/indie/components
-// 
+//
 // Made by Adam Akkari
 // Login   <akkari_a@epitech.net>
-// 
+//
 // Started on  Thu Jun 15 22:23:05 2017 Adam Akkari
-// Last update Tue Jun 20 19:24:35 2017 akram abd-ali
+// Last update Tue Jun 20 23:15:44 2017 Noam Silvy
 //
 
 #ifndef RENDERER3D_HPP

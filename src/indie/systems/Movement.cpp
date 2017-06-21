@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sun Jun 18 15:29:28 2017 akram abd-ali
-// Last update Tue Jun 20 02:45:03 2017 akram abd-ali
+// Last update Tue Jun 20 23:31:47 2017 Noam Silvy
 //
 
 #include <vector3d.h>
@@ -66,6 +66,9 @@ void	indie::system::Movement::goDown(ecs::Entity entity)
 
 void	indie::system::Movement::update()
 {
+  static bool run = false;
+  static bool stop = true;
+
   for (auto& it : _movements)
     {
       auto id = it.first;
@@ -80,19 +83,32 @@ void	indie::system::Movement::update()
       };
       if (!transform || !speed || !move)
 	{
+	  if (stop) {
+	    stop = false;
+	    run = true;
+	    engine::eventManager().emit(event::STOPED, it.first);
+	  }
 	  reset();
 	  continue ;
 	}
       int three = 0;
+      int notrunning = 0;
       float len = ((move->value * speed->value) * 2);
       float sqlen = 0.707 * len;
       for (int i = 0; i < 4; ++i)
 	{
 	  if (it.second[i] == true)
 	    three++;
+	  else
+	    notrunning++;
 	}
-      if ((three >= 3) || (it.second[UP] && it.second[DOWN]) || (it.second[LEFT] && it.second[RIGHT]))
+      if ((notrunning == 4) || (three >= 3) || (it.second[UP] && it.second[DOWN]) || (it.second[LEFT] && it.second[RIGHT]))
 	{
+	  if (stop) {
+	    stop = false;
+	    run = true;
+	    engine::eventManager().emit(event::STOPED, it.first);
+	  }
 	  reset();
 	  continue ;
 	}
@@ -102,29 +118,34 @@ void	indie::system::Movement::update()
 	  done = true;
 	  transform->position.Y += sqlen;
 	  transform->position.X += sqlen;
-	  transform->rotation.Z = 45;
+	  transform->rotation.Z = 315;
 	}
       else if ((it.second[UP]) && (it.second[RIGHT]))
 	{
 	  done = true;
 	  transform->position.Y += sqlen;
 	  transform->position.X -= sqlen;
-	  transform->rotation.Z = 315;
+	  transform->rotation.Z = 45;
 	}
       else if ((it.second[DOWN]) && (it.second[LEFT]))
 	{
 	  done = true;
 	  transform->position.Y -= sqlen;
 	  transform->position.X += sqlen;
-	  transform->rotation.Z = 135;
+	  transform->rotation.Z = 225;
 	}
       else if ((it.second[DOWN]) && (it.second[RIGHT]))
 	{
 	  done = true;
 	  transform->position.Y -= sqlen;
 	  transform->position.X -= sqlen;
-	  transform->rotation.Z = 225;
+	  transform->rotation.Z = 135;
 	}
+      if (run) {
+	run = false;
+	stop = true;
+	engine::eventManager().emit(event::MOVED, it.first);
+      }
       if (done == false)
 	{
 	  if (it.second[UP])
@@ -140,12 +161,12 @@ void	indie::system::Movement::update()
 	  else if (it.second[LEFT])
 	    {
 	      transform->position.X += len;
-	      transform->rotation.Z = 90;
+	      transform->rotation.Z = 270;
 	    }
 	  else if (it.second[RIGHT])
 	    {
 	      transform->position.X -= len;
-	      transform->rotation.Z = 270;
+	      transform->rotation.Z = 90;
 	    }
 	}
       reset();

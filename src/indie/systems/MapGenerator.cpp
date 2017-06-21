@@ -1,11 +1,11 @@
 //
 // MapGenerator.cpp for bomberman in /home/akkari_a/rendu/IndieStudio/src/indie/systems
-// 
+//
 // Made by Adam Akkari
 // Login   <akkari_a@epitech.net>
-// 
+//
 // Started on  Sat Jun 17 05:13:04 2017 Adam Akkari
-// Last update Wed Jun 21 04:06:17 2017 akram abd-ali
+// Last update Wed Jun 21 17:40:45 2017 akram abd-ali
 //
 
 #include <chrono>
@@ -17,6 +17,10 @@ using namespace indie::component;
 
 indie::system::MapGenerator::MapGenerator()
 {
+  auto *env = indie::gfx::device()->getGUIEnvironment();
+  irr::video::ITexture *text = indie::gfx::videoDriver()->getTexture("./img/wallpaper.png");
+  env->addImage(text, irr::core::position2d<int>(0,0));
+  env->drawAll();
   auto key = engine::eventManager().subscribe
     (event::BOMB_DROPPED, &indie::system::MapGenerator::bombDropped, this);
   auto key2 = engine::eventManager().subscribe
@@ -104,7 +108,7 @@ bool		indie::system::MapGenerator::init_map()
   std::vector<std::pair<ecs::Entity, element> >	&data = settings.begin()->second->map;
   unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
   std::mt19937 gen(seed);
-  
+
   boxes.push_back(indie::engine::entityManager().create
 		  (indie::entity::BOX, Transform(-1, -1, 0)));
   boxes.push_back(indie::engine::entityManager().create

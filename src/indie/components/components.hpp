@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Fri Jun 16 03:39:22 2017 Noam Silvy
-// Last update Wed Jun 21 02:09:29 2017 akram abd-ali
+// Last update Wed Jun 21 17:47:43 2017 akram abd-ali
 //
 
 #ifndef COMPONENTS_HPP
@@ -13,6 +13,7 @@
 
 # include "Transform.hpp"
 # include "Renderer3d.hpp"
+# include "Animation.hpp"
 # include "Skeleton.hpp"
 # include "Camera.hpp"
 # include "Timer.hpp"
@@ -31,6 +32,7 @@
 # include "MapSettings.hpp"
 # include "Keymap.hpp"
 # include "TagExplosion.hpp"
+# include "Animation.hpp"
 # include "TagCrate.hpp"
 # include "TagBox.hpp"
 # include "TagObs.hpp"

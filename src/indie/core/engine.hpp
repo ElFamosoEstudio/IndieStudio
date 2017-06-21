@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 10 03:34:26 2017 akram abd-ali
-// Last update Wed Jun 21 03:10:57 2017 akram abd-ali
+// Last update Wed Jun 21 17:42:29 2017 akram abd-ali
 //
 
 #ifndef ENGINE_HPP
@@ -23,6 +23,7 @@ namespace indie
     using namespace component;
     using IndieEntityManager = ecs::EntityManager<Transform,
 						  Renderer3d,
+						  Animation,
 						  Skeleton,
 						  Camera,
 						  Timer,

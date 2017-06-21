@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Fri Jun 16 21:09:13 2017 Noam Silvy
-// Last update Wed Jun 21 17:00:21 2017 akram abd-ali
+// Last update Wed Jun 21 17:41:27 2017 akram abd-ali
 //
 
 #ifndef EVENT_HPP
@@ -28,6 +28,10 @@ namespace indie
 	REMOVE_SKEL,
 	COL_ADD_ELEM,
 	COL_ADD_OBS,
+	COL_ADD_BOMB,
+	MOVED,
+	STOPED,
+	BORED,
 	COLLIDED,
 	BOMB_DROPPED,
 	DROP_BOMB_ERR,

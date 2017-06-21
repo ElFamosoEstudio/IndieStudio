@@ -5,7 +5,8 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sun Jun 18 20:21:40 2017 akram abd-ali
-// Last update Wed Jun 21 17:17:12 2017 akram abd-ali
+// Last update Wed Jun 21 17:51:58 2017 akram abd-ali
+// Last update Tue Jun 20 22:57:34 2017 Noam Silvy
 //
 
 #include "Keycodes.h"
@@ -37,7 +38,6 @@ indie::system::Spawn::Spawn()
   t.scale.Y = 0.15;
   t.scale.Z = 0.15;
   auto id = indie::engine::entityManager().create(indie::entity::PLAYER,
-						  component::PlayerId(1),
 						  component::PlayerId(1),
 						  component::Timer(100, event::COL_ADD_OBS),
 						  t,

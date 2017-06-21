@@ -4,8 +4,8 @@
 // Made by Noam Silvy
 // Login   <silvy_n@epitech.net>
 //
-// Started on  Wed Jun 14 02:11:12 2017 Noam Silvy
-// Last update Wed Jun 21 02:08:31 2017 akram abd-ali
+// Started on  Wed Jun 14 02:11:12 2017 Noam Silv
+// Last update Wed Jun 21 17:38:09 2017 akram abd-ali
 //
 
 #include "engine.hpp"
@@ -23,12 +23,20 @@ void        indie::system::registerAllSystems()
 						&indie::system::MeshRenderer::create);
   indie::engine::systemManager().registerSystem(indie::system::CAMERA_SYSTEM,
 						&indie::system::CameraSystem::create);
+  indie::engine::systemManager().registerSystem(indie::system::SUB_MENU,
+						&indie::system::SubMenu::create);
+  indie::engine::systemManager().registerSystem(indie::system::MAIN_MENU,
+						&indie::system::MainMenu::create);
+  indie::engine::systemManager().registerSystem(indie::system::OVER_MENU,
+						&indie::system::OverMenu::create);
   indie::engine::systemManager().registerSystem(indie::system::MAP_GENERATOR,
 						&indie::system::MapGenerator::create);
   indie::engine::systemManager().registerSystem(indie::system::INPUT,
 						&indie::system::Input::create);
   indie::engine::systemManager().registerSystem(indie::system::MOVEMENT,
 						&indie::system::Movement::create);
+  indie::engine::systemManager().registerSystem(indie::system::ANIMATION,
+						&indie::system::AnimationSystem::create);
   indie::engine::systemManager().registerSystem(indie::system::SYSTIME,
 						&indie::system::SysTime::create);
   indie::engine::systemManager().registerSystem(indie::system::SPAWN,

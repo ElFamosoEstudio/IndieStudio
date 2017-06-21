@@ -5,7 +5,7 @@
 // Login   <silvy_n@epitech.net>
 //
 // Started on  Fri Jun 16 00:57:23 2017 Noam Silvy
-// Last update Fri Jun 16 01:46:53 2017 Noam Silvy
+// Last update Sun Jun 18 17:15:53 2017 Bento
 //
 
 #include "SystemManager.hpp"
@@ -55,7 +55,7 @@ void	SystemManager::disableAll()
       it.second.second = false;
     }
 }
-void	SystemManager::update() const
+void	SystemManager::update()
 {
   for (auto const& it : _systems)
     {
