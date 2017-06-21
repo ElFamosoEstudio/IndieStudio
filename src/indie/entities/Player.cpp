@@ -5,7 +5,7 @@
 // Login   <akkari_a@epitech.net>
 // 
 // Started on  Sun Jun 18 12:15:10 2017 Adam Akkari
-// Last update Tue Jun 20 20:56:27 2017 akram abd-ali
+// Last update Wed Jun 21 16:54:25 2017 akram abd-ali
 //
 
 #include "engine.hpp"
@@ -21,11 +21,11 @@ ecs::Entity	indie::entity::createPlayer()
   id = ent.createEntity();
   ent.addComponentEmplace<Transform>(id);
   ent.addComponentEmplace<Renderer3d>(id, "bombie.b3d", "elfamosohat.jpg");
-  ent.addComponentEmplace<BombInfo>(id, 2, 2, 2, 90);
-  ent.addComponentEmplace<LifeNumber>(id, 1);
+  ent.addComponentEmplace<BombInfo>(id, 1, 1, 1, 90);
+  ent.addComponentEmplace<LifeNumber>(id, 3);
   ent.addComponentEmplace<HP>(id, 1);
-  ent.addComponentEmplace<Speed>(id, 0.5);
-  ent.addComponentEmplace<Movement>(id, 0.05f);
+  ent.addComponentEmplace<Speed>(id, 0.4);
+  ent.addComponentEmplace<Movement>(id, 0.02f);
   auto &render = ent.getComponent<Renderer3d>(id);
   if (render)
     ent.addComponentEmplace<Skeleton>(id, render->mesh, true);

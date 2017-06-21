@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Tue Jun 20 19:29:55 2017 akram abd-ali
-// Last update Tue Jun 20 19:58:02 2017 akram abd-ali
+// Last update Wed Jun 21 16:23:49 2017 akram abd-ali
 //
 
 #ifndef DIE_SYSTEM_HPP
@@ -29,6 +29,7 @@ namespace indie
       Die& operator=(Die const&) = delete;
     public:
       void	        crateToBonus(ecs::Entity entity);
+      void	        killPlayer(ecs::Entity entity);
       void		update();
       ecs::SysType	type() const;
       static ISystem	*create();

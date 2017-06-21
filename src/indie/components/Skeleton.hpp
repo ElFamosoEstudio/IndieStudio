@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Fri Jun 16 17:13:43 2017 akram abd-ali
-// Last update Sun Jun 18 11:44:30 2017 akram abd-ali
+// Last update Wed Jun 21 16:47:33 2017 akram abd-ali
 //
 
 #ifndef SKELETON_HPP
@@ -37,13 +37,13 @@ namespace indie
 	if (!collide)
 	  return ;
 	metaSelector = gfx::sceneManager()->createMetaTriangleSelector();
+	node->setScale(irr::core::vector3df(0.15,0.15,0.15));
 	const irr::core::aabbox3df& box = node->getBoundingBox();
 	collider = gfx::sceneManager()->
-	  createCollisionResponseAnimator(selector, node, node->getScale()
-					  * (box.MaxEdge-box.getCenter()),
-					  irr::core::vector3df(0,0,0),
-					  -node->getScale() * (box.getCenter()));
-
+	  createCollisionResponseAnimator(metaSelector, node, node->getScale()
+	  				  * (box.MaxEdge-box.getCenter()),
+	  				  irr::core::vector3df(0,0,0));
+	node->addAnimator(collider);
       }
     };
   }

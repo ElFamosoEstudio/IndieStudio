@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 17 02:28:47 2017 akram abd-ali
-// Last update Tue Jun 20 19:10:58 2017 akram abd-ali
+// Last update Wed Jun 21 04:06:07 2017 akram abd-ali
 //
 
 #include "Bomb.hpp"
@@ -65,9 +65,9 @@ void	indie::system::Bomb::dropBomb(ecs::Entity entity)
 	  if (!transform || !playerId)
 	    continue ;
 	  component::Transform t;
-	  t.scale.X = 0.35;
-	  t.scale.Y = 0.35;
-	  t.scale.Z = 0.35;
+	  t.scale.X = 0.33;
+	  t.scale.Y = 0.33;
+	  t.scale.Z = 0.33;
 	  t.position.X = transform->position.X;
 	  t.position.Y = transform->position.Y;
 	  t.position.Z = transform->position.Z;
@@ -80,7 +80,8 @@ void	indie::system::Bomb::dropBomb(ecs::Entity entity)
 	      				      bomb->propagationMask),
 	      		component::PowerInfo(bomb->power),
 	      		component::PlayerId(playerId->id),
-	      		component::Timer(3000, event::DETONATE_BOMB));
+	      		component::Timer(2500, event::DETONATE_BOMB));
+	      engine::eventManager().emit(event::BOMB_DROPPED, id);
 	    }
 	  else
 	    {
@@ -90,11 +91,19 @@ void	indie::system::Bomb::dropBomb(ecs::Entity entity)
 			component::Spreadable(bomb->range,
 					      bomb->propagationMask),
 			component::PowerInfo(bomb->power),
-			component::PlayerId(playerId->id));
+			component::PlayerId(playerId->id),
+			component::Timer(200, event::COL_ADD_ELEM));
+	      engine::eventManager().emit(event::BOMB_DROPPED, id);
 	    }
 	  bomb->count -= 1;
 	}
     }
+}
+
+void	indie::system::Bomb::preExplode(ecs::Entity entity)
+{
+  engine::eventManager().emit(event::COL_ADD_ELEM, entity);
+  engine::entityManager().addComponentEmplace<component::Timer>(entity, 2800, event::DETONATE_BOMB);
 }
 
 void	indie::system::Bomb::explode(ecs::Entity entity)
@@ -103,7 +112,6 @@ void	indie::system::Bomb::explode(ecs::Entity entity)
   auto&	spreadable = engine::entityManager().getComponent<component::Spreadable>(entity);
   auto& transform = engine::entityManager().getComponent<component::Transform>(entity);
   auto& playerId = engine::entityManager().getComponent<component::PlayerId>(entity);
-
   if ((!powerInfo)
       || (!playerId)
       || (!transform)
@@ -114,7 +122,7 @@ void	indie::system::Bomb::explode(ecs::Entity entity)
       removeBomb(entity);
       return ;
     }
-
+  
   uint8_t dir = 0;
   for (uint8_t i = 0; i < 8; ++i)
     {
@@ -167,6 +175,7 @@ void	indie::system::Bomb::removeBomb(ecs::Entity entity)
 	    }
 	}
     }
+  engine::eventManager().emit(event::REMOVE_SKEL, entity);
   auto& render = engine::entityManager().getComponent<component::Renderer3d>(entity);
   if (render && render->mesh)
     gfx::sceneManager()->addToDeletionQueue(render->mesh);

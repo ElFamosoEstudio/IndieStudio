@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sat Jun 17 02:27:36 2017 akram abd-ali
-// Last update Sun Jun 18 22:22:57 2017 akram abd-ali
+// Last update Wed Jun 21 01:14:27 2017 akram abd-ali
 //
 
 #ifndef BOMB_SYSTEM_HPP
@@ -28,6 +28,7 @@ namespace indie
       void	dropBomb(ecs::Entity entity);
       void      removeBomb(ecs::Entity entity);
       void      explode(ecs::Entity entity);
+      void      preExplode(ecs::Entity entity);
     public:
       static void set3DPropagationPos(component::Transform& trans, uint8_t spread);
       Bomb();

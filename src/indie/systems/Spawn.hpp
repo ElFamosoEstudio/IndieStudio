@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 // 
 // Started on  Sun Jun 18 20:21:52 2017 akram abd-ali
-// Last update Sun Jun 18 22:03:07 2017 akram abd-ali
+// Last update Wed Jun 21 16:57:33 2017 akram abd-ali
 //
 
 #ifndef SPAWN_SYSTEM_HPP
@@ -29,6 +29,7 @@ namespace indie
       Spawn& operator=(Spawn const&) = delete;
     public:
       void		respawn(ecs::Entity entity);
+      void	        giveHP(ecs::Entity entity);
       void		update();
       ecs::SysType	type() const;
       static ISystem	*create();

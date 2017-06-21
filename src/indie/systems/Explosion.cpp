@@ -5,7 +5,7 @@
 // Login   <abd-al_a@epitech.net>
 //
 // Started on  Sun Jun 18 06:01:58 2017 akram abd-ali
-// Last update Tue Jun 20 20:42:29 2017 akram abd-ali
+// Last update Wed Jun 21 03:51:45 2017 akram abd-ali
 //
 
 #include "indie.hpp"
@@ -30,7 +30,6 @@ void	indie::system::Explosion::spreadExplosion(ecs::Entity entity)
       removeExplosion(entity);
       return ;
     }
-
   uint8_t dir = 0;
   if ((spreadable->range != 0)
       && (spreadable->propagationMask != 0))
